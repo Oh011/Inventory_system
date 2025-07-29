@@ -1,0 +1,12 @@
+﻿using Application.Features.roles.Dtos;
+using MediatR;
+
+namespace Application.Features.roles.Commands.CreateRole
+{
+    internal class CreateRoleCommand : IRequest<RoleDto>
+    {
+
+
+        public string RoleName { get; set; }
+    }
+}

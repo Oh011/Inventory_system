@@ -1,0 +1,30 @@
+﻿[
+
+
+
+  {
+
+    "Name": "Electronics",
+    "Description": "Electronic gadgets and devices"
+  },
+  {
+
+    "Name": "Groceries",
+    "Description": "Everyday grocery items"
+  },
+  {
+
+    "Name": "Clothing",
+    "Description": "Apparel and garments"
+  },
+  {
+
+    "Name": "Books",
+    "Description": "Books and educational material"
+  },
+  {
+
+    "Name": "Home Appliances",
+    "Description": "Household appliances and tools"
+  }
+]

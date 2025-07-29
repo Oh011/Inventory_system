@@ -1,0 +1,34 @@
+﻿using AutoMapper;
+using MediatR;
+using Project.Application.Features.Products.Dtos;
+using Project.Application.Features.Products.Intrefaces;
+
+namespace Project.Application.Features.Products.Commands.Update
+{
+    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductRequest, ProductResultDto>
+    {
+
+
+        private readonly IProductService productService;
+        private readonly IMapper _mapper;
+
+
+
+        public UpdateProductCommandHandler(IProductService productService, IMapper mapper)
+        {
+            this._mapper = mapper;
+            this.productService = productService;
+        }
+        public async Task<ProductResultDto> Handle(UpdateProductRequest request, CancellationToken cancellationToken)
+        {
+
+
+            var product = await productService.UpdateProduct(request);
+
+
+
+            return _mapper.Map<ProductResultDto>(product);
+
+        }
+    }
+}

@@ -1,0 +1,47 @@
+[
+  {
+
+    "Name": "Global Electronics Ltd",
+    "ContactName": "John Smith",
+    "Phone": "0123456789",
+    "Email": "contact@globalelec.com",
+    "Address": "Cairo, Egypt",
+    "CategoryIds": [ 1 ] // Electronics
+  },
+  {
+
+    "Name": "FreshMart",
+    "ContactName": "Layla Ahmed",
+    "Phone": "0109876543",
+    "Email": "support@freshmart.com",
+    "Address": "Giza, Egypt",
+    "CategoryIds": [ 2 ] // Groceries
+  },
+  {
+
+    "Name": "StyleHub",
+    "ContactName": "Ali Hassan",
+    "Phone": "0112233445",
+    "Email": "info@stylehub.com",
+    "Address": "Alexandria, Egypt",
+    "CategoryIds": [ 3 ] // Clothing
+  },
+  {
+
+    "Name": "BookZone",
+    "ContactName": "Mona Khaled",
+    "Phone": "0123459999",
+    "Email": "orders@bookzone.com",
+    "Address": "Mansoura, Egypt",
+    "CategoryIds": [ 4 ] // Books
+  },
+  {
+
+    "Name": "HomeEase",
+    "ContactName": "Kareem Nabil",
+    "Phone": "0155432100",
+    "Email": "sales@homeease.com",
+    "Address": "Tanta, Egypt",
+    "CategoryIds": [ 5 ] // Home Appliances
+  }
+]

@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Sahred\Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Dashboard\Commands\" />
+    <Folder Include="Features\Dashboard\Interfaces\" />
+    <Folder Include="Features\Employees\Commands\DeactivateEmployee\" />
+    <Folder Include="Features\Inventory\Interfaces\" />
+    <Folder Include="Features\Products\Handlers\" />
+    <Folder Include="Features\roles\Commands\DeleteRole\" />
+    <Folder Include="Features\roles\Commands\UpdateRole\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Features\Inventory\Specifications\InventoryValueReportSpecifications.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
+    <PackageReference Include="MediatR" Version="12.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="2.3.0" />
+  </ItemGroup>
+
+</Project>
