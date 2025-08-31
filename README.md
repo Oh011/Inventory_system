@@ -3,6 +3,7 @@
 
  Designed for **scalability**, **testability**, and **real-world business workflows** such as product tracking, sales invoicing, stock adjustment, and purchase order lifecycle handling — including **Domain Events**, **Background Services**, and **Real-Time Notifications using SignalR**.
 
+📄 **API Documentation:** [View PDF](docs/API_Documentation_Inventory System.pdf)
 
 
  ## 🏗️ Architecture Highlights
