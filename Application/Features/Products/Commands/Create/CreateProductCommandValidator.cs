@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Microsoft.AspNetCore.Http;
+using Shared.Dtos;
 
 namespace Project.Application.Features.Products.Commands.Create
 {
@@ -61,11 +61,11 @@ namespace Project.Application.Features.Products.Commands.Create
           .WithMessage($"Only images with extensions: {string.Join(", ", _AllowedExtensions)} are allowed.");
 
             RuleFor(x => x.Image)
-                .Must(f => f == null || f.Length <= _MaxSize)
+                .Must(f => f == null || f.FileLength <= _MaxSize)
                 .WithMessage("Image size must not exceed 2MB.");
         }
 
-        private bool BeAValidImage(IFormFile? file)
+        private bool BeAValidImage(FileUploadDto? file)
         {
             if (file is null) return true;
 

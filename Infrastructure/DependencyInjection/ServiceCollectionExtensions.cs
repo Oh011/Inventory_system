@@ -34,6 +34,7 @@ using Project.Application.Common.Interfaces.Repositories;
 using Project.Application.Common.Interfaces.Services;
 using Project.Application.Common.Notifications.Interfaces;
 using Project.Application.Common.Notifications.Senders;
+using Project.Application.Features.Products.Intrefaces;
 using Sahred.Options;
 using Shared.Options;
 using System.Security.Claims;
@@ -54,11 +55,23 @@ namespace Infrastructure.DependencyInjection
             services.AddScoped<IBackgroundJobService, HangfireBackgroundJobService>();
 
 
+            services.AddScoped<ITransactionManager, TransactionManager>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+
 
 
             services.AddScoped<INotificationSender<PurchaseOrderStatusChangedDomainEvent>, PurchaseOrderStatusChangedNotificationSender>();
             services.AddScoped<INotificationSender<ProductStockDecreasedEvent>, ProductStockDecreasedNotificationSender>();
-            services.AddScoped<INotificationOrchestrator, NotificationOrchestrator>();
+
+            services.AddScoped<INotificationSender<PurchaseOrderCanceledDomainEvent>, PurchaseOrderCanceledEmailSender>();
+
+            services.AddScoped<INotificationSender<PurchaseOrderCreatedDomainEvent>, PurchaseOrderCreatedEmailSender>();
+            services.AddScoped<INotificationSender<PurchaseOrderReceivedDomainEvent>, PurchaseOrderReceivedEmailSender>();
+
+
+            services.AddScoped(typeof(INotificationOrchestrator<>), typeof(NotificationOrchestrator<>));
+            ;
+
 
 
             services.AddHangfire(config =>
@@ -69,6 +82,8 @@ namespace Infrastructure.DependencyInjection
             services.AddHangfireServer();
 
             //app.UseHangfireDashboard(); // optional dashboard
+
+
 
 
             services.AddScoped<INotificationDtoFactory, NotificationDtoFactory>();

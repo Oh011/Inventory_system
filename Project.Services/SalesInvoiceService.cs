@@ -1,9 +1,10 @@
 ﻿using Application.Exceptions;
 using Domain.Entities;
-using Domain.Exceptions;
 using Domain.ValueObjects.SalesInvoice.Domain.ValueObjects;
 using Project.Application.Common.Interfaces;
 using Project.Application.Common.Interfaces.Repositories;
+using Project.Application.Common.Interfaces.Services;
+using Project.Application.Features.Inventory.Dtos;
 using Project.Application.Features.SalesInvoice.Commands.Create;
 using Project.Application.Features.SalesInvoice.Dtos;
 using Project.Application.Features.SalesInvoice.Interfaces;
@@ -25,7 +26,7 @@ namespace Project.Services
         public int Stock { get; set; }
         public decimal SellingPrice { get; set; }
     }
-    internal class SalesInvoiceService(IUnitOfWork unitOfWork, IDomainEventDispatcher eventDispatcher) : ISalesInvoiceService
+    internal class SalesInvoiceService(ITransactionManager transactionManager, IInventoryService _inventoryService, IUnitOfWork unitOfWork, IDomainEventDispatcher eventDispatcher) : ISalesInvoiceService
     {
 
 
@@ -36,30 +37,16 @@ namespace Project.Services
 
             var SalesInvoiceRepository = unitOfWork.GetRepository<SalesInvoice, int>();
 
+
+            await transactionManager.BeginTransactionAsync();
+
             var productsIds = Invoice.Items.Select(order => order.ProductId).ToList();
             var products = await LoadProducts(productsIds);
 
+            var missingIds = Invoice.Items.Select(i => i.ProductId).Except(products.Select(p => p.Key)).ToList();
+            if (missingIds.Any())
+                throw new NotFoundException($"Products not found: {string.Join(", ", missingIds)}");
 
-            if (products.Count < productsIds.Count)
-            {
-                throw new NotFoundException("One of the products in the order is not found");
-            }
-
-
-
-
-            foreach (var item in Invoice.Items)
-            {
-
-
-                var product = products[item.ProductId];
-
-                if (product.Stock < item.QuantitySold)
-                {
-                    throw new DomainException($"Insufficient stock for product {product.Name} (ID: {product.Id})");
-                }
-
-            }
 
 
             var itemDataList = Invoice.Items.Select(i => new SalesInvoiceItemData(
@@ -68,8 +55,6 @@ namespace Project.Services
                     i.SellingPrice,
                     i.Discount ?? 0m
                 )).ToList();
-
-
 
 
             var invoice = new SalesInvoice
@@ -86,10 +71,40 @@ namespace Project.Services
             };
 
 
+
+
             invoice.AddItems(itemDataList);
 
-
             await SalesInvoiceRepository.AddAsync(invoice);
+
+
+
+            var adjustItems = Invoice.Items.Select(
+             i => new InventoryStockAdjustmentDto
+             {
+
+                 ProductId = i.ProductId,
+                 QuantityChange = -i.QuantitySold
+             }
+             ).ToList();
+
+
+            try
+            {
+
+                await _inventoryService.AdjustStockAsync(adjustItems, transactionManager);
+
+
+            }
+
+
+            catch (Exception ex)
+            {
+
+                await transactionManager.RollBackTransaction();
+                throw;
+            }
+
 
 
 

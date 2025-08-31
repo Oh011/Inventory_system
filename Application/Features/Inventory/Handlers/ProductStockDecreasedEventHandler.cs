@@ -10,10 +10,10 @@ namespace Project.Application.Features.Inventory.Handlers
     {
 
 
-        private readonly INotificationOrchestrator notificationOrchestrator;
+        private readonly INotificationOrchestrator<ProductStockDecreasedEvent> notificationOrchestrator;
         private readonly IBackgroundJobService backgroundJobService;
 
-        public ProductStockDecreasedEventHandler(IBackgroundJobService backgroundJobService, INotificationOrchestrator notificationOrchestrator)
+        public ProductStockDecreasedEventHandler(IBackgroundJobService backgroundJobService, INotificationOrchestrator<ProductStockDecreasedEvent> notificationOrchestrator)
         {
 
             this.notificationOrchestrator = notificationOrchestrator;
@@ -25,7 +25,7 @@ namespace Project.Application.Features.Inventory.Handlers
 
 
 
-            backgroundJobService.Enqueue<INotificationOrchestrator>(e => e.NotifyLowStockAsync(notification.DomainEvent));
+            backgroundJobService.Enqueue<INotificationOrchestrator<ProductStockDecreasedEvent>>(e => e.Notify(notification.DomainEvent));
 
 
 

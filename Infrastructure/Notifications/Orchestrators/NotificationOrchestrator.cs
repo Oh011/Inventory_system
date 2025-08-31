@@ -1,28 +1,24 @@
-﻿using Domain.Events.Products;
-using Domain.Events.PurchaseOrder;
+﻿using Domain.Common;
 using Project.Application.Common.Notifications.Interfaces;
 using Project.Application.Common.Notifications.Senders;
 
 namespace Infrastructure.Notifications.Orchestrators
 {
-    public class NotificationOrchestrator : INotificationOrchestrator
+    public class NotificationOrchestrator<T> : INotificationOrchestrator<T> where T : IDomainEvent
     {
-        private readonly INotificationSender<PurchaseOrderStatusChangedDomainEvent> _poStatusSender;
-        private readonly INotificationSender<ProductStockDecreasedEvent> _lowStockSender;
+        private readonly INotificationSender<T> _sender;
+
 
         public NotificationOrchestrator(
-            INotificationSender<PurchaseOrderStatusChangedDomainEvent> poStatusSender,
-            INotificationSender<ProductStockDecreasedEvent> lowStockSender)
+           INotificationSender<T> sender)
         {
-            _poStatusSender = poStatusSender;
-            _lowStockSender = lowStockSender;
+            _sender = sender;
         }
 
-        public Task NotifyPurchaseOrderStatusChangeAsync(PurchaseOrderStatusChangedDomainEvent domainEvent)
-            => _poStatusSender.SendAsync(domainEvent);
 
-        public Task NotifyLowStockAsync(ProductStockDecreasedEvent domainEvent)
-            => _lowStockSender.SendAsync(domainEvent);
+        public Task Notify(T domainEvent) => _sender.SendAsync(domainEvent);
+
+
     }
 
 }

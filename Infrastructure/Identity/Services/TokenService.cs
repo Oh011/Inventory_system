@@ -1,7 +1,7 @@
-﻿using Application.Features.Auth.Dtos;
+﻿using Application.Exceptions;
+using Application.Features.Auth.Dtos;
 using Application.Features.Auth.Interfaces;
 using Application.Features.Auth.Results;
-using Application.Exceptions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -227,3 +227,7 @@ namespace Infrastructure.Identity.Services
 
     }
 }
+
+
+//0RoSySlrNM2sE1o+9xaxaGfC2ynNqakwNONkunAtykM= in databse
+//0RoSySlrNM2sE1o%2B9xaxaGfC2ynNqakwNONkunAtykM%3D in cokkies

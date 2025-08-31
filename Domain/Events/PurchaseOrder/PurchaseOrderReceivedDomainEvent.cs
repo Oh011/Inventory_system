@@ -13,7 +13,7 @@ namespace Domain.Events.PurchaseOrder
 
         public PurchaseOrderReceivedDomainEvent(int purchaseOrderId, int supplierId, string supplierEmail, string supplierName, PurchaseOrderStatus status, Dictionary<int, int> items)
 
-            : base(purchaseOrderId, supplierId, supplierName, supplierEmail, status)
+            : base(purchaseOrderId, supplierId, supplierEmail, supplierName, status)
         {
 
 

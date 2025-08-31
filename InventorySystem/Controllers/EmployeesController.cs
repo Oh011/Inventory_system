@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using InventorySystem.Dtos;
+using InventorySystem.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -122,13 +124,15 @@ namespace InventorySystem.Controllers
         [Authorize]
         [HttpPatch("{id}/profile-image")]
 
-        public async Task<ActionResult<SuccessWithData<string>>> UploadEmployeeImage(int id, [FromForm] IFormFile? imageFile)
+        public async Task<ActionResult<SuccessWithData<string>>> UploadEmployeeImage([FromRoute] int id, [FromForm] UploadEmployeeImageRequest request)
         {
+
+            var imageDto = FileUploadHelper.ToFileUploadDto(request.ImageFile);
 
             var command = new UpdateEmployeeProfileImageCommand
             {
                 EmployeeId = id,
-                ProfileImage = imageFile
+                ProfileImage = imageDto
             };
 
             var result = await mediator.Send(command);

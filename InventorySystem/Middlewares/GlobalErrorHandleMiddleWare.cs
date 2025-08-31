@@ -96,6 +96,8 @@ namespace InventorySystem.Middlewares
 
                 UnAuthorizedException => (int)HttpStatusCode.Unauthorized,
 
+                AccountLockedException => (int)HttpStatusCode.Locked,
+
                 ConflictException => (int)HttpStatusCode.Conflict,
 
 

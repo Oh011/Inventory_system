@@ -15,12 +15,13 @@ namespace Project.Application.Features.Categories.Queries.CategoryLookUp
         public GetCategoryLookUpQueryHandler(ICategoryService categoryService)
         {
 
+            _categoryService = categoryService;
         }
         public async Task<IEnumerable<CategoryDto>> Handle(GetCategoryLookUpQuery request, CancellationToken cancellationToken)
         {
 
 
-            var categories = (await _categoryService.GetAllCategories(null)).ToList();
+            var categories = (await _categoryService.GetAllCategories()).ToList();
             return categories;
 
         }

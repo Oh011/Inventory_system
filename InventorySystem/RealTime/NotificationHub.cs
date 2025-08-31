@@ -28,6 +28,8 @@ namespace InventorySystem.RealTime
 
 
 
+
+
             if (user.IsInRole("Admin"))
                 await Groups.AddToGroupAsync(Context.ConnectionId, "Admins");
 

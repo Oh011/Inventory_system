@@ -25,7 +25,7 @@ namespace Project.Services
 
         }
 
-        public async Task<IEnumerable<CategoryDto>> GetAllCategories(string? Name)
+        public async Task<IEnumerable<CategoryDto>> GetAllCategories(string? Name = null)
         {
 
 

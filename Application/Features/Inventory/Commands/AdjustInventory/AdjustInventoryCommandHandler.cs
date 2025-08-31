@@ -13,6 +13,7 @@ namespace Project.Application.Features.Inventory.Commands.AdjustInventory
         private readonly IUnitOfWork unitOfWork;
         private readonly IEmployeeContextService _employeeContext;
         private readonly IInventoryService _InventoryService;
+        private ITransactionManager _transactionManager;
 
 
 
@@ -24,6 +25,7 @@ namespace Project.Application.Features.Inventory.Commands.AdjustInventory
             this.unitOfWork = unitOfWork;
             this._employeeContext = employeeContextService;
             this._InventoryService = inventoryService;
+
 
         }
 
@@ -38,7 +40,7 @@ namespace Project.Application.Features.Inventory.Commands.AdjustInventory
             var employeeId = await _employeeContext.GetCurrentEmployeeIdAsync();
 
 
-
+            this._transactionManager = await unitOfWork.BeginTransaction();
 
             var log = new StockAdjustmentLog
             {
@@ -63,7 +65,7 @@ namespace Project.Application.Features.Inventory.Commands.AdjustInventory
                     ProductId=request.ProductId,
                     QuantityChange=request.QuantityChange,
                 }
-             });
+             }, _transactionManager);
 
 
 

@@ -10,15 +10,15 @@ namespace Project.Application.Features.PurchaseOrders.EventHandlers
      : INotificationHandler<DomainEventNotifications<PurchaseOrderStatusChangedDomainEvent>>
     {
 
-        private readonly INotificationOrchestrator _notificationOrchestrator;
+
+
         private readonly IBackgroundJobService _backgroundJobService;
 
-        public BroadcastPurchaseOrderPurchaseOrderStatusChangedNotificationHandler(IBackgroundJobService backgroundJobService,
-          INotificationOrchestrator notificationOrchestrator)
+        public BroadcastPurchaseOrderPurchaseOrderStatusChangedNotificationHandler(IBackgroundJobService backgroundJobService
+         )
         {
 
 
-            _notificationOrchestrator = notificationOrchestrator;
             _backgroundJobService = backgroundJobService;
         }
 
@@ -28,7 +28,9 @@ namespace Project.Application.Features.PurchaseOrders.EventHandlers
 
 
 
-            _backgroundJobService.Enqueue<INotificationOrchestrator>(s => s.NotifyPurchaseOrderStatusChangeAsync(domainEvent));
+
+            _backgroundJobService.Enqueue<INotificationOrchestrator<PurchaseOrderStatusChangedDomainEvent>>(s => s.Notify(domainEvent));
+
         }
     }
 

@@ -5,6 +5,8 @@ using Project.Application.Common.Interfaces;
 
 namespace Infrastructure.Events
 {
+
+    //acts as message broker
     internal class DomainEventDispatcher : IDomainEventDispatcher
     {
 

@@ -1,4 +1,6 @@
 ﻿using Application.Common.Interfaces;
+using Hangfire;
+using Infrastructure.Services.Jobs;
 using Project.Application.Common.Interfaces;
 
 namespace InventorySystem.Extensions
@@ -6,6 +8,23 @@ namespace InventorySystem.Extensions
     public static class WebApplicationExtensions
     {
 
+        public static async Task<WebApplication> StartHangfire(this WebApplication application)
+        {
+
+
+            using (var scope = application.Services.CreateScope())
+            {
+                var recurringJobs = scope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
+
+                recurringJobs.AddOrUpdate<DailyStockCheckJob>(
+                    "DailyStockCheck",
+                    job => job.RunAsync(),
+                    Cron.Hourly()
+                );
+            }
+
+            return application;
+        }
 
         public static async Task<WebApplication> SeedDbAsync(this WebApplication application)
         {

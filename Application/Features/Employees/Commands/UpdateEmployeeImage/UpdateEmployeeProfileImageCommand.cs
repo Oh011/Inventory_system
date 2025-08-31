@@ -1,11 +1,11 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
+using Shared.Dtos;
 
 namespace Project.Application.Features.Employees.Commands.UpdateEmployeeImage
 {
     public class UpdateEmployeeProfileImageCommand : IRequest<string>
     {
         public int EmployeeId { get; set; } // domain ID
-        public IFormFile ProfileImage { get; set; } = null!;
+        public FileUploadDto? ProfileImage { get; set; }
     }
 }

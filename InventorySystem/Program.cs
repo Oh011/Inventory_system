@@ -3,6 +3,7 @@ using Infrastructure.DependencyInjection;
 using InventorySystem.Extensions;
 using InventorySystem.Middlewares;
 using InventorySystem.RealTime;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Project.Services.DependecyInjcetion;
 using Sahred.Options;
@@ -37,15 +38,23 @@ namespace InventorySystem
 
 
             builder.Services.AddInfrastructure(builder.Configuration);
+
             builder.Services.AddApplication();
 
             builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("jwtOptions"));
 
 
+            builder.Services.AddApiVersioning(options =>
+            {
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+            });
+
+
 
             builder.Services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Inventory System ", Version = "v1" });
 
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -99,6 +108,19 @@ namespace InventorySystem
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            if (app.Environment.IsProduction())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+                app.MapGet("/", () => Results.Redirect("/swagger"));
+            }
+
+
+
+
+
+
             app.UseCors("MyPolicy");
 
             app.UseHttpsRedirection();
@@ -115,6 +137,7 @@ namespace InventorySystem
 
 
             await app.SeedDbAsync();
+            await app.StartHangfire();
 
             app.MapControllers();
 

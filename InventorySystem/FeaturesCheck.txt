@@ -1,1 +1,70 @@
 ﻿
+
+Suggested additional functionalities
+a) Approval workflow
+
+If your system allows Managers/Admins to approve purchase orders, you could add:
+
+PATCH /api/v1/PurchaseOrder/{id}/approve
+
+PATCH /api/v1/PurchaseOrder/{id}/reject
+
+Useful for multi-step validation before receiving or processing.
+
+b) Notifications / Alerts
+
+You already implemented SignalR/email notifications for status changes.
+
+Could add:
+
+GET /api/v1/PurchaseOrder/{id}/notifications – list notifications for that PO.
+
+Alerts for delayed delivery or partial receiving.
+
+c) Attachments / Comments
+
+Sometimes POs include invoices, packing lists, or comments.
+
+Endpoints like:
+
+POST /api/v1/PurchaseOrder/{id}/attachments
+
+POST /api/v1/PurchaseOrder/{id}/comments
+
+GET /api/v1/PurchaseOrder/{id}/comments
+
+d) Status history / audit trail
+
+Track changes for compliance:
+
+GET /api/v1/PurchaseOrder/{id}/history – who changed what, when.
+
+e) Partial shipments / backorders
+
+If items arrive partially:
+
+PATCH /api/v1/PurchaseOrder/{id}/receive-partial
+
+Include received quantities per item instead of full order only.
+
+f) Export / reporting
+
+You have single PO PDF export. Could add:
+
+GET /api/v1/PurchaseOrder/export?fromDate=&toDate=&status= – export multiple POs to Excel/PDF.
+
+Useful for accounting or suppliers.
+
+g) Supplier performance
+
+Optional analytics:
+
+Average delivery time, number of canceled POs, etc.
+
+h) Bulk actions
+
+Cancel multiple POs, mark multiple as received:
+
+PATCH /api/v1/PurchaseOrder/bulk-cancel
+
+PATCH /api/v1/PurchaseOrder/bulk-receive

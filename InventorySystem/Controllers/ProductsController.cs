@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using InventorySystem.Dtos;
+using InventorySystem.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -34,8 +36,26 @@ namespace InventorySystem.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin,Manager")]
 
-        public async Task<ActionResult<SuccessWithData<ProductResultDto>>> CreateProduct([FromForm] CreateProductCommand command)
+        public async Task<ActionResult<SuccessWithData<ProductResultDto>>> CreateProduct([FromForm] CreateProductRequest request)
         {
+
+
+            var imageDto = FileUploadHelper.ToFileUploadDto(request.Image);
+
+
+            var command = new CreateProductCommand
+            {
+                Name = request.Name,
+                Description = request.Description,
+                Barcode = request.Barcode,
+                Unit = request.Unit,
+                CostPrice = request.CostPrice,
+                SellingPrice = request.SellingPrice,
+                MinimumStock = request.MinimumStock,
+                CategoryId = request.CategoryId,
+                QuantityInStock = request.QuantityInStock,
+                Image = imageDto
+            };
 
             var result = await mediator.Send(command);
 
@@ -70,10 +90,10 @@ namespace InventorySystem.Controllers
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin,Manager")]
 
-        public async Task<ActionResult<SuccessWithData<ProductResultDto>>> UpdateProduct(int id, [FromBody] UpdateProductCommand command)
+        public async Task<ActionResult<SuccessWithData<ProductResultDto>>> UpdateProduct(int id, [FromBody] UpdateProductRequest command)
         {
 
-            var request = mapper.Map<UpdateProductRequest>(command);
+            var request = mapper.Map<UpdateProductCommand>(command);
 
             request.Id = id;
 

@@ -1,6 +1,6 @@
 ﻿using Application.Exceptions;
-using Microsoft.AspNetCore.Http;
 using Project.Application.Common.Interfaces.Services;
+using Shared.Dtos;
 
 namespace Infrastructure.Services
 {
@@ -36,7 +36,7 @@ namespace Infrastructure.Services
             return false;
         }
 
-        public async Task<string> Upload(IFormFile file, string FolderName)
+        public async Task<string> Upload(FileUploadDto file, string FolderName)
         {
 
 
@@ -52,7 +52,7 @@ namespace Infrastructure.Services
 
 
 
-            if (file.Length > _MaxSize)
+            if (file.FileLength > _MaxSize)
             {
                 var sizeException = new ValidationException();
                 sizeException.AddValidations("ProfileImage", "ProfileImage size exceeds 2MB limit.");
@@ -73,7 +73,7 @@ namespace Infrastructure.Services
 
             using var FileStream = new FileStream(FilePath, FileMode.Create);
 
-            await file.CopyToAsync(FileStream);
+            await file.FileStream.CopyToAsync(FileStream);
 
 
             return Path.Combine("uploads", FolderName, FileName).Replace("\\", "/");

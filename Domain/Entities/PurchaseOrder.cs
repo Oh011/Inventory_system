@@ -3,7 +3,6 @@ using Domain.Enums;
 using Domain.Events.PurchaseOrder;
 using Domain.Exceptions;
 using Domain.ValueObjects.PurchaseOrder;
-using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
 {
@@ -37,7 +36,7 @@ namespace Domain.Entities
         public ICollection<PurchaseOrderItem>? Items { get; set; } = new List<PurchaseOrderItem>();
 
 
-        [Timestamp]
+
         public byte[] RowVersion { get; set; } = null!;
 
 
@@ -68,11 +67,11 @@ namespace Domain.Entities
 
         public void MarkAsCreated(int supplierId, string supplierName, string supplierEmail, PurchaseOrderStatus status)
         {
-            var domainEvent = new PurchaseOrderCreatedDomainEvent(this.Id, supplierId
-                , supplierName, supplierEmail, status);
+            var domainEvent = new PurchaseOrderCreatedDomainEvent(this.Id, supplierId,
+                 supplierEmail, supplierName, status);
 
 
-            var statusChangedEvent = new PurchaseOrderStatusChangedDomainEvent(this.Id, supplierId, supplierName, supplierEmail, status);
+            var statusChangedEvent = new PurchaseOrderStatusChangedDomainEvent(this.Id, supplierId, supplierEmail, supplierName, status);
 
             AddDomainEvent(domainEvent);
             AddDomainEvent(statusChangedEvent);
@@ -81,10 +80,10 @@ namespace Domain.Entities
 
         public void MarkAsCanceled(int supplierId, string supplierName, string supplierEmail, PurchaseOrderStatus status)
         {
-            var domainEvent = new PurchaseOrderCanceledDomainEvent(this.Id, supplierId
-                , supplierName, supplierEmail, status);
+            var domainEvent = new PurchaseOrderCanceledDomainEvent(this.Id, supplierId,
+                 supplierEmail, supplierName, status);
 
-            var statusChangedEvent = new PurchaseOrderStatusChangedDomainEvent(this.Id, supplierId, supplierName, supplierEmail, status);
+            var statusChangedEvent = new PurchaseOrderStatusChangedDomainEvent(this.Id, supplierId, supplierEmail, supplierName, status);
 
             AddDomainEvent(domainEvent);
             AddDomainEvent(statusChangedEvent);
@@ -97,10 +96,10 @@ namespace Domain.Entities
         {
 
             var domainEvent = new PurchaseOrderReceivedDomainEvent(this.Id, supplierId
-                , supplierName, supplierEmail,
+                , supplierEmail, supplierName,
             status, ReceivedItems);
 
-            var statusChangedEvent = new PurchaseOrderStatusChangedDomainEvent(this.Id, supplierId, supplierName, supplierEmail, status);
+            var statusChangedEvent = new PurchaseOrderStatusChangedDomainEvent(this.Id, supplierId, supplierEmail, supplierName, status);
 
             AddDomainEvent(domainEvent);
             AddDomainEvent(statusChangedEvent);

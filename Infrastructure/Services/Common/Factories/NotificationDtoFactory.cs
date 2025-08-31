@@ -12,9 +12,10 @@ namespace Infrastructure.Services.Common.Factories
         {
             var message = domainEvent.Status switch
             {
-                PurchaseOrderStatus.Pending => $"Purchase order #{domainEvent.PurchaseOrderId} was created by {domainEvent.SupplerName}.",
-                PurchaseOrderStatus.Received => $"Purchase order #{domainEvent.PurchaseOrderId} was received from {domainEvent.SupplerName}.",
-                PurchaseOrderStatus.Cancelled => $"Purchase order #{domainEvent.PurchaseOrderId} was cancelled by {domainEvent.SupplerName}.",
+                PurchaseOrderStatus.Pending => $"Purchase order #{domainEvent.PurchaseOrderId} was created by {domainEvent.SupplierName}.",
+                PurchaseOrderStatus.PartiallyReceived => $"Purchase order #{domainEvent.PurchaseOrderId} was partially received from {domainEvent.SupplierName}.",
+                PurchaseOrderStatus.Received => $"Purchase order #{domainEvent.PurchaseOrderId} was received from {domainEvent.SupplierName}.",
+                PurchaseOrderStatus.Cancelled => $"Purchase order #{domainEvent.PurchaseOrderId} was cancelled by {domainEvent.SupplierName}.",
                 _ => $"Purchase order #{domainEvent.PurchaseOrderId} status changed to {domainEvent.Status}."
             };
 
@@ -22,6 +23,7 @@ namespace Infrastructure.Services.Common.Factories
             {
                 PurchaseOrderStatus.Pending => NotificationType.PurchaseOrderCreated,
                 PurchaseOrderStatus.Received => NotificationType.PurchaseOrderReceived,
+                PurchaseOrderStatus.Cancelled => NotificationType.PurchaseOrderCancelled,
                 _ => NotificationType.GeneralAnnouncement
             };
 

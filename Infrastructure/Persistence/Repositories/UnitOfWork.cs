@@ -69,5 +69,13 @@ namespace Infrastructure.Persistence.Repositories
         {
             _context.Entry(entity).OriginalValues["RowVersion"] = Convert.FromBase64String(rowVersion);
         }
+
+        public async Task<ITransactionManager> BeginTransaction(CancellationToken cancellationToken = default)
+        {
+            var txManager = new TransactionManager(_context);
+            await txManager.BeginTransactionAsync();
+            return txManager;
+        }
+
     }
 }

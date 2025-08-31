@@ -7,7 +7,7 @@ namespace Domain.Events.PurchaseOrder
 
         public int PurchaseOrderId { get; }
         public string SupplierEmail { get; }
-        public string SupplerName { get; }
+        public string SupplierName { get; }
 
 
         public PurchaseOrderStatus Status { get; }
@@ -15,11 +15,11 @@ namespace Domain.Events.PurchaseOrder
 
         public DateTime OccurredOn { get; } = DateTime.Now;
 
-        public PurchaseOrderBaseEvent(int orderId, int supplierId, string supplierEmail, string supplerName, PurchaseOrderStatus status)
+        public PurchaseOrderBaseEvent(int orderId, int supplierId, string supplierEmail, string supplierName, PurchaseOrderStatus status)
         {
             PurchaseOrderId = orderId;
             SupplierEmail = supplierEmail;
-            SupplerName = supplerName;
+            SupplierName = supplierName;
             SupplierId = supplierId;
             Status = status;
         }

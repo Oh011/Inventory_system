@@ -43,7 +43,7 @@ namespace Project.Application.Features.PurchaseOrders.Commands.Create
             var orderId = await purchaseOrderService.CreatePurchaseOrder(request);
 
 
-            await _unitOfWork.Commit();
+
 
             var order = await purchaseOrderService.GetPurchaseOrderById(orderId);
 

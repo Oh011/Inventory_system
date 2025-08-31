@@ -1,6 +1,7 @@
 ﻿using Application.Features.roles.Dtos;
 using Application.Features.roles.Interfaces;
 using MediatR;
+using Project.Application.Common.Interfaces.Repositories;
 
 namespace Application.Features.roles.Commands.CreateRole
 {
@@ -8,14 +9,18 @@ namespace Application.Features.roles.Commands.CreateRole
     {
 
         private readonly IRoleService roleService;
+        private readonly IUnitOfWork unitOfWork;
+        private ITransactionManager transactionManager;
 
-        public CreateRoleCommandHandler(IRoleService roleService)
+        public CreateRoleCommandHandler(IRoleService roleService, ITransactionManager transactionManager)
         {
 
             this.roleService = roleService;
+
         }
         public async Task<RoleDto> Handle(CreateRoleCommand request, CancellationToken cancellationToken)
         {
+
 
             return await roleService.CreateRoleAsync(request.RoleName);
         }

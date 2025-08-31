@@ -31,6 +31,7 @@ namespace Infrastructure.Notifications.Senders
             _userService = userService;
             _userNotificationsService = userNotificationsService;
             _notificationService = notificationService;
+            this.notificationDtoFactory = notificationDtoFactory;
         }
 
         public async Task SendAsync(ProductStockDecreasedEvent domainEvent)
@@ -63,7 +64,10 @@ namespace Infrastructure.Notifications.Senders
                 Notifications = createdNotifications.ToList(),
             };
 
-            await _notificationService.NotifyLowStockProducts(group);
+            if (group.Notifications.Any())
+                await _notificationService.NotifyLowStockProducts(group);
+
+
         }
 
 

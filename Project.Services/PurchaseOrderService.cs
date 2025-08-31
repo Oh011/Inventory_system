@@ -6,6 +6,8 @@ using Domain.ValueObjects.PurchaseOrder;
 using Project.Application.Common.Helpers;
 using Project.Application.Common.Interfaces;
 using Project.Application.Common.Interfaces.Repositories;
+using Project.Application.Common.Interfaces.Services;
+using Project.Application.Features.Inventory.Dtos;
 using Project.Application.Features.PurchaseOrders.Commands.Create;
 using Project.Application.Features.PurchaseOrders.Commands.Update;
 using Project.Application.Features.PurchaseOrders.Dtos;
@@ -27,7 +29,7 @@ namespace Project.Services
         public decimal CostPrice { get; set; }
     }
 
-    internal class PurchaseOrderService(IUnitOfWork unitOfWork, IDomainEventDispatcher domainEventDispatcher, ISupplierService supplierService) : IPurchaseOrderService
+    internal class PurchaseOrderService(ITransactionManager transactionManager, IInventoryService inventoryService, IUnitOfWork unitOfWork, IDomainEventDispatcher domainEventDispatcher, ISupplierService supplierService) : IPurchaseOrderService
     {
         public async Task<int> CreatePurchaseOrder(CreatePurchaseOrderCommand order)
         {
@@ -42,10 +44,21 @@ namespace Project.Services
             var productsIds = order.Items.Select(order => order.ProductId).ToList();
             var products = await LoadProducts(productsIds);
 
+            var notFoundIds = productsIds.Except(products.Select(p => p.Key)).ToList()
+                ;
 
-            if (products.Count < productsIds.Count)
+            if (notFoundIds.Any())
             {
-                throw new NotFoundException("One of the products in the order is not found");
+                var errors = new Dictionary<string, List<string>>();
+
+                errors["ProductIds"] = notFoundIds.Select(i => i.ToString()).ToList();
+
+
+                var exception = new ValidationException(errors, "Some products were not found");
+
+
+
+                throw exception;
             }
 
 
@@ -139,24 +152,35 @@ namespace Project.Services
             var repository = unitOfWork.GetRepository<PurchaseOrder, int>();
             var specifications = new PurchaseOrderWithItemsSpecifications(request.Id);
 
+            transactionManager = await unitOfWork.BeginTransaction();
+
+
+
             var order = await repository.FirstOrDefaultAsync(specifications);
+
+            if (order == null)
+                throw new NotFoundException($"Order with Id {request.Id} not found");
+
+
 
 
             if (!order.CanTransitionTo(PurchaseOrderStatus.Received))
                 throw new BadRequestException("Invalid");
 
 
-            var orderItemDict = order.Items.ToDictionary(i => i.Id, i => i);
+
+
+
+
+
+            var orderItemDict = order.Items?.ToDictionary(i => i.Id, i => i);
 
             var requestItemDict = request.Items.ToDictionary(i => i.ItemId, i => new { productId = i.ProductId, receivedQuantity = i.QuantityReceived });
 
 
-            unitOfWork.EnsureRowVersionMatch(order, request.RowVersion);
-
-            unitOfWork.ApplyRowVersion(order, request.RowVersion); // 👈 This is correct spot
 
 
-            int totalQuantity = order?.Items.Sum(i => i.QuantityOrdered) ?? 0;
+            int totalQuantity = order?.Items?.Sum(i => i.QuantityOrdered) ?? 0;
             int totalReceivedQuantity = request.Items.Sum(i => i.QuantityReceived);
 
 
@@ -185,12 +209,35 @@ namespace Project.Services
             repository.Update(order);
 
 
+            try
+            {
+
+                var x = request.Items.Select(i => new InventoryStockAdjustmentDto
+                {
+                    ProductId = i.ProductId,
+                    QuantityChange = i.QuantityReceived,
+                }).ToList();
+
+
+                await inventoryService.AdjustStockAsync(x, transactionManager);
+            }
+
+            catch (Exception ex)
+            {
+
+                await transactionManager.RollBackTransaction();
+                throw;
+            }
+
+
+
             var productsDict = requestItemDict.ToDictionary(i => i.Value.productId, i => i.Value.receivedQuantity);
 
 
 
 
             var supplier = await supplierService.GetSupplierBrief(order.SupplierId);
+
 
 
 

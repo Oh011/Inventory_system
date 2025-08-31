@@ -55,6 +55,11 @@ namespace Infrastructure.Persistence.Configurations
                  .OnDelete(DeleteBehavior.SetNull);
 
 
+            builder
+    .Property(p => p.RowVersion)
+    .IsRowVersion().IsConcurrencyToken();
+
+
 
 
             builder.HasQueryFilter(c => c.IsDeleted == false);

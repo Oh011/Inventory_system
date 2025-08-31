@@ -32,9 +32,4 @@
     <ProjectReference Include="..\Sahred\Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-    <Folder Include="wwwroot\uploads\Products\" />
-  </ItemGroup>
-
 </Project>

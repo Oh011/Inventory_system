@@ -15,7 +15,7 @@ namespace Infrastructure.Persistence.Configurations
 
             builder
        .Property(p => p.RowVersion)
-       .IsRowVersion();
+       .IsRowVersion().IsConcurrencyToken();
 
             builder.ToTable("PurchaseOrders");
 
@@ -49,6 +49,9 @@ namespace Infrastructure.Persistence.Configurations
                 .WithMany(s => s.PurchaseOrders)
                 .HasForeignKey(po => po.SupplierId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+
+
         }
     }
 }

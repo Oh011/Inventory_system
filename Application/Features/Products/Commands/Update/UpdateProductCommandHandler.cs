@@ -5,7 +5,7 @@ using Project.Application.Features.Products.Intrefaces;
 
 namespace Project.Application.Features.Products.Commands.Update
 {
-    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductRequest, ProductResultDto>
+    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, ProductResultDto>
     {
 
 
@@ -19,7 +19,7 @@ namespace Project.Application.Features.Products.Commands.Update
             this._mapper = mapper;
             this.productService = productService;
         }
-        public async Task<ProductResultDto> Handle(UpdateProductRequest request, CancellationToken cancellationToken)
+        public async Task<ProductResultDto> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
 
 

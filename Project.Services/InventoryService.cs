@@ -5,12 +5,14 @@ using Project.Application.Common.Interfaces;
 using Project.Application.Common.Interfaces.Repositories;
 using Project.Application.Common.Interfaces.Services;
 using Project.Application.Features.Inventory.Dtos;
+using Project.Application.Features.Products.Intrefaces;
+using ValidationException = Application.Exceptions.ValidationException;
 
 namespace Project.Services
 {
-    internal class InventoryService(IUnitOfWork _unitOfWork, IDomainEventDispatcher domainEventDispatcher, IConcurrencyHelper _concurrencyHelper) : IInventoryService
+    internal class InventoryService(IProductRepository productRepository, IUnitOfWork _unitOfWork, IDomainEventDispatcher domainEventDispatcher, IConcurrencyHelper _concurrencyHelper) : IInventoryService
     {
-        public async Task AdjustStockAsync(List<InventoryStockAdjustmentDto> adjustments)
+        public async Task AdjustStockAsync(List<InventoryStockAdjustmentDto> adjustments, ITransactionManager transactionManager)
         {
 
 
@@ -19,36 +21,50 @@ namespace Project.Services
 
             var receivedItems = adjustments.ToDictionary(i => i.ProductId, i => i.QuantityChange);
 
-            await _concurrencyHelper.ExecuteWithRetryAsync(async () =>
+
+            //var products = await repository.FindAsync(p => productIds.Contains(p.Id));
+            Dictionary<string, List<string>> errors = new Dictionary<string, List<string>>();
+
+            var decreasedProductIds = new List<int>();
+
+
+
+            foreach (var product in receivedItems)
             {
-                var products = await repository.FindAsync(p => productIds.Contains(p.Id));
 
-                foreach (var product in products)
+
+                int productId = product.Key;
+                var affectedRows = await productRepository.AdjustProductStock(productId, product.Value);
+
+
+
+                if (affectedRows.NewQuantity == affectedRows.OldQuantity)
                 {
-                    var Quantity = receivedItems[product.Id];
+                    if (!errors.ContainsKey(productId.ToString()))
+                        errors[productId.ToString()] = new List<string>();
 
-                    _unitOfWork.EnsureRowVersionMatch(product, Convert.ToBase64String(product.RowVersion));
-                    _unitOfWork.ApplyRowVersion(product, Convert.ToBase64String(product.RowVersion));
-
-
-
-                    if (Quantity < 0)
-                        product.IncreaseStock(Quantity);
-
-                    else if (Quantity >= 0)
-                        product.IncreaseStock(Quantity);
+                    errors[productId.ToString()].Add($"Inssuftent quantity orderd{Math.Abs(product.Value)} available :{affectedRows.OldQuantity} ");
                 }
 
-                repository.UpdateRange(products);
-                await _unitOfWork.Commit(); // commit inside retry
-            });
 
 
-            var decreasedProductIds = adjustments
-             .Where(x => x.QuantityChange < 0)
-             .Select(x => x.ProductId)
-             .Distinct()
-             .ToList();
+                if (affectedRows.NewQuantity < affectedRows.Threshold)
+                    decreasedProductIds.Add(product.Key);
+
+
+            }
+
+
+
+
+
+            if (errors.Any())
+                throw new ValidationException(errors);
+
+
+            await _unitOfWork.Commit();
+            await transactionManager.CommitTransaction();
+
 
             if (decreasedProductIds.Any())
             {

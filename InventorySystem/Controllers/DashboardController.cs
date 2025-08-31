@@ -11,6 +11,7 @@ namespace InventorySystem.Controllers
     [ApiVersion("1.0")]
     [Route("api/v{ version:apiVersion}/[controller]")]
     [Authorize(Roles = "Admin,Manager")] // Optional: restrict access
+    [ApiController]
     public class DashboardController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -36,16 +37,13 @@ namespace InventorySystem.Controllers
         /// - Customer and employee count
         /// - Low stock items
         /// - Today's total sales
-        /// - Recent sales invoices & purchase orders
+        /// - Recent sales invoices and purchase orders
         /// - Latest notifications
         /// 
         /// Accessible by Admin and Manager roles.
         /// </remarks>
 
         [HttpGet]
-
-
-
         public async Task<ActionResult<DashboardDto>> GetDashboard()
         {
             var result = await _mediator.Send(new GetAdminDashboardQuery());

@@ -30,7 +30,7 @@ namespace Infrastructure.Services.Common.Helpers
                     if (count == maxTries)
                         throw;
 
-                    await Task.Delay(100);
+                    await Task.Delay(100 * count);
                 }
             }
 

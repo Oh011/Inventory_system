@@ -12,7 +12,7 @@ namespace Project.Application.Features.Categories.Interfaces
         Task<Category> CreateCategory(Category category);
 
         public void CheckCategoriesExist(IEnumerable<int> categoryIds);
-        Task<IEnumerable<CategoryDto>> GetAllCategories(string? Name);
+        Task<IEnumerable<CategoryDto>> GetAllCategories(string? Name = null);
 
 
         Task<Category> UpdateCategory(UpdateCategoryRequest category);

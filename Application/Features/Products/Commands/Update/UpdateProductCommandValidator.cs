@@ -2,7 +2,7 @@
 
 namespace Project.Application.Features.Products.Commands.Update
 {
-    internal class UpdateProductCommandValidator : AbstractValidator<UpdateProductRequest>
+    internal class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
     {
 
 

@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Project.Application.Features.Products.Dtos;
+using Shared.Dtos;
 
 
 namespace Project.Application.Features.Products.Commands.Create
@@ -10,7 +10,7 @@ namespace Project.Application.Features.Products.Commands.Create
 
         public int QuantityInStock { get; set; } = 0;
 
-        public IFormFile? Image { get; set; }
+        public FileUploadDto? Image { get; set; }
 
 
     }

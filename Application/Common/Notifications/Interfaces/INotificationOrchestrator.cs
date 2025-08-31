@@ -1,17 +1,11 @@
-﻿using Domain.Events.Products;
-using Domain.Events.PurchaseOrder;
-
-namespace Project.Application.Common.Notifications.Interfaces
+﻿namespace Project.Application.Common.Notifications.Interfaces
 {
-    public interface INotificationOrchestrator
+    public interface INotificationOrchestrator<T>
     {
 
 
-        public Task NotifyPurchaseOrderStatusChangeAsync(PurchaseOrderStatusChangedDomainEvent domainEvent);
 
-
-
-        public Task NotifyLowStockAsync(ProductStockDecreasedEvent domainEvent);
+        public Task Notify(T domainEvent);
 
     }
 }

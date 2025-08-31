@@ -7,7 +7,7 @@ namespace Domain.Events.PurchaseOrder
     {
 
         public PurchaseOrderStatusChangedDomainEvent(int purchaseOrderId, int supplierId, string supplierEmail, string supplierName, PurchaseOrderStatus status
-          ) : base(purchaseOrderId, supplierId, supplierName, supplierEmail, status)
+          ) : base(purchaseOrderId, supplierId, supplierEmail, supplierName, status)
         {
 
 

@@ -63,11 +63,16 @@ namespace Domain.Entities
 
 
 
+
+
         public void DecreaseStock(int quantity)
         {
             if (quantity > this.QuantityInStock)
             {
-                throw new DomainException("Insufficient stock quantity.");
+
+                throw new DomainException(
+         $"Insufficient stock for product '{Name}'. Requested {quantity}, available {QuantityInStock}."
+     );
             }
 
             this.QuantityInStock -= quantity;
@@ -81,7 +86,9 @@ namespace Domain.Entities
             if (quantity < 0)
             {
 
-                throw new DomainException("Invalid value");
+                throw new DomainException(
+           $"Invalid stock increment value for product '{Name}'. Received {quantity}."
+       );
             }
 
             this.QuantityInStock = this.QuantityInStock + quantity;

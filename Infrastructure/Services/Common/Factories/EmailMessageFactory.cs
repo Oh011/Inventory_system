@@ -29,12 +29,21 @@ namespace Infrastructure.Services.Common.Factories
 
         public EmailMessage CreateOrderReceivedEmail(int orderId, string supplierName, string supplierEmail, byte[]? pdfBytes = null)
         {
-            throw new NotImplementedException();
+
+
+            return new EmailMessage
+            {
+
+                To = supplierEmail,
+                Subject = $"Purchase Order #{orderId} Canceled",
+                Body = $"Dear {supplierName},\n\nPlease be informed that Purchase Order #{orderId} has been canceled."
+
+            };
         }
 
 
 
-        public EmailMessage CreatePurchaseOrderEmail(int orderId, string supplierName, string supplierEmail, byte[]? pdfBytes = null)
+        public EmailMessage CreatePurchaseOrderCreatedEmail(int orderId, string supplierName, string supplierEmail, byte[]? pdfBytes = null)
         {
 
 

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Shared.Dtos;
 
 namespace Project.Application.Common.Interfaces.Services
 {
@@ -6,6 +6,6 @@ namespace Project.Application.Common.Interfaces.Services
     {
 
         bool Delete(string path);
-        Task<string> Upload(IFormFile file, string FolderName);
+        Task<string> Upload(FileUploadDto file, string FolderName);
     }
 }

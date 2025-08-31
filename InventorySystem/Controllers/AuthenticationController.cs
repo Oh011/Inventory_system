@@ -3,10 +3,13 @@ using Application.Features.Auth.Commands.RefreshAccessToken;
 using Application.Features.Auth.Commands.RevokeRefreshToken;
 using Application.Features.Auth.Dtos;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Project.Application.Features.Auth.Commands.PasswordRest;
 using Project.Application.Features.Auth.Commands.ResetPassword;
 using Shared;
+using System.Net;
+using System.Web;
 
 namespace InventorySystem.Controllers
 {
@@ -27,17 +30,32 @@ namespace InventorySystem.Controllers
 
 
 
-
+        [Authorize]
 
         [HttpPost("logout")]
+
 
 
         public async Task<ActionResult<SuccessMessage>> LogOut([FromBody] LogOutCommand command)
         {
 
 
+            var refreshToken = HttpUtility.UrlDecode(Request.Cookies["refreshToken"]);
+            command.RefreshToken = refreshToken;
+
+
+
+            if (string.IsNullOrEmpty(refreshToken))
+            {
+                // Either already logged out or cookie missing
+                return BadRequest(ApiResponseFactory.Failure("Refresh token not found in cookie.", HttpStatusCode.BadRequest));
+            }
+
             var result = await _mediator.Send(command);
 
+
+
+            Response.Cookies.Delete("refreshToken");
 
             return Ok(ApiResponseFactory.Success(result));
         }
@@ -48,24 +66,20 @@ namespace InventorySystem.Controllers
         {
 
 
-            var result = await _mediator.Send(command);
+            var refreshToken = HttpUtility.UrlDecode(Request.Cookies["refreshToken"]);
+            command.RefreshToken = refreshToken;
 
 
-            Response.Cookies.Append("refreshToken", result.RefreshToken, new CookieOptions
+
+            if (string.IsNullOrEmpty(refreshToken))
             {
-                HttpOnly = true,
-                Secure = true, // Only if you're using HTTPS
-                SameSite = SameSiteMode.Strict,
-                Expires = DateTime.UtcNow.AddDays(14)
-            });
+                return Unauthorized(ApiResponseFactory.Failure("Refresh token missing.", HttpStatusCode.Unauthorized));
+            }
 
+            var result = await _mediator.Send(command);
             SetCookie(14, result.RefreshToken);
 
-
-
             return Ok(ApiResponseFactory.Success<LogInUserResponseDto>(result.Response));
-
-
 
 
         }

@@ -9,6 +9,9 @@
 
 
 
+
+        Task<ITransactionManager> BeginTransaction(CancellationToken cancellationToken = default);
+
         void ApplyRowVersion<T>(T entity, string rowVersion);
 
 

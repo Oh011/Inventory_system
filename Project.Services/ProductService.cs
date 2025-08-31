@@ -2,7 +2,6 @@
 using Application.Specifications.Products;
 using AutoMapper;
 using Domain.Entities;
-using Microsoft.AspNetCore.Http;
 using Project.Application.Common.Interfaces.Repositories;
 using Project.Application.Common.Interfaces.Services;
 using Project.Application.Common.Validators;
@@ -13,6 +12,7 @@ using Project.Application.Features.Products.Commands.Update;
 using Project.Application.Features.Products.Dtos;
 using Project.Application.Features.Products.Intrefaces;
 using Project.Application.Features.Products.queries.GetProducts;
+using Shared.Dtos;
 using Shared.Results;
 
 namespace Project.Services
@@ -24,7 +24,7 @@ namespace Project.Services
 
 
 
-        public async Task<Product> CreateProduct(Product product, IFormFile? ProductImage)
+        public async Task<Product> CreateProduct(Product product, FileUploadDto? ProductImage)
         {
 
 
@@ -102,7 +102,7 @@ namespace Project.Services
                 );
         }
 
-        public async Task<Product> UpdateProduct(UpdateProductRequest request)
+        public async Task<Product> UpdateProduct(UpdateProductCommand request)
         {
 
             var productRepository = unitOfWork.GetRepository<Product, int>();
@@ -144,7 +144,7 @@ namespace Project.Services
             throw new NotImplementedException();
         }
 
-        private async Task<string?> UploadProductImage(IFormFile? ProductImage)
+        private async Task<string?> UploadProductImage(FileUploadDto? ProductImage)
         {
             string? filePath = null;
             filePath = await uploadService.Upload(ProductImage, "Products");

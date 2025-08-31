@@ -31,6 +31,12 @@
         }
 
 
+        public ValidationException(Dictionary<string, List<string>> errors, string? msg = "Validation failed") : base(msg)
+        {
+
+            this.errors = errors;
+        }
+
         public ValidationException(Dictionary<string, List<string>> errors) : base("Validation failed")
         {
 

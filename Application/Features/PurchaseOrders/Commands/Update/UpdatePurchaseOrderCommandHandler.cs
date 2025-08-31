@@ -4,7 +4,6 @@ using MediatR;
 using Project.Application.Common.Interfaces.Repositories;
 using Project.Application.Common.Interfaces.Services;
 using Project.Application.Common.Validators;
-using Project.Application.Features.Inventory.Dtos;
 using Project.Application.Features.PurchaseOrders.Dtos;
 using Project.Application.Features.PurchaseOrders.Interfaces;
 
@@ -47,11 +46,11 @@ namespace Project.Application.Features.PurchaseOrders.Commands.Update
 
             await _purchaseOrderValidator.ValidateExistsAsync(request.Id, "Purchase order");
 
-            // 🛡️ 2. Validate that all requested item IDs exist
+            //  2. Validate that all requested item IDs exist
             var itemIds = request.Items.Select(i => i.ItemId).ToList();
             await _itemValidator.ValidateExistAsync(itemIds, "Purchase order item");
 
-            // 🛡️ 3. Validate that all product IDs exist
+            //  3. Validate that all product IDs exist
             var productIds = request.Items.Select(i => i.ProductId).ToList();
             await _productValidator.ValidateExistAsync(productIds, "Product");
 
@@ -64,13 +63,6 @@ namespace Project.Application.Features.PurchaseOrders.Commands.Update
 
             var order = await _purchaseOrderService.GetPurchaseOrderById(request.Id);
 
-            var x = order.OrderItems.Select(i => new InventoryStockAdjustmentDto
-            {
-                ProductId = i.ProductId,
-                QuantityChange = i.QuantityReceived,
-            }).ToList();
-
-            await inventoryService.AdjustStockAsync(x);
 
 
             return order;

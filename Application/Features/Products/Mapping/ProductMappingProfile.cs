@@ -15,9 +15,10 @@ namespace Project.Application.Features.Products.Mapping
             // Map CreateProductCommand → Product entity
             CreateMap<CreateProductCommand, Product>();
 
-            CreateMap<UpdateProductCommand, UpdateProductRequest>().ReverseMap();
 
-            CreateMap<UpdateProductRequest, Product>().ReverseMap()
+            CreateMap<UpdateProductRequest, UpdateProductCommand>().ReverseMap();
+
+            CreateMap<UpdateProductCommand, Product>().ReverseMap()
      .ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
 
 
