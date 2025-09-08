@@ -54,6 +54,20 @@
 
 ---
 
+### PDF Previews
+
+**Purchase Order PDF:**
+![Purchase Order PDF](Docs/PurchaseOrder_pdf.png)
+
+**Sales Invoice PDF:**
+![Sales Invoice PDF](Docs/Salesinvoice_Pdf.png)
+
+**Sales Report PDF:**
+![Sales Report PDF](Docs/SalesrReport.png)
+
+
+---
+
 ## 📡 Real-Time with SignalR
 
 - `NotificationHub` broadcasts:
