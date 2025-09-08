@@ -57,13 +57,13 @@
 ### PDF Previews
 
 **Purchase Order PDF:**
-![Purchase Order PDF](Docs/PurchaseOrder_pdf.png)
+![Purchase Order PDF](images/purchase_order.png)
 
 **Sales Invoice PDF:**
-![Sales Invoice PDF](Docs/Salesinvoice_Pdf.png)
+![Sales Invoice PDF](images/sales_invoice.png)
 
 **Sales Report PDF:**
-![Sales Report PDF](Docs/SalesrReport.png)
+![Sales Report PDF](images/sales_report.png)
 
 
 ---
