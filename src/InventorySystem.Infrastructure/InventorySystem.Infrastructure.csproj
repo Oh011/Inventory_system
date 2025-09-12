@@ -31,8 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\Project.Application.csproj" />
-    <ProjectReference Include="..\Sahred\Shared.csproj" />
+    <ProjectReference Include="..\InventorySystem.Application\InventorySystem.Application.csproj" />
+    <ProjectReference Include="..\InventorySystem.Domain\InventorySystem.Domain.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
 </Project>

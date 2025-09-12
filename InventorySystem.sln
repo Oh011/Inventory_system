@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventorySystem", "InventorySystem\InventorySystem.csproj", "{DFC70C58-85E8-4182-AFEC-54F35DA212E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventorySystem.Api", "src\InventorySystem.Api\InventorySystem.Api.csproj", "{DFC70C58-85E8-4182-AFEC-54F35DA212E5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{7C793B1A-2B7B-4F5E-AD59-28DEC0D267AC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "src\Core", "{7C793B1A-2B7B-4F5E-AD59-28DEC0D267AC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{200D3711-8280-4870-B635-002B103C395F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventorySystem.Domain", "src\InventorySystem.Domain\InventorySystem.Domain.csproj", "{200D3711-8280-4870-B635-002B103C395F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.Application", "Application\Project.Application.csproj", "{67E57276-62DC-4166-B30F-195F9CBAF970}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventorySystem.Application", "src\InventorySystem.Application\InventorySystem.Application.csproj", "{67E57276-62DC-4166-B30F-195F9CBAF970}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{5DC6BB05-BE5F-4861-B8C0-A293C0615624}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventorySystem.Infrastructure", "src\InventorySystem.Infrastructure\InventorySystem.Infrastructure.csproj", "{5DC6BB05-BE5F-4861-B8C0-A293C0615624}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Sahred\Shared.csproj", "{10665D71-CC95-4CE9-ABF1-4F82ED6C9B83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "src\Shared\Shared.csproj", "{10665D71-CC95-4CE9-ABF1-4F82ED6C9B83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Services", "Project.Services\Project.Services.csproj", "{392FBB58-F81D-4F46-BBCF-6BA4D4EAC13E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorySystem.Services", "src\InventorySystem.Services\InventorySystem.Services.csproj", "{392FBB58-F81D-4F46-BBCF-6BA4D4EAC13E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

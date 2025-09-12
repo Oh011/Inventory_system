@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Sahred\Shared.csproj" />
+    <ProjectReference Include="..\InventorySystem.Domain\InventorySystem.Domain.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

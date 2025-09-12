@@ -26,10 +26,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\Project.Application.csproj" />
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
-    <ProjectReference Include="..\Project.Services\Project.Services.csproj" />
-    <ProjectReference Include="..\Sahred\Shared.csproj" />
+    <ProjectReference Include="..\InventorySystem.Application\InventorySystem.Application.csproj" />
+    <ProjectReference Include="..\InventorySystem.Infrastructure\InventorySystem.Infrastructure.csproj" />
+    <ProjectReference Include="..\InventorySystem.Domain\InventorySystem.Domain.csproj" />
+    <ProjectReference Include="..\InventorySystem.Services\InventorySystem.Services.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
 </Project>
