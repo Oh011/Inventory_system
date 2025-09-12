@@ -17,7 +17,6 @@
     <Folder Include="Features\Employees\Commands\DeactivateEmployee\" />
     <Folder Include="Features\Inventory\Interfaces\" />
     <Folder Include="Features\Products\Handlers\" />
-    <Folder Include="Features\roles\Commands\DeleteRole\" />
     <Folder Include="Features\roles\Commands\UpdateRole\" />
   </ItemGroup>
 

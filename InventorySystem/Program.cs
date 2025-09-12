@@ -137,7 +137,7 @@ namespace InventorySystem
 
 
             await app.SeedDbAsync();
-            await app.StartHangfire();
+            await app.StartHangFire();
 
             app.MapControllers();
 

@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Application.Features.roles.Commands.CreateRole
 {
-    internal class CreateRoleCommand : IRequest<RoleDto>
+    public class CreateRoleCommand : IRequest<RoleDto>
     {
 
 

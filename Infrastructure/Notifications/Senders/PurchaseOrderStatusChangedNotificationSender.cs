@@ -1,6 +1,6 @@
 ﻿using Application.Features.Users.Interfaces;
 using Domain.Events.PurchaseOrder;
-using Project.Application.Common.Factories;
+using Project.Application.Common.Factories.Interfaces;
 using Project.Application.Common.Interfaces.Services;
 using Project.Application.Common.Notifications.Senders;
 using Project.Application.Features.Notifications.Interfaces;

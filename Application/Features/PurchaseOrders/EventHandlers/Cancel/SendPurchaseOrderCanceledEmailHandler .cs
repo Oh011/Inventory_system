@@ -2,7 +2,7 @@
 using Domain.Events.PurchaseOrder;
 using MediatR;
 using Project.Application.Common.Events;
-using Project.Application.Common.Factories;
+using Project.Application.Common.Factories.Interfaces;
 using Project.Application.Common.Interfaces.Background;
 using Project.Application.Common.Interfaces.Services;
 using Project.Application.Common.Notifications.Interfaces;

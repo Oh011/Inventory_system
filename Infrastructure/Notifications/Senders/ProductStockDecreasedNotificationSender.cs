@@ -1,7 +1,7 @@
 ﻿using Application.Features.Users.Interfaces;
 using Domain.Entities;
 using Domain.Events.Products;
-using Project.Application.Common.Factories;
+using Project.Application.Common.Factories.Interfaces;
 using Project.Application.Common.Interfaces.Repositories;
 using Project.Application.Common.Interfaces.Services;
 using Project.Application.Common.Notifications.Senders;

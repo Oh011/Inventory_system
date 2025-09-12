@@ -1,6 +1,6 @@
 ﻿using Domain.Enums;
 using Domain.Events.PurchaseOrder;
-using Project.Application.Common.Factories;
+using Project.Application.Common.Factories.Interfaces;
 using Project.Application.Features.Inventory.Dtos;
 using Project.Application.Features.Notifications.Dtos;
 

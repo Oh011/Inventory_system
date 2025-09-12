@@ -70,9 +70,6 @@ namespace Infrastructure.Identity.Services
 
             return tokenHandler.WriteToken(Token);
 
-
-
-
         }
 
 
@@ -125,7 +122,7 @@ namespace Infrastructure.Identity.Services
         public async Task<string> RevokeRefreshTokenByToken(string token, string DeviceId)
         {
 
-            var refreshTokenRepository = unitOfWork.GetRepository<RefreshToken, int>();
+
 
             var refreshToken = await GetValidRefreshTokenOrThrow(token, DeviceId);
 

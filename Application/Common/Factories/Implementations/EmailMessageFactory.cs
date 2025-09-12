@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
-using Project.Application.Common.Factories;
+using Project.Application.Common.Factories.Interfaces;
 using Shared.Dtos;
 using Shared.Options;
 

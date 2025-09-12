@@ -8,7 +8,7 @@ namespace InventorySystem.Extensions
     public static class WebApplicationExtensions
     {
 
-        public static async Task<WebApplication> StartHangfire(this WebApplication application)
+        public static async Task<WebApplication> StartHangFire(this WebApplication application)
         {
 
 

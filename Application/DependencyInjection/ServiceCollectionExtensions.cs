@@ -1,7 +1,9 @@
 ﻿using Application.Common.Behaviors;
 using FluentValidation;
+using Infrastructure.Services.Common.Factories;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Project.Application.Common.Factories.Interfaces;
 using Project.Application.Common.Validators;
 using Project.Application.Features;
 
@@ -16,6 +18,10 @@ namespace Application.DependencyInjection
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
 
+            services.AddScoped<INotificationDtoFactory, NotificationDtoFactory>();
+
+
+            services.AddScoped<IEmailMessageFactory, EmailMessageFactory>();
 
             services.AddMediatR(T =>
             {

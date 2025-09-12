@@ -55,7 +55,7 @@ namespace InventorySystem.Controllers
         /// 📤 Export a sales invoice to PDF by ID.
         /// </summary>
         [HttpGet("{id}/pdf")]
-        [Authorize(Roles = "Admin,Manager,Salesperson")]
+        //[Authorize(Roles = "Admin,Manager,Salesperson")]
         public async Task<IActionResult> ExportPdf(int id)
         {
             var query = new ExportSalesInvoicePdfQuery(id);

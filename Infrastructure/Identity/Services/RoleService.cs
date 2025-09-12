@@ -11,6 +11,12 @@ namespace Infrastructure.Identity.Services
     {
 
 
+
+
+
+
+
+
         public async Task<RoleDto> CreateRoleAsync(string roleName)
         {
 
@@ -36,10 +42,6 @@ namespace Infrastructure.Identity.Services
             return new RoleDto { RoleName = role.Name, RoleId = role.Id };
 
 
-
-
-
-
         }
 
         public async Task DeleteRoleAsync(string RoleId)
@@ -55,7 +57,18 @@ namespace Infrastructure.Identity.Services
                 throw new NotFoundException(ErrorMessages.NotFound.Role);
             }
 
+
+
             var result = await _roleManager.DeleteAsync(role);
+
+            if (!result.Succeeded)
+            {
+                var errors = result.Errors
+                    .GroupBy(e => e.Code)
+                    .ToDictionary(g => g.Key, g => g.Select(e => e.Description).ToList());
+
+                throw new ValidationException(errors);
+            }
 
 
         }

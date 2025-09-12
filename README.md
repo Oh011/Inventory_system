@@ -16,7 +16,7 @@
 - ✅ **Background Services** for deferred or long-running domain operations
 - ✅ **Role-based Authorization** (Admin, Manager, Sales, Warehouse)
 - ✅ **Soft Deletion**, Optimistic Concurrency, FluentValidation pipeline
-- ✅ Applied the Publish/Subscribe pattern using Domain Events, SignalR, and Background Services to decouple workflows (e.g., triggering real-time notifications and emails when purchase orders are created or updated).
+- ✅ Applied the Observer pattern pattern using Domain Events, SignalR, and Background Services to decouple workflows (e.g., triggering real-time notifications and emails when purchase orders are created or updated).
 
 
 

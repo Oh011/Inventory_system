@@ -26,7 +26,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Project.Application.Common.Factories;
+using Project.Application.Common.Factories.Interfaces;
 using Project.Application.Common.Interfaces;
 using Project.Application.Common.Interfaces.Background;
 using Project.Application.Common.Interfaces.PdfGenerators;
@@ -104,8 +104,6 @@ namespace Infrastructure.DependencyInjection
 
             services.AddScoped<IPurchaseOrderPdfGenerator, PurchaseOrderPdfGenerator>();
 
-
-            services.AddScoped<IEmailMessageFactory, EmailMessageFactory>();
 
 
             services.AddScoped<IUploadService, UploadService>();

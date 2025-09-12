@@ -1,6 +1,6 @@
 ﻿using Shared.Dtos;
 
-namespace Project.Application.Common.Factories
+namespace Project.Application.Common.Factories.Interfaces
 {
     public interface IEmailMessageFactory
     {
