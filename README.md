@@ -3,6 +3,7 @@
 
  Designed for **scalability**, **testability**, and **real-world business workflows** such as product tracking, sales invoicing, stock adjustment, and purchase order lifecycle handling — including **Domain Events**, **Background Services**, and **Real-Time Notifications using SignalR**.
 
+📄 **API Documentation:** [View PDF](docs/API_Documentation.pdf)
 
 
  ## 🏗️ Architecture Highlights
@@ -14,6 +15,7 @@
   - 📉 Automatically checking for low-stock products after stock adjustments
 - ✅ **SignalR** for real-time notifications (e.g., low stock alerts, PO updates)
 - ✅ **Background Services** for deferred or long-running domain operations
+- ✅ SQL atomic updates to guarantee stock integrity at the database level.
 - ✅ **Role-based Authorization** (Admin, Manager, Sales, Warehouse)
 - ✅ **Soft Deletion**, Optimistic Concurrency, FluentValidation pipeline
 - ✅ Applied the Observer pattern pattern using Domain Events, SignalR, and Background Services to decouple workflows (e.g., triggering real-time notifications and emails when purchase orders are created or updated).
@@ -49,6 +51,20 @@
 - Queries → Handlers for read-only views
 - MediatR decouples the flow
 - Validators run in the pipeline before command handlers
+
+---
+
+### PDF Previews
+
+**Purchase Order PDF:**
+![Purchase Order PDF](images/purchase_order.png)
+
+**Sales Invoice PDF:**
+![Sales Invoice PDF](images/sales_invoice.png)
+
+**Sales Report PDF:**
+![Sales Report PDF](images/sales_report.png)
+
 
 ---
 
