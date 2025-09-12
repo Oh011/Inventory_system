@@ -26,9 +26,6 @@ namespace Project.Application.Features.PurchaseOrders.EventHandlers
         {
             var domainEvent = notification.DomainEvent;
 
-
-
-
             _backgroundJobService.Enqueue<INotificationOrchestrator<PurchaseOrderStatusChangedDomainEvent>>(s => s.Notify(domainEvent));
 
         }

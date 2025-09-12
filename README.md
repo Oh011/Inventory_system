@@ -18,7 +18,7 @@
 - ✅ SQL atomic updates to guarantee stock integrity at the database level.
 - ✅ **Role-based Authorization** (Admin, Manager, Sales, Warehouse)
 - ✅ **Soft Deletion**, Optimistic Concurrency, FluentValidation pipeline
-- ✅ Applied the Observer pattern pattern using Domain Events, SignalR, and Background Services to decouple workflows (e.g., triggering real-time notifications and emails when purchase orders are created or updated).
+- ✅ Applied the Observer pattern with Domain Events, SignalR, and Background Services to decouple workflows (e.g., triggering real-time notifications and emails when purchase orders are created or updated).
 
 
 
