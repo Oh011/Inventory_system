@@ -1,14 +1,14 @@
-﻿using Project.Application.Common.Enums.SortOptions;
+﻿using InventorySystem.Application.Features.Reports.Sales.SortOptions;
 
-namespace Project.Application.Features.Reports.Sales.Dtos
+namespace InventorySystem.Application.Features.Reports.Sales.FilterParameters
 {
-    public class SalesReportFilterParams
+    public class SalesByProductReportFilterParams
     {
         public DateTime FromDate { get; set; } = DateTime.Today.AddDays(-10);
         public DateTime ToDate { get; set; } = DateTime.Today;
         public int? ProductId { get; set; }
         public int? TopCount { get; set; } = 10;
-        public SalesReportSortOptions? ReportSortOptions { get; set; }
+        public SalesByProductReportSortOptions? ReportSortOptions { get; set; }
         public int? CategoryId { get; set; }
     }
 

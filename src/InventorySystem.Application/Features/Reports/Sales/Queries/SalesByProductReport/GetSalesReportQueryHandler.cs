@@ -4,7 +4,7 @@ using Project.Application.Features.Reports.Sales.Interfaces;
 
 namespace Project.Application.Features.Reports.Sales.Queries.Sales
 {
-    public class GetSalesReportQueryHandler : IRequestHandler<GetSalesReportQuery, IEnumerable<SalesReportDto>>
+    public class GetSalesReportQueryHandler : IRequestHandler<GetSalesByProductReportQuery, IEnumerable<SalesByProductReportDto>>
     {
 
 
@@ -18,7 +18,7 @@ namespace Project.Application.Features.Reports.Sales.Queries.Sales
             this._salesReportService = salesReportService;
         }
 
-        public async Task<IEnumerable<SalesReportDto>> Handle(GetSalesReportQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<SalesByProductReportDto>> Handle(GetSalesByProductReportQuery request, CancellationToken cancellationToken)
         {
 
 

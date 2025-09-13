@@ -1,6 +1,6 @@
 ﻿namespace Project.Application.Features.Reports.Sales.Dtos
 {
-    public class SalesReportDto
+    public class SalesByProductReportDto
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }

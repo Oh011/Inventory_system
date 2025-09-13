@@ -4,23 +4,23 @@ using Project.Application.Features.Reports.Sales.Interfaces;
 
 namespace Project.Application.Features.Reports.Sales.Queries.ExportPdf
 {
-    internal class ExportSalesReportPdfQueryHandler : IRequestHandler<ExportSalesReportPdfQuery, byte[]>
+    internal class ExportSalesByProductReportPdfQueryHandler : IRequestHandler<ExportSalesByProductReportPdfQuery, byte[]>
     {
 
         private readonly ISalesReportService _reportService;
         private readonly ISalesReportPdfGenerator _pdfGenerator;
 
-        public ExportSalesReportPdfQueryHandler(ISalesReportService reportService, ISalesReportPdfGenerator pdfGenerator)
+        public ExportSalesByProductReportPdfQueryHandler(ISalesReportService reportService, ISalesReportPdfGenerator pdfGenerator)
         {
             _reportService = reportService;
             _pdfGenerator = pdfGenerator;
         }
 
-        public async Task<byte[]> Handle(ExportSalesReportPdfQuery request, CancellationToken cancellationToken)
+        public async Task<byte[]> Handle(ExportSalesByProductReportPdfQuery request, CancellationToken cancellationToken)
         {
             var reportData = await _reportService.GenerateReportAsync(request, cancellationToken);
 
-            var pdf = _pdfGenerator.GenerateSalesReportPdf(reportData, request.FromDate, request.ToDate); ;
+            var pdf = _pdfGenerator.GenerateSalesByProductReportPdf(reportData, request.FromDate, request.ToDate); ;
             return pdf;
         }
     }

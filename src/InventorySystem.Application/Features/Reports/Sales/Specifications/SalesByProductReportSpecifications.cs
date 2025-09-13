@@ -1,13 +1,14 @@
 ﻿using Domain.Entities;
 using Domain.Specifications;
-using Project.Application.Common.Enums.SortOptions;
+using InventorySystem.Application.Features.Reports.Sales.FilterParameters;
+using InventorySystem.Application.Features.Reports.Sales.SortOptions;
 using Project.Application.Features.Reports.Sales.Dtos;
 
 namespace Project.Application.Features.Reports.Sales.Specifications
 {
-    public class SalesReportSpecifications : GroupSpecification<SalesInvoiceItem, ProductSalesGroupKey, SalesReportDto>
+    public class SalesByProductReportSpecifications : GroupSpecification<SalesInvoiceItem, ProductSalesGroupKey, SalesByProductReportDto>
     {
-        public SalesReportSpecifications(SalesReportFilterParams query)
+        public SalesByProductReportSpecifications(SalesByProductReportFilterParams query)
           : base(x =>
               x.SalesInvoice.InvoiceDate >= query.FromDate &&
               x.SalesInvoice.InvoiceDate <= query.ToDate &&
@@ -22,7 +23,7 @@ namespace Project.Application.Features.Reports.Sales.Specifications
                 UnitPrice = x.UnitPrice
             });
 
-            AddGroupSelector(group => new SalesReportDto
+            AddGroupSelector(group => new SalesByProductReportDto
             {
                 ProductId = group.Key.ProductId,
                 ProductName = group.Key.ProductName,
@@ -36,19 +37,19 @@ namespace Project.Application.Features.Reports.Sales.Specifications
 
             switch (query.ReportSortOptions)
             {
-                case SalesReportSortOptions.SellingPriceAsc:
+                case SalesByProductReportSortOptions.SellingPriceAsc:
                     SetResultOrderBy(x => x.SellingPrice);
                     break;
 
-                case SalesReportSortOptions.SellingPriceDec:
+                case SalesByProductReportSortOptions.SellingPriceDesc:
                     SetResultOrderByDescending(x => x.SellingPrice);
                     break;
 
-                case SalesReportSortOptions.UnitsSoldAsc:
+                case SalesByProductReportSortOptions.UnitsSoldAsc:
                     SetResultOrderBy(x => x.UnitsSold);
                     break;
 
-                case SalesReportSortOptions.UnitsSoldDesc:
+                case SalesByProductReportSortOptions.UnitsSoldDesc:
                 default: // Default fallback: top selling
                     SetResultOrderByDescending(x => x.UnitsSold);
                     break;
@@ -68,7 +69,7 @@ namespace Project.Application.Features.Reports.Sales.Specifications
         public string? CategoryName { get; set; }
         public decimal UnitPrice { get; set; }
 
-        // Important: override Equals & GetHashCode if using LINQ outside EF
+
     }
 
 }
