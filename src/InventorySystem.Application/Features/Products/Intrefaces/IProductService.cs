@@ -1,14 +1,14 @@
 ﻿
 using Domain.Entities;
-using Project.Application.Features.Inventory.Dtos;
-using Project.Application.Features.Inventory.Queries.GetLowStock;
-using Project.Application.Features.Products.Commands.Update;
-using Project.Application.Features.Products.Dtos;
-using Project.Application.Features.Products.queries.GetProducts;
+using InventorySystem.Application.Features.Inventory.Dtos;
+using InventorySystem.Application.Features.Inventory.Queries.GetLowStock;
+using InventorySystem.Application.Features.Products.Commands.Update;
+using InventorySystem.Application.Features.Products.Dtos;
+using InventorySystem.Application.Features.Products.queries.GetProducts;
 using Shared.Dtos;
 using Shared.Results;
 
-namespace Project.Application.Features.Products.Intrefaces
+namespace InventorySystem.Application.Features.Products.Intrefaces
 {
     public interface IProductService
     {

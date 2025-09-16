@@ -1,15 +1,14 @@
-﻿using Application.Features.Auth.Commands.LogIn;
+﻿using Application.Exceptions;
+using Application.Features.Auth.Commands.LogIn;
 using Application.Features.Auth.Commands.RefreshAccessToken;
 using Application.Features.Auth.Commands.RevokeRefreshToken;
 using Application.Features.Auth.Dtos;
+using InventorySystem.Application.Features.Auth.Commands.PasswordRest;
+using InventorySystem.Application.Features.Auth.Commands.ResetPassword;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Project.Application.Features.Auth.Commands.PasswordRest;
-using Project.Application.Features.Auth.Commands.ResetPassword;
 using Shared;
-using System.Net;
-using System.Web;
 
 namespace InventorySystem.Controllers
 {
@@ -17,6 +16,10 @@ namespace InventorySystem.Controllers
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
+
+
+
+
     public class AuthenticationController : ControllerBase
     {
 
@@ -31,26 +34,16 @@ namespace InventorySystem.Controllers
 
 
         [Authorize]
-
         [HttpPost("logout")]
-
-
+        [ProducesResponseType(typeof(FailureMessageOnly), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(SuccessMessage), StatusCodes.Status200OK)]
 
         public async Task<ActionResult<SuccessMessage>> LogOut([FromBody] LogOutCommand command)
         {
 
 
-            var refreshToken = HttpUtility.UrlDecode(Request.Cookies["refreshToken"]);
-            command.RefreshToken = refreshToken;
 
-
-
-            if (string.IsNullOrEmpty(refreshToken))
-            {
-                // Either already logged out or cookie missing
-                return BadRequest(ApiResponseFactory.Failure("Refresh token not found in cookie.", HttpStatusCode.BadRequest));
-            }
-
+            command.RefreshToken = ExtractRefreshToken(Request);
             var result = await _mediator.Send(command);
 
 
@@ -61,20 +54,18 @@ namespace InventorySystem.Controllers
         }
 
 
+
+
         [HttpPost("refresh-access")]
+        [ProducesResponseType(typeof(FailureMessageOnly), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(SuccessWithData<LogInUserResponseDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(FailureMessageOnly), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<SuccessWithData<LogInUserResponseDto>>> RefreshAccessToken([FromBody] RefreshAccessTokenCommand command)
         {
 
 
-            var refreshToken = HttpUtility.UrlDecode(Request.Cookies["refreshToken"]);
-            command.RefreshToken = refreshToken;
 
-
-
-            if (string.IsNullOrEmpty(refreshToken))
-            {
-                return Unauthorized(ApiResponseFactory.Failure("Refresh token missing.", HttpStatusCode.Unauthorized));
-            }
+            command.RefreshToken = ExtractRefreshToken(Request);
 
             var result = await _mediator.Send(command);
             SetCookie(14, result.RefreshToken);
@@ -88,7 +79,7 @@ namespace InventorySystem.Controllers
 
 
         [HttpPost("forgot-password")]
-
+        [ProducesResponseType(typeof(SuccessMessage), StatusCodes.Status200OK)]
         public async Task<ActionResult<SuccessMessage>> ForgotPassword([FromBody] ForgotPasswordCommand command)
         {
 
@@ -152,6 +143,25 @@ namespace InventorySystem.Controllers
             });
 
 
+        }
+
+
+        private string ExtractRefreshToken(HttpRequest request)
+        {
+
+            var refreshToken = request.Cookies["refreshToken"];
+
+
+
+
+            if (string.IsNullOrEmpty(refreshToken))
+            {
+
+                throw new UnAuthorizedException("Refresh token missing.");
+
+            }
+
+            return refreshToken;
         }
 
 

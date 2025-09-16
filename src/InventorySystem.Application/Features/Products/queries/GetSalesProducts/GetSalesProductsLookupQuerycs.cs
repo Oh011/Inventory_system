@@ -1,12 +1,12 @@
 ﻿using MediatR;
-using Project.Application.Common.Enums.SortOptions;
-using Project.Application.Features.Products.Dtos;
+using InventorySystem.Application.Common.Enums.SortOptions;
+using InventorySystem.Application.Features.Products.Dtos;
 using Shared.Parameters;
 using Shared.Results;
 
-namespace Project.Application.Features.Products.queries.GetSalesProducts
+namespace InventorySystem.Application.Features.Products.queries.GetSalesProducts
 {
-    public class GetSalesProductsLookupQuery : PaginationQueryParameters, IRequest<PaginatedResult<SalesProductDto>>
+    public class GetSalesProductsLookupQuery : PaginationQueryParameters, IRequest<PaginatedResult<ProductSalesLookupDto>>
     {
         public string? Name { get; set; }
         public int? CategoryId { get; set; }

@@ -1,6 +1,6 @@
-﻿using Project.Application.Features.Notifications.Dtos;
+﻿using InventorySystem.Application.Features.Notifications.Dtos;
 
-namespace Project.Application.Common.Interfaces.Services
+namespace InventorySystem.Application.Common.Interfaces.Services.Interfaces
 {
     public interface INotificationService
     {

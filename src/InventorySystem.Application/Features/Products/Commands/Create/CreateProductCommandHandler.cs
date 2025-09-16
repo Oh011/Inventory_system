@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Domain.Entities;
 using MediatR;
-using Project.Application.Features.Products.Dtos;
-using Project.Application.Features.Products.Intrefaces;
+using InventorySystem.Application.Features.Products.Dtos;
+using InventorySystem.Application.Features.Products.Intrefaces;
 
-namespace Project.Application.Features.Products.Commands.Create
+namespace InventorySystem.Application.Features.Products.Commands.Create
 {
     internal class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, ProductResultDto>
     {

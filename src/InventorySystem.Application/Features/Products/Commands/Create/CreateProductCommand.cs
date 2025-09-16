@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using Project.Application.Features.Products.Dtos;
+using InventorySystem.Application.Features.Products.Dtos;
 using Shared.Dtos;
 
 
-namespace Project.Application.Features.Products.Commands.Create
+namespace InventorySystem.Application.Features.Products.Commands.Create
 {
     public class CreateProductCommand : ProductBaseCommand, IRequest<ProductResultDto>
     {

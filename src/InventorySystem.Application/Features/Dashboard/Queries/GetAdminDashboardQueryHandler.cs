@@ -1,19 +1,19 @@
 ﻿using Domain.Entities;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
 using MediatR;
-using Project.Application.Common.Enums.SortOptions;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Features.Dashboard.Dtos;
-using Project.Application.Features.Inventory.Queries.GetLowStock;
-using Project.Application.Features.Notifications.Interfaces;
-using Project.Application.Features.Notifications.Queries.GetUserNotifications;
-using Project.Application.Features.Products.Intrefaces;
-using Project.Application.Features.PurchaseOrders.Interfaces;
-using Project.Application.Features.PurchaseOrders.Queries.GetAll;
-using Project.Application.Features.SalesInvoice.Interfaces;
-using Project.Application.Features.SalesInvoice.Queries.GetAll;
+using InventorySystem.Application.Common.Enums.SortOptions;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Features.Dashboard.Dtos;
+using InventorySystem.Application.Features.Inventory.Queries.GetLowStock;
+using InventorySystem.Application.Features.Notifications.Interfaces;
+using InventorySystem.Application.Features.Notifications.Queries.GetUserNotifications;
+using InventorySystem.Application.Features.Products.Intrefaces;
+using InventorySystem.Application.Features.PurchaseOrders.Interfaces;
+using InventorySystem.Application.Features.PurchaseOrders.Queries.GetAll;
+using InventorySystem.Application.Features.SalesInvoice.Interfaces;
+using InventorySystem.Application.Features.SalesInvoice.Queries.GetAll;
 
-namespace Project.Application.Features.Dashboard.Queries
+namespace InventorySystem.Application.Features.Dashboard.Queries
 {
     internal class GetAdminDashboardQueryHandler : IRequestHandler<GetAdminDashboardQuery, DashboardDto>
     {

@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Features.PurchaseOrders.Dtos
+﻿namespace InventorySystem.Application.Features.PurchaseOrders.Dtos
 {
     public class CancelPurchaseOrderRequest
     {

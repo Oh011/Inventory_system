@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Project.Application.Features.PurchaseOrders.Commands.Update
+namespace InventorySystem.Application.Features.PurchaseOrders.Commands.Update
 {
     public class UpdatePurchaseOrderCommandValidator : AbstractValidator<UpdatePurchaseOrderCommand>
     {

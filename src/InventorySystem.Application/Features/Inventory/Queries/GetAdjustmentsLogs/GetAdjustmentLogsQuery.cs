@@ -1,10 +1,10 @@
 ﻿using MediatR;
-using Project.Application.Features.Inventory.Dtos;
-using Project.Application.Features.Inventory.Filters;
+using InventorySystem.Application.Features.Inventory.Dtos;
+using InventorySystem.Application.Features.Inventory.Filters;
 using Shared.Parameters;
 using Shared.Results;
 
-namespace Project.Application.Features.Inventory.Queries.GetAdjustmentsLogs
+namespace InventorySystem.Application.Features.Inventory.Queries.GetAdjustmentsLogs
 {
 
     public class GetAdjustmentLogsQuery : AdjustmentLogsFilter, IRequest<PaginatedResult<StockAdjustmentLogDto>>

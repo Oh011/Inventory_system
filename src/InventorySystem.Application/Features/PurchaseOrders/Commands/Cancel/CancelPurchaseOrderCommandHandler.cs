@@ -3,13 +3,13 @@ using Application.Exceptions;
 using Domain.Entities;
 using Domain.Enums;
 using Domain.Exceptions;
+using InventorySystem.Application.Common.Helpers;
+using InventorySystem.Application.Common.Interfaces;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Features.Suppliers.Interfaces;
 using MediatR;
-using Project.Application.Common.Helpers;
-using Project.Application.Common.Interfaces;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Features.Suppliers.Interfaces;
 
-namespace Project.Application.Features.PurchaseOrders.Commands.Cancel
+namespace InventorySystem.Application.Features.PurchaseOrders.Commands.Cancel
 {
     internal class CancelPurchaseOrderCommandHandler : IRequestHandler<CancelPurchaseOrderCommand, string>
     {
@@ -41,8 +41,6 @@ namespace Project.Application.Features.PurchaseOrders.Commands.Cancel
 
 
 
-            unitOfWork.EnsureRowVersionMatch(order, request.RowVersion);
-
 
 
             if (!order.CanTransitionTo(PurchaseOrderStatus.Cancelled))
@@ -50,7 +48,7 @@ namespace Project.Application.Features.PurchaseOrders.Commands.Cancel
 
 
 
-            unitOfWork.ApplyRowVersion(order, request.RowVersion);
+
 
 
             order.Status = PurchaseOrderStatus.Cancelled;

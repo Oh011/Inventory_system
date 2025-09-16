@@ -2,9 +2,9 @@
 using Domain.Specifications;
 using InventorySystem.Application.Features.Reports.Sales.FilterParameters;
 using InventorySystem.Application.Features.Reports.Sales.SortOptions;
-using Project.Application.Features.Reports.Sales.Dtos;
+using InventorySystem.Application.Features.Reports.Sales.Dtos;
 
-namespace Project.Application.Features.Reports.Sales.Specifications
+namespace InventorySystem.Application.Features.Reports.Sales.Specifications
 {
     public class SalesByProductReportSpecifications : GroupSpecification<SalesInvoiceItem, ProductSalesGroupKey, SalesByProductReportDto>
     {

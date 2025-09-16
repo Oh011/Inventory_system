@@ -1,11 +1,11 @@
 ﻿using Domain.Enums;
 using MediatR;
-using Project.Application.Common.Enums.SortOptions;
-using Project.Application.Features.SalesInvoice.Dtos;
+using InventorySystem.Application.Common.Enums.SortOptions;
+using InventorySystem.Application.Features.SalesInvoice.Dtos;
 using Shared.Parameters;
 using Shared.Results;
 
-namespace Project.Application.Features.SalesInvoice.Queries.GetAll
+namespace InventorySystem.Application.Features.SalesInvoice.Queries.GetAll
 {
     public class GetSalesInvoicesQuery : PaginationQueryParameters, IRequest<PaginatedResult<SalesInvoiceSummaryDto>>
     {

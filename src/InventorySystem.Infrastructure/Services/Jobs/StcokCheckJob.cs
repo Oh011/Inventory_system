@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Events.Products;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Common.Notifications.Senders;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Notifications.Senders;
 
 namespace Infrastructure.Services.Jobs
 {

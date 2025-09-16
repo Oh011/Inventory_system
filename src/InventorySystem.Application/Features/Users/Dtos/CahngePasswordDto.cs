@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Features.Users.Dtos
+﻿namespace InventorySystem.Application.Features.Users.Dtos
 {
     public class ChangePasswordDto
     {

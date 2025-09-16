@@ -1,8 +1,8 @@
-﻿using MediatR;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Features.Employees.Interfcaes;
+﻿using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using MediatR;
+using InventorySystem.Application.Features.Employees.Interfcaes;
 
-namespace Project.Application.Features.Employees.Commands.UpdateEmployeeImage
+namespace InventorySystem.Application.Features.Employees.Commands.UpdateEmployeeImage
 {
     internal class UpdateEmployeeProfileImageCommandHandler : IRequestHandler<UpdateEmployeeProfileImageCommand, string>
     {

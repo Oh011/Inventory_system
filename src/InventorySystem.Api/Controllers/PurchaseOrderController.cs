@@ -1,13 +1,15 @@
-﻿using MediatR;
+﻿using InventorySystem.Application.Features.PurchaseOrders.Dtos;
+using InventorySystem.Application.Features.PurchaseOrders.Queries.PurchaseOrderOverview;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Project.Application.Features.PurchaseOrders.Commands.Cancel;
-using Project.Application.Features.PurchaseOrders.Commands.Create;
-using Project.Application.Features.PurchaseOrders.Commands.Update;
-using Project.Application.Features.PurchaseOrders.Dtos;
-using Project.Application.Features.PurchaseOrders.Queries.ExportPf;
-using Project.Application.Features.PurchaseOrders.Queries.GetAll;
-using Project.Application.Features.PurchaseOrders.Queries.GetById;
+using InventorySystem.Application.Features.PurchaseOrders.Commands.Cancel;
+using InventorySystem.Application.Features.PurchaseOrders.Commands.Create;
+using InventorySystem.Application.Features.PurchaseOrders.Commands.Update;
+using InventorySystem.Application.Features.PurchaseOrders.Dtos;
+using InventorySystem.Application.Features.PurchaseOrders.Queries.ExportPf;
+using InventorySystem.Application.Features.PurchaseOrders.Queries.GetAll;
+using InventorySystem.Application.Features.PurchaseOrders.Queries.GetById;
 using Shared;
 using Shared.Results;
 
@@ -30,7 +32,7 @@ namespace InventorySystem.Controllers
         [HttpGet]
         [Authorize(Roles = "Admin,Manager,Warehouse")]
 
-        public async Task<ActionResult<SuccessWithData<PaginatedResult<PurchaseOrderSummaryDto>>>> GetAllOrders([FromQuery] GetPurchaseOrdersQuery query)
+        public async Task<ActionResult<SuccessWithData<PaginatedResult<PurchaseOrderListDto>>>> GetAllOrders([FromQuery] GetPurchaseOrdersQuery query)
         {
 
             var result = await mediator.Send(query);
@@ -69,7 +71,7 @@ namespace InventorySystem.Controllers
         [Authorize(Roles = "Admin,Manager,Warehouse")]
 
 
-        public async Task<ActionResult<SuccessWithData<PurchaseOrderResultDto>>> GetOrderById([FromRoute] int id)
+        public async Task<ActionResult<SuccessWithData<PurchaseOrderDetailDto>>> GetOrderById([FromRoute] int id)
         {
 
             var query = new GetPurchaseOrderByIdQuery(id);
@@ -91,7 +93,7 @@ namespace InventorySystem.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin,Manager")]
 
-        public async Task<ActionResult<SuccessWithData<PurchaseOrderResultDto>>> CreatePurchaseOrder([FromBody] CreatePurchaseOrderCommand command)
+        public async Task<ActionResult<SuccessWithData<PurchaseOrderDetailDto>>> CreatePurchaseOrder([FromBody] CreatePurchaseOrderCommand command)
         {
 
 
@@ -132,7 +134,7 @@ namespace InventorySystem.Controllers
         [HttpPatch("{id}/receive")]
         [Authorize(Roles = "Warehouse")]
 
-        public async Task<ActionResult<SuccessWithData<PurchaseOrderResultDto>>> UpdatePurchaseOrder([FromRoute] int id, [FromBody] UpdatePurchaseOrderRequest request)
+        public async Task<ActionResult<SuccessWithData<PurchaseOrderDetailDto>>> UpdatePurchaseOrder([FromRoute] int id, [FromBody] UpdatePurchaseOrderRequest request)
         {
 
 
@@ -144,6 +146,21 @@ namespace InventorySystem.Controllers
             return Ok(ApiResponseFactory.Success(result));
 
         }
+
+
+        /// <summary>
+        /// 📊 Get overall purchase order summary.
+        /// Returns counts of orders by status and total value.
+        /// Accessible by Admins, Managers, and Warehouse staff.
+        /// </summary>
+        [HttpGet("summary")]
+        //[Authorize(Roles = "Admin,Manager,Warehouse")]
+        public async Task<ActionResult<SuccessWithData<PurchaseOrderOverviewDto>>> GetOverview([FromQuery] GetPurchaseOrderOverviewQuery query)
+        {
+            var result = await mediator.Send(query);
+            return Ok(ApiResponseFactory.Success(result));
+        }
+
 
     }
 }

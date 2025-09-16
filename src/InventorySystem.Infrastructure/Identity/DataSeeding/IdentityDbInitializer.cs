@@ -3,7 +3,7 @@ using Domain.Entities;
 using Infrastructure.Persistence.Context;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Project.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.Repositories;
 
 namespace Infrastructure.Identity.DataSeeding
 {

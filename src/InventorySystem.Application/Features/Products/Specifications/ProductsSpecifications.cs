@@ -1,9 +1,9 @@
 ﻿
 using Domain.Entities;
 using Domain.Specifications;
-using Project.Application.Common.Enums.SortOptions;
-using Project.Application.Features.Products.Dtos;
-using Project.Application.Features.Products.queries.GetProducts;
+using InventorySystem.Application.Common.Enums.SortOptions;
+using InventorySystem.Application.Features.Products.Dtos;
+using InventorySystem.Application.Features.Products.queries.GetProducts;
 
 namespace Application.Specifications.Products
 {

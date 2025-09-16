@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Project.Application.Features.Categories.Dtos;
+using InventorySystem.Application.Features.Categories.Dtos;
 
-namespace Project.Application.Features.Categories.Queries.GetCategory
+namespace InventorySystem.Application.Features.Categories.Queries.GetCategory
 {
     public class GetCategoryByNameQuery : IRequest<IEnumerable<CategoryDto>>
     {

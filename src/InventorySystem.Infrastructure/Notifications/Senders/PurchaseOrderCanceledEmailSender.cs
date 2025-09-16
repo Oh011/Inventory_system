@@ -1,7 +1,7 @@
 ﻿using Domain.Events.PurchaseOrder;
-using Project.Application.Common.Factories.Interfaces;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Common.Notifications.Senders;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using InventorySystem.Application.Common.Factories.Interfaces;
+using InventorySystem.Application.Common.Notifications.Senders;
 
 namespace Infrastructure.Notifications.Senders
 {

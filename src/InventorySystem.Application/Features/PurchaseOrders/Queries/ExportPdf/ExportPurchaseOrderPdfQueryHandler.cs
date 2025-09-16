@@ -1,10 +1,10 @@
 ﻿using Application.Exceptions;
 using Domain.Enums;
 using MediatR;
-using Project.Application.Common.Interfaces.PdfGenerators;
-using Project.Application.Features.PurchaseOrders.Interfaces;
+using InventorySystem.Application.Common.Interfaces.PdfGenerators;
+using InventorySystem.Application.Features.PurchaseOrders.Interfaces;
 
-namespace Project.Application.Features.PurchaseOrders.Queries.ExportPf
+namespace InventorySystem.Application.Features.PurchaseOrders.Queries.ExportPf
 {
     public class ExportPurchaseOrderPdfQueryHandler : IRequestHandler<ExportPurchaseOrderPdfQuery, byte[]>
     {

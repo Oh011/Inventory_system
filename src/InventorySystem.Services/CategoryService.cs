@@ -2,12 +2,12 @@
 using Application.Exceptions;
 using Application.Specifications.CategorySpec;
 using Domain.Entities;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Features.Categories.Commands.Update;
-using Project.Application.Features.Categories.Dtos;
-using Project.Application.Features.Categories.Interfaces;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Features.Categories.Commands.Update;
+using InventorySystem.Application.Features.Categories.Dtos;
+using InventorySystem.Application.Features.Categories.Interfaces;
 
-namespace Project.Services
+namespace InventorySystem.Services
 {
     class CategoryService(IUnitOfWork unitOfWork) : ICategoryService
     {

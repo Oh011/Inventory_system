@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Project.Application.Features.Auth.Commands.PasswordRest
+namespace InventorySystem.Application.Features.Auth.Commands.PasswordRest
 {
     public class ForgotPasswordCommand : IRequest<string>
     {

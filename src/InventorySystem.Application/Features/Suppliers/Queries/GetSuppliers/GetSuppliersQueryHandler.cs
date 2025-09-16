@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
-using Project.Application.Features.Suppliers.Dtos;
-using Project.Application.Features.Suppliers.Interfaces;
+using InventorySystem.Application.Features.Suppliers.Dtos;
+using InventorySystem.Application.Features.Suppliers.Interfaces;
 using Shared.Results;
 
-namespace Project.Application.Features.Suppliers.Queries.GetSuppliers
+namespace InventorySystem.Application.Features.Suppliers.Queries.GetSuppliers
 {
     internal class GetSuppliersQueryHandler : IRequestHandler<GetSuppliersQuery, PaginatedResult<SupplierDto>>
     {

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Domain.Entities;
-using Project.Application.Features.PurchaseOrders.Dtos;
+using InventorySystem.Application.Features.PurchaseOrders.Dtos;
 
-namespace Project.Application.Features.PurchaseOrders.Mapping
+namespace InventorySystem.Application.Features.PurchaseOrders.Mapping
 {
     internal class PurchaseOrderMappingProfile : Profile
     {
@@ -12,7 +12,7 @@ namespace Project.Application.Features.PurchaseOrders.Mapping
         {
 
 
-            CreateMap<PurchaseOrder, PurchaseOrderResultDto>().ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString())
+            CreateMap<PurchaseOrder, PurchaseOrderDetailDto>().ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString())
                 )
                  .ReverseMap();
 

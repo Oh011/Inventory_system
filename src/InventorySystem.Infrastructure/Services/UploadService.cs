@@ -1,6 +1,7 @@
 ﻿using Application.Exceptions;
-using Project.Application.Common.Interfaces.Services;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
 using Shared.Dtos;
+using Shared.Errors;
 
 namespace Infrastructure.Services
 {
@@ -45,8 +46,22 @@ namespace Infrastructure.Services
 
             if (!_AllowedExtensions.Contains(extension))
             {
-                var fileException = new ValidationException();
-                fileException.AddValidations("ProfileImage", "Only .png, .jpg, .jpeg files are allowed.");
+                var fileException = new ValidationException(
+
+                    new Dictionary<string, List<ValidationErrorDetail>>()
+                    {
+
+                        ["ProfileImage"] = new List<ValidationErrorDetail>
+                        {
+
+                         new ValidationErrorDetail(   "Only .png, .jpg, .jpeg files are allowed.")
+                        }
+
+                    }
+                    );
+
+
+
             }
 
 
@@ -54,8 +69,22 @@ namespace Infrastructure.Services
 
             if (file.FileLength > _MaxSize)
             {
-                var sizeException = new ValidationException();
-                sizeException.AddValidations("ProfileImage", "ProfileImage size exceeds 2MB limit.");
+                var sizeException = new ValidationException(
+
+                new Dictionary<string, List<ValidationErrorDetail>>()
+                {
+
+                    ["ProfileImage"] = new List<ValidationErrorDetail>
+                        {
+
+                         new ValidationErrorDetail(   "ProfileImage size exceeds 2MB limit.")
+                        }
+
+                }
+
+
+                );
+
             }
 
 

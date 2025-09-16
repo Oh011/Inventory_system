@@ -1,12 +1,13 @@
-﻿using Shared.Dtos;
+﻿using Domain.Enums;
+using Shared.Dtos;
 
-namespace Project.Application.Common.Factories.Interfaces
+namespace InventorySystem.Application.Common.Factories.Interfaces
 {
     public interface IEmailMessageFactory
     {
 
         EmailMessage CreatePurchaseOrderCreatedEmail(int orderId, string supplierName, string supplierEmail, byte[]? pdfBytes = null);
         EmailMessage CreateOrderCanceledEmail(int orderId, string supplierName, string supplierEmail);
-        EmailMessage CreateOrderReceivedEmail(int orderId, string supplierName, string supplierEmail, byte[]? pdfBytes = null);
+        EmailMessage CreateOrderReceivedEmail(int orderId, string supplierName, string supplierEmail, PurchaseOrderStatus status, byte[]? pdfBytes = null);
     }
 }

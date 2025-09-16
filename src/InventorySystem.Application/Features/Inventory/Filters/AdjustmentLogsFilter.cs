@@ -1,6 +1,6 @@
-﻿using Project.Application.Common.Enums.SortOptions;
+﻿using InventorySystem.Application.Common.Enums.SortOptions;
 
-namespace Project.Application.Features.Inventory.Filters
+namespace InventorySystem.Application.Features.Inventory.Filters
 {
     public class AdjustmentLogsFilter
     {

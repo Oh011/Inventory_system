@@ -1,9 +1,9 @@
 ﻿
 using Domain.Entities;
-using Project.Application.Features.Categories.Commands.Update;
-using Project.Application.Features.Categories.Dtos;
+using InventorySystem.Application.Features.Categories.Commands.Update;
+using InventorySystem.Application.Features.Categories.Dtos;
 
-namespace Project.Application.Features.Categories.Interfaces
+namespace InventorySystem.Application.Features.Categories.Interfaces
 {
     public interface ICategoryService
     {

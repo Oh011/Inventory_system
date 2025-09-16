@@ -1,11 +1,12 @@
 ﻿
 using Domain.Enums;
+using InventorySystem.Application.Common.Dtos;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Features.Categories.Interfaces;
+using InventorySystem.Application.Features.Products.Dtos;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Features.Categories.Interfaces;
-using Project.Application.Features.Products.Dtos;
 
-namespace Project.Application.Features.Products.queries.ProductCreationData
+namespace InventorySystem.Application.Features.Products.queries.ProductCreationData
 {
     internal class GetProductCreationDataQueryHandler : IRequestHandler<GetProductCreationDataQuery, ProductCreationDataDto>
     {

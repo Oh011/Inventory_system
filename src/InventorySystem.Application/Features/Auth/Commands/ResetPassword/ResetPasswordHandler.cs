@@ -1,7 +1,7 @@
 ﻿using Application.Features.Auth.Interfaces;
 using MediatR;
 
-namespace Project.Application.Features.Auth.Commands.ResetPassword
+namespace InventorySystem.Application.Features.Auth.Commands.ResetPassword
 {
     internal class ResetPasswordHandler : IRequestHandler<RestPasswordCommand, string>
     {

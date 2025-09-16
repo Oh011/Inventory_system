@@ -1,7 +1,7 @@
 ﻿using Domain.Specifications;
 using System.Linq.Expressions;
 
-namespace Project.Application.Common.Interfaces.Repositories
+namespace InventorySystem.Application.Common.Interfaces.Repositories
 {
     public interface IReadRepository<T, TKey> where T : class
     {

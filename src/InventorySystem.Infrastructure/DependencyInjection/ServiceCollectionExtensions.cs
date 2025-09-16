@@ -19,6 +19,15 @@ using Infrastructure.Services.Background;
 using Infrastructure.Services.Common.Factories;
 using Infrastructure.Services.Common.Helpers;
 using Infrastructure.Services.PdfGenerators;
+using InventorySystem.Application.Common.Factories.Interfaces;
+using InventorySystem.Application.Common.Interfaces;
+using InventorySystem.Application.Common.Interfaces.Background;
+using InventorySystem.Application.Common.Interfaces.PdfGenerators;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using InventorySystem.Application.Common.Notifications.Interfaces;
+using InventorySystem.Application.Common.Notifications.Senders;
+using InventorySystem.Application.Features.Products.Intrefaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -26,15 +35,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Project.Application.Common.Factories.Interfaces;
-using Project.Application.Common.Interfaces;
-using Project.Application.Common.Interfaces.Background;
-using Project.Application.Common.Interfaces.PdfGenerators;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Common.Notifications.Interfaces;
-using Project.Application.Common.Notifications.Senders;
-using Project.Application.Features.Products.Intrefaces;
 using Sahred.Options;
 using Shared.Options;
 using System.Security.Claims;
@@ -82,6 +82,8 @@ namespace Infrastructure.DependencyInjection
             services.AddHangfireServer();
 
             //app.UseHangfireDashboard(); // optional dashboard
+
+
 
 
 

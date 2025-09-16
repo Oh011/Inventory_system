@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using Project.Application.Common.Parameters;
-using Project.Application.Features.Employees.Dtos;
+using InventorySystem.Application.Common.Parameters;
+using InventorySystem.Application.Features.Employees.Dtos;
 using Shared.Results;
 
-namespace Project.Application.Features.Employees.Queries.GetEmployees
+namespace InventorySystem.Application.Features.Employees.Queries.GetEmployees
 {
     public class GetEmployeesQuery : IRequest<PaginatedResult<EmployeeSummaryDto>>
     {

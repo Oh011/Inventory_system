@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Project.Application.Features.Notifications.Commands.MarkNotificationAsSeen;
-using Project.Application.Features.Notifications.Commands.MarkNotificationsAsSeen;
-using Project.Application.Features.Notifications.Dtos;
-using Project.Application.Features.Notifications.Queries.GetUnseenCount;
-using Project.Application.Features.Notifications.Queries.GetUserNotifications;
+using InventorySystem.Application.Features.Notifications.Commands.MarkNotificationAsSeen;
+using InventorySystem.Application.Features.Notifications.Commands.MarkNotificationsAsSeen;
+using InventorySystem.Application.Features.Notifications.Dtos;
+using InventorySystem.Application.Features.Notifications.Queries.GetUnseenCount;
+using InventorySystem.Application.Features.Notifications.Queries.GetUserNotifications;
 using Shared;
 using Shared.Results;
 using System.Security.Claims;

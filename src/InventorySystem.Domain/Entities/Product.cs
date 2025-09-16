@@ -47,14 +47,6 @@ namespace Domain.Entities
 
 
 
-
-
-
-
-
-        public byte[] RowVersion { get; set; } = null!;
-
-
         public ICollection<PurchaseOrderItem>? PurchaseOrders { get; set; } = new List<PurchaseOrderItem>();
 
 

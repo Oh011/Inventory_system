@@ -1,6 +1,6 @@
 ﻿using Domain.Common;
 
-namespace Project.Application.Common.Notifications.Senders
+namespace InventorySystem.Application.Common.Notifications.Senders
 {
 
     // applying strategy pattern

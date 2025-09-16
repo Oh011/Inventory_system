@@ -1,10 +1,10 @@
 ﻿using Domain.Entities;
 using Domain.Specifications;
-using Project.Application.Common.Enums.SortOptions;
-using Project.Application.Features.Inventory.Dtos;
-using Project.Application.Features.Inventory.Queries.GetInventory;
+using InventorySystem.Application.Common.Enums.SortOptions;
+using InventorySystem.Application.Features.Inventory.Dtos;
+using InventorySystem.Application.Features.Inventory.Queries.GetInventory;
 
-namespace Project.Application.Features.Inventory.Specifications
+namespace InventorySystem.Application.Features.Inventory.Specifications
 {
     internal class InventoryProductSpecifications : ProjectionSpecifications<Product, InventoryDto>
     {

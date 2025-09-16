@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using Project.Application.Features.PurchaseOrders.Dtos;
+using InventorySystem.Application.Features.PurchaseOrders.Dtos;
 
-namespace Project.Application.Features.PurchaseOrders.Commands.Create
+namespace InventorySystem.Application.Features.PurchaseOrders.Commands.Create
 {
-    public class CreatePurchaseOrderCommand : IRequest<PurchaseOrderResultDto>
+    public class CreatePurchaseOrderCommand : IRequest<PurchaseOrderDetailDto>
     {
 
         public int SupplierId { get; set; }

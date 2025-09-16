@@ -1,11 +1,11 @@
 ﻿using Application.Exceptions;
 using Application.Features.Users.Interfaces;
 using Domain.Entities;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Common.Interfaces.Services;
+using InventorySystem.Application.Common.Interfaces.Repositories;
 
-namespace Project.Application.Features.Employees.Commands.ActivateEmployee
+namespace InventorySystem.Application.Features.Employees.Commands.ActivateEmployee
 {
     internal class ChangeEmployeeActivationStatusCommandHandler : IRequestHandler<ChangeEmployeeActivationStatusCommand, string>
     {

@@ -1,10 +1,10 @@
 ﻿using Domain.Entities;
 using Domain.Specifications;
-using Project.Application.Features.PurchaseOrders.Dtos;
+using InventorySystem.Application.Features.PurchaseOrders.Dtos;
 
-namespace Project.Application.Features.PurchaseOrders.Specifications
+namespace InventorySystem.Application.Features.PurchaseOrders.Specifications
 {
-    public class PurchaseOrderDetailsSpecifications : ProjectionSpecifications<PurchaseOrder, PurchaseOrderResultDto>
+    public class PurchaseOrderDetailsSpecifications : ProjectionSpecifications<PurchaseOrder, PurchaseOrderDetailDto>
     {
 
 
@@ -16,7 +16,7 @@ namespace Project.Application.Features.PurchaseOrders.Specifications
 
 
 
-            AddProjection(p => new PurchaseOrderResultDto
+            AddProjection(p => new PurchaseOrderDetailDto
             {
                 Id = p.Id,
                 SupplierName = p.Supplier.Name,

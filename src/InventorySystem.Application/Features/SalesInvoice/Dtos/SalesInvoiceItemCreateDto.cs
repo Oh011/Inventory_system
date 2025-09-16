@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project.Application.Features.SalesInvoice.Dtos
+namespace InventorySystem.Application.Features.SalesInvoice.Dtos
 {
     public class SalesInvoiceItemCreateDto
     {

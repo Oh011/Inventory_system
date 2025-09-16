@@ -1,4 +1,4 @@
-﻿namespace InventorySystem.Dtos
+﻿namespace InventorySystem.Api.Dtos.Employee
 {
     public class UploadEmployeeImageRequest
     {

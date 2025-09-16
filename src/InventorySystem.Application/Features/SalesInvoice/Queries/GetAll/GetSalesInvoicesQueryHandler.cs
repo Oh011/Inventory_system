@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using Project.Application.Features.SalesInvoice.Dtos;
-using Project.Application.Features.SalesInvoice.Interfaces;
+using InventorySystem.Application.Features.SalesInvoice.Dtos;
+using InventorySystem.Application.Features.SalesInvoice.Interfaces;
 using Shared.Results;
 
-namespace Project.Application.Features.SalesInvoice.Queries.GetAll
+namespace InventorySystem.Application.Features.SalesInvoice.Queries.GetAll
 {
     public class GetSalesInvoicesQueryHandler : IRequestHandler<GetSalesInvoicesQuery, PaginatedResult<SalesInvoiceSummaryDto>>
     {

@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Features.Users.Specifications
+﻿namespace InventorySystem.Application.Features.Users.Specifications
 {
     //internal class UserSpecifications : IProjectionSpecifications<IApplicationUser, UserSummaryDto>, ISpecification<IApplicationUser>, IIncludeSpecification<IApplicationUser>
     //{

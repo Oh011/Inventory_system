@@ -1,6 +1,7 @@
-﻿using Project.Application.Features.Categories.Dtos;
+﻿using InventorySystem.Application.Common.Dtos;
+using InventorySystem.Application.Features.Categories.Dtos;
 
-namespace Project.Application.Features.Products.Dtos
+namespace InventorySystem.Application.Features.Products.Dtos
 {
 
 
@@ -10,11 +11,7 @@ namespace Project.Application.Features.Products.Dtos
         public List<CategoryDto> Categories { get; set; } = new();
     }
 
-    public class EnumDto
-    {
-        public string Name { get; set; } = default!;
-        public int Value { get; set; }
-    }
+
 
 
 }

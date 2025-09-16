@@ -1,10 +1,10 @@
 ﻿using Domain.Entities;
 using Domain.Specifications;
-using Project.Application.Common.Enums.SortOptions;
-using Project.Application.Common.Parameters;
-using Project.Application.Features.Employees.Dtos;
+using InventorySystem.Application.Common.Enums.SortOptions;
+using InventorySystem.Application.Common.Parameters;
+using InventorySystem.Application.Features.Employees.Dtos;
 
-namespace Project.Application.Features.Employees.Specifications
+namespace InventorySystem.Application.Features.Employees.Specifications
 {
     public class EmployeeSpecifications : ProjectionSpecifications<Employee, EmployeeSummaryDto>
     {

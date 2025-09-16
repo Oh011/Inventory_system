@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Project.Application.Features.Notifications.Commands.MarkNotificationsAsSeen
+namespace InventorySystem.Application.Features.Notifications.Commands.MarkNotificationsAsSeen
 {
     public class MarkAllNotificationsAsSeenCommand : IRequest<string>
     {

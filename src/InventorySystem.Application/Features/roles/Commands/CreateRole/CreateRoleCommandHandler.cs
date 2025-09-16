@@ -1,7 +1,7 @@
 ﻿using Application.Features.roles.Dtos;
 using Application.Features.roles.Interfaces;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.Repositories;
 
 namespace Application.Features.roles.Commands.CreateRole
 {

@@ -1,5 +1,5 @@
-﻿using Project.Application.Common.Interfaces.PdfGenerators;
-using Project.Application.Features.PurchaseOrders.Dtos;
+﻿using InventorySystem.Application.Common.Interfaces.PdfGenerators;
+using InventorySystem.Application.Features.PurchaseOrders.Dtos;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
@@ -10,10 +10,10 @@ namespace Infrastructure.Services
     internal class PurchaseOrderPdfGenerator : IPurchaseOrderPdfGenerator
     {
 
-
-        public byte[] GenerateCreatedOrderPdf(PurchaseOrderResultDto order)
+        public byte[] GenerateCreatedOrderPdf(PurchaseOrderDetailDto order)
         {
             QuestPDF.Settings.License = LicenseType.Community;
+
             return Document.Create(container =>
             {
                 container.Page(page =>
@@ -22,9 +22,7 @@ namespace Infrastructure.Services
                     page.Margin(2, Unit.Centimetre);
                     page.DefaultTextStyle(x => x.FontSize(12));
 
-
-
-
+                    // Header
                     page.Header().Text($"Purchase Order #{order.Id}")
                         .SemiBold().FontSize(18).FontColor(Colors.Blue.Medium);
 
@@ -32,22 +30,36 @@ namespace Infrastructure.Services
                     {
                         col.Spacing(10);
 
+                        // Order Info
                         col.Item().Text($"Supplier: {order.SupplierName}");
                         col.Item().Text($"Order Date: {order.OrderDate:yyyy-MM-dd}");
                         col.Item().Text($"Expected Date: {order.ExpectedDate:yyyy-MM-dd}");
-                        col.Item().Text($"Total: {order.TotalAmount:C}");
+
+                        // Notes (if any)
+                        if (!string.IsNullOrWhiteSpace(order.Notes))
+                            col.Item().Text($"Notes: {order.Notes}");
+
+                        // Delivery fee
+                        col.Item().Text($"Delivery Fee: {order.DeliveryFee:C}");
+
+                        // Total & Grand Total
+                        col.Item().Text($"Total Ordered Value: {order.TotalAmount:C}")
+                            .SemiBold().FontSize(14);
+                        col.Item().Text($"Grand Total: {order.GrandTotal:C}")
+                            .SemiBold().FontSize(14);
 
                         col.Item().LineHorizontal(1).LineColor(Colors.Grey.Lighten2);
 
+                        // Table of items
                         col.Item().Table(table =>
                         {
                             table.ColumnsDefinition(columns =>
                             {
-                                columns.ConstantColumn(40);  // #
-                                columns.RelativeColumn(2);   // Product Name
-                                columns.RelativeColumn();    // Quantity
-                                columns.RelativeColumn();    // Unit Cost
-                                columns.RelativeColumn();    // Total
+                                columns.ConstantColumn(40);   // #
+                                columns.RelativeColumn(2);    // Product Name
+                                columns.RelativeColumn();     // Quantity
+                                columns.RelativeColumn();     // Unit Cost
+                                columns.RelativeColumn();     // Subtotal
                             });
 
                             // Header
@@ -67,12 +79,13 @@ namespace Infrastructure.Services
                                 table.Cell().Text(item.ProductName);
                                 table.Cell().Text(item.QuantityOrdered.ToString());
                                 table.Cell().Text($"{item.UnitCost:C}");
-                                table.Cell().Text($"{item.QuantityOrdered * item.UnitCost:C}");
+                                table.Cell().Text($"{item.Subtotal:C}");
                             }
                         });
 
                         col.Item().LineHorizontal(1).LineColor(Colors.Grey.Lighten2);
 
+                        // Footer message
                         col.Item().Text("Please ensure timely delivery. Thank you.")
                             .Italic().FontSize(10);
                     });
@@ -80,7 +93,8 @@ namespace Infrastructure.Services
             }).GeneratePdf();
         }
 
-        public byte[] GenerateReceivedOrderPdf(PurchaseOrderResultDto order)
+
+        public byte[] GenerateReceivedOrderPdf(PurchaseOrderDetailDto order)
         {
             QuestPDF.Settings.License = LicenseType.Community;
 
@@ -92,40 +106,53 @@ namespace Infrastructure.Services
                     page.Margin(2, Unit.Centimetre);
                     page.DefaultTextStyle(x => x.FontSize(12));
 
-                    page.Header().Text($"Purchase Order #{order.Id} - Received")
-                        .SemiBold().FontSize(18).FontColor(Colors.Green.Medium);
+                    // Header with dynamic status color
+                    page.Header().Text($"Purchase Order #{order.Id} - {order.ReceivedStatus}")
+                        .SemiBold().FontSize(18)
+                        .FontColor(order.ReceivedStatus == "Fully Received" ? Colors.Green.Medium :
+                                   order.ReceivedStatus == "Partially Received" ? Colors.Orange.Medium :
+                                   Colors.Red.Medium);
 
                     page.Content().Column(col =>
                     {
                         col.Spacing(10);
 
+                        // Order Info
                         col.Item().Text($"Supplier: {order.SupplierName}");
                         col.Item().Text($"Order Date: {order.OrderDate:yyyy-MM-dd}");
                         col.Item().Text($"Expected Date: {order.ExpectedDate:yyyy-MM-dd}");
 
+                        // Notes & Delivery Fee
+                        if (!string.IsNullOrWhiteSpace(order.Notes))
+                            col.Item().Text($"Notes: {order.Notes}");
+
+                        col.Item().Text($"Delivery Fee: {order.DeliveryFee:C}");
+
                         col.Item().LineHorizontal(1).LineColor(Colors.Grey.Lighten2);
 
+                        // Order Items Table
                         col.Item().Table(table =>
                         {
                             table.ColumnsDefinition(columns =>
                             {
-                                columns.ConstantColumn(40);  // #
-                                columns.RelativeColumn(2);   // Product Name
-                                columns.RelativeColumn();    // Ordered Qty
-                                columns.RelativeColumn();    // Received Qty
-                                columns.RelativeColumn();    // Unit Cost
-                                columns.RelativeColumn();    // Subtotal
+                                columns.ConstantColumn(40);   // #
+                                columns.RelativeColumn(2);    // Product Name
+                                columns.RelativeColumn();     // Ordered Qty
+                                columns.RelativeColumn();     // Ordered Value
+                                columns.RelativeColumn();     // Received Qty
+                                columns.RelativeColumn();     // Received Value
+                                columns.RelativeColumn();     // Unit Cost
                             });
 
-                            // Header
                             table.Header(header =>
                             {
                                 header.Cell().Text("#").SemiBold();
                                 header.Cell().Text("Product").SemiBold();
-                                header.Cell().Text("Ordered").SemiBold();
-                                header.Cell().Text("Received").SemiBold();
+                                header.Cell().Text("Ordered Qty").SemiBold();
+                                header.Cell().Text("Ordered Value").SemiBold();
+                                header.Cell().Text("Received Qty").SemiBold();
+                                header.Cell().Text("Received Value").SemiBold();
                                 header.Cell().Text("Unit Price").SemiBold();
-                                header.Cell().Text("Subtotal").SemiBold();
                             });
 
                             int index = 1;
@@ -134,18 +161,21 @@ namespace Infrastructure.Services
                                 table.Cell().Text(index++);
                                 table.Cell().Text(item.ProductName);
                                 table.Cell().Text(item.QuantityOrdered.ToString());
+                                table.Cell().Text($"{item.Subtotal:C}"); // Ordered value
                                 table.Cell().Text(item.QuantityReceived.ToString());
+                                table.Cell().Text($"{item.UnitCost * item.QuantityReceived:C}"); // Received value
                                 table.Cell().Text($"{item.UnitCost:C}");
-                                table.Cell().Text($"{item.QuantityReceived * item.UnitCost:C}");
                             }
                         });
 
                         col.Item().LineHorizontal(1).LineColor(Colors.Grey.Lighten2);
 
-                        var totalReceived = order.OrderItems.Sum(i => i.QuantityReceived * i.UnitCost);
-
-                        col.Item().Text($"Total Received: {totalReceived:C}")
-                            .SemiBold().FontSize(14).FontColor(Colors.Black);
+                        // Totals
+                        col.Item().Text($"Total Ordered Value: {order.TotalAmount:C}")
+                            .SemiBold().FontSize(14);
+                        col.Item().Text($"Total Received Value: {order.TotalReceivedValue:C}")
+                            .SemiBold().FontSize(14);
+                        col.Item().Text($"Total Quantity Received: {order.TotalQuantityReceived}");
 
                         col.Item().Text("This document reflects items received for this order.")
                             .Italic().FontSize(10);
@@ -153,6 +183,8 @@ namespace Infrastructure.Services
                 });
             }).GeneratePdf();
         }
+
+
 
 
     }

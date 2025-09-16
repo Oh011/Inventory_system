@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Project.Application.Features.Suppliers.Commands.Update
+namespace InventorySystem.Application.Features.Suppliers.Commands.Update
 {
     internal class UpdateSupplierValidator : AbstractValidator<UpdateSupplierRequest>
     {

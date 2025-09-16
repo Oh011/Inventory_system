@@ -1,10 +1,10 @@
-﻿using Project.Application.Features.PurchaseOrders.Commands.Create;
-using Project.Application.Features.PurchaseOrders.Commands.Update;
-using Project.Application.Features.PurchaseOrders.Dtos;
-using Project.Application.Features.PurchaseOrders.Queries.GetAll;
+﻿using InventorySystem.Application.Features.PurchaseOrders.Commands.Create;
+using InventorySystem.Application.Features.PurchaseOrders.Commands.Update;
+using InventorySystem.Application.Features.PurchaseOrders.Dtos;
+using InventorySystem.Application.Features.PurchaseOrders.Queries.GetAll;
 using Shared.Results;
 
-namespace Project.Application.Features.PurchaseOrders.Interfaces
+namespace InventorySystem.Application.Features.PurchaseOrders.Interfaces
 {
     public interface IPurchaseOrderService
     {
@@ -13,12 +13,12 @@ namespace Project.Application.Features.PurchaseOrders.Interfaces
         Task<int> CreatePurchaseOrder(CreatePurchaseOrderCommand order);
 
 
-        Task<PurchaseOrderResultDto> GetPurchaseOrderById(int id);
+        Task<PurchaseOrderDetailDto> GetPurchaseOrderById(int id);
 
         Task UpdatePurchaseOrder(UpdatePurchaseOrderCommand request);
 
 
 
-        Task<PaginatedResult<PurchaseOrderSummaryDto>> GetAllPurchaseOrders(GetPurchaseOrdersQuery query);
+        Task<PaginatedResult<PurchaseOrderListDto>> GetAllPurchaseOrders(GetPurchaseOrdersQuery query);
     }
 }

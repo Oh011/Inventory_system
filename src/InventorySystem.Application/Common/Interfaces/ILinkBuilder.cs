@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Common.Interfaces
+﻿namespace InventorySystem.Application.Common.Interfaces
 {
     public interface ILinkBuilder
     {

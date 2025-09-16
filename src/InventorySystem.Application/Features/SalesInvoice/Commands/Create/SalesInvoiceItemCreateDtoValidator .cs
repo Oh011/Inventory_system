@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Project.Application.Features.SalesInvoice.Dtos;
+using InventorySystem.Application.Features.SalesInvoice.Dtos;
 
-namespace Project.Application.Features.SalesInvoice.Commands.Create
+namespace InventorySystem.Application.Features.SalesInvoice.Commands.Create
 {
 
 

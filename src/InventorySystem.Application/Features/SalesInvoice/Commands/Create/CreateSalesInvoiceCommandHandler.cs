@@ -1,13 +1,19 @@
 ﻿using Domain.Entities;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using InventorySystem.Application.Common.Validators;
+using InventorySystem.Application.Features.SalesInvoice.Dtos;
+using InventorySystem.Application.Features.SalesInvoice.Interfaces;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Common.Validators;
-using Project.Application.Features.SalesInvoice.Dtos;
-using Project.Application.Features.SalesInvoice.Interfaces;
 
-namespace Project.Application.Features.SalesInvoice.Commands.Create
+namespace InventorySystem.Application.Features.SalesInvoice.Commands.Create
 {
+
+    internal class ProductForSalesInvoiceDto
+    {
+        public int Id { get; set; }
+        public decimal SellingPrice { get; set; }
+    }
     internal class CreateSalesInvoiceCommandHandler : IRequestHandler<CreateSalesInvoiceCommand, SalesInvoiceDetailsDto>
     {
 
@@ -15,6 +21,7 @@ namespace Project.Application.Features.SalesInvoice.Commands.Create
         private readonly IUnitOfWork _unitOfWork;
         private readonly ISalesInvoiceService salesInvoiceService;
         private readonly IEntityValidator<Customer> _customerValidator;
+        private readonly IEntityValidator<Product> _productsValidator;
 
         private readonly ICurrentUserService _currentUserService;
 
@@ -22,9 +29,11 @@ namespace Project.Application.Features.SalesInvoice.Commands.Create
 
 
 
-        public CreateSalesInvoiceCommandHandler(IInventoryService inventoryService, IUnitOfWork unitOfWork, ISalesInvoiceService salesInvoiceService, IEntityValidator<Customer> validator, ICurrentUserService currentUserService)
+        public CreateSalesInvoiceCommandHandler(IEntityValidator<Product> productsValidator, IInventoryService inventoryService, IUnitOfWork unitOfWork, ISalesInvoiceService salesInvoiceService, IEntityValidator<Customer> validator, ICurrentUserService currentUserService)
         {
             _unitOfWork = unitOfWork;
+
+            this._productsValidator = productsValidator;
 
 
             _customerValidator = validator;
@@ -43,16 +52,7 @@ namespace Project.Application.Features.SalesInvoice.Commands.Create
             //    ;
 
 
-
-
-
-
             await _customerValidator.ValidateExistsAsync(request.CustomerId, "Customer");
-
-
-
-
-
 
             var invoiceId = await salesInvoiceService.CreateSalesInvoice(request);
 

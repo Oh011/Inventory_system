@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Common.Enums.SortOptions
+﻿namespace InventorySystem.Application.Common.Enums.SortOptions
 {
     public enum ProductSortOptions
     {

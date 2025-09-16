@@ -1,5 +1,5 @@
-﻿using Project.Application.Common.Interfaces.PdfGenerators;
-using Project.Application.Features.SalesInvoice.Dtos;
+﻿using InventorySystem.Application.Common.Interfaces.PdfGenerators;
+using InventorySystem.Application.Features.SalesInvoice.Dtos;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;

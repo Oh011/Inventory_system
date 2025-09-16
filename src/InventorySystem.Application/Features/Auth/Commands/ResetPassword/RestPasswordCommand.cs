@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Project.Application.Features.Auth.Commands.ResetPassword
+namespace InventorySystem.Application.Features.Auth.Commands.ResetPassword
 {
     public class RestPasswordCommand : IRequest<string>
     {

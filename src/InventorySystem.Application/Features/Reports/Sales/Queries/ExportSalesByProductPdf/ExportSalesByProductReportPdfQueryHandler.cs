@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using Project.Application.Common.Interfaces.PdfGenerators;
-using Project.Application.Features.Reports.Sales.Interfaces;
+using InventorySystem.Application.Common.Interfaces.PdfGenerators;
+using InventorySystem.Application.Features.Reports.Sales.Interfaces;
 
-namespace Project.Application.Features.Reports.Sales.Queries.ExportPdf
+namespace InventorySystem.Application.Features.Reports.Sales.Queries.ExportPdf
 {
     internal class ExportSalesByProductReportPdfQueryHandler : IRequestHandler<ExportSalesByProductReportPdfQuery, byte[]>
     {

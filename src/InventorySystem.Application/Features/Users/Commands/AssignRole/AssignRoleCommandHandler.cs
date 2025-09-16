@@ -1,8 +1,8 @@
 ﻿using Application.Features.Users.Interfaces;
 using MediatR;
-using Project.Application.Features.Employees.Interfcaes;
+using InventorySystem.Application.Features.Employees.Interfcaes;
 
-namespace Project.Application.Features.Users.Commands.AssignRole
+namespace InventorySystem.Application.Features.Users.Commands.AssignRole
 {
     internal class AssignRoleCommandHandler : IRequestHandler<AssignRoleCommand, string>
     {

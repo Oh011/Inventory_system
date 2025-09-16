@@ -1,8 +1,8 @@
 ﻿using Domain.Enums;
 using MediatR;
-using Project.Application.Features.SalesInvoice.Dtos;
+using InventorySystem.Application.Features.SalesInvoice.Dtos;
 
-namespace Project.Application.Features.SalesInvoice.Commands.Create
+namespace InventorySystem.Application.Features.SalesInvoice.Commands.Create
 {
     public class CreateSalesInvoiceCommand : IRequest<SalesInvoiceDetailsDto>
     {

@@ -1,5 +1,5 @@
 ﻿using Application.Exceptions;
-using Project.Application.Common.Interfaces.Services;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
 
 namespace Infrastructure.Services
 {

@@ -1,10 +1,10 @@
 ﻿using Domain.Entities;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Features.Inventory.Dtos;
-using Project.Application.Features.Inventory.Specifications;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Features.Inventory.Dtos;
+using InventorySystem.Application.Features.Inventory.Specifications;
 
-namespace Project.Application.Features.Inventory.Queries.GetInventoryValue
+namespace InventorySystem.Application.Features.Inventory.Queries.GetInventoryValue
 {
     internal class GetInventoryValueReportQueryHandler : IRequestHandler<GetInventoryValueReportQuery, InventoryValueReportResultDto>
     {

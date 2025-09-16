@@ -1,12 +1,12 @@
 ﻿using Domain.Entities;
 using Domain.Specifications;
-using Project.Application.Common.Enums.SortOptions;
-using Project.Application.Features.Products.Dtos;
-using Project.Application.Features.Products.queries.GetSalesProducts;
+using InventorySystem.Application.Common.Enums.SortOptions;
+using InventorySystem.Application.Features.Products.Dtos;
+using InventorySystem.Application.Features.Products.queries.GetSalesProducts;
 
-namespace Project.Application.Features.Products.Specifications
+namespace InventorySystem.Application.Features.Products.Specifications
 {
-    internal class SalesProductsSpecifications : ProjectionSpecifications<Product, SalesProductDto>
+    internal class SalesProductsSpecifications : ProjectionSpecifications<Product, ProductSalesLookupDto>
     {
         public SalesProductsSpecifications(GetSalesProductsLookupQuery query)
             : base(p =>
@@ -18,7 +18,7 @@ namespace Project.Application.Features.Products.Specifications
             AddOrderBy(query.SortOptions);
 
 
-            AddProjection(p => new SalesProductDto
+            AddProjection(p => new ProductSalesLookupDto
             {
                 Id = p.Id,
                 Name = p.Name,

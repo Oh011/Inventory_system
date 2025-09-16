@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project.Application.Common.Interfaces
+namespace InventorySystem.Application.Common.Interfaces
 {
     public interface IDbInitializer
     {

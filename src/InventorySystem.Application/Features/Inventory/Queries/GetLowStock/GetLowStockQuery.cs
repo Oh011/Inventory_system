@@ -1,10 +1,10 @@
 ﻿using MediatR;
-using Project.Application.Common.Enums.SortOptions;
-using Project.Application.Features.Inventory.Dtos;
+using InventorySystem.Application.Common.Enums.SortOptions;
+using InventorySystem.Application.Features.Inventory.Dtos;
 using Shared.Parameters;
 using Shared.Results;
 
-namespace Project.Application.Features.Inventory.Queries.GetLowStock
+namespace InventorySystem.Application.Features.Inventory.Queries.GetLowStock
 {
     public class GetLowStockQuery : PaginationQueryParameters, IRequest<PaginatedResult<LowStockProductDto>>
     {

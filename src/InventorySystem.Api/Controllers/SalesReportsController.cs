@@ -5,9 +5,9 @@ using InventorySystem.Application.Features.Reports.Sales.Queries.SalesByCategory
 using InventorySystem.Application.Features.Reports.Sales.Queries.SalesByCustomerReport;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Project.Application.Features.Reports.Sales.Dtos;
-using Project.Application.Features.Reports.Sales.Queries.ExportPdf;
-using Project.Application.Features.Reports.Sales.Queries.Sales;
+using InventorySystem.Application.Features.Reports.Sales.Dtos;
+using InventorySystem.Application.Features.Reports.Sales.Queries.ExportPdf;
+using InventorySystem.Application.Features.Reports.Sales.Queries.Sales;
 using Shared;
 
 namespace InventorySystem.Controllers

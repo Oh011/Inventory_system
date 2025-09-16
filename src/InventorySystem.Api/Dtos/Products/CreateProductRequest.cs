@@ -1,7 +1,7 @@
 ﻿using Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace InventorySystem.Dtos
+namespace InventorySystem.Api.Dtos.Products
 {
     public class CreateProductRequest
     {

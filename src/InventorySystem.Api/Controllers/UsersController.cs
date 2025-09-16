@@ -2,9 +2,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Project.Application.Features.Users.Commands.AssignRole;
-using Project.Application.Features.Users.Commands.ChangePassword;
-using Project.Application.Features.Users.Dtos;
+using InventorySystem.Application.Features.Users.Commands.AssignRole;
+using InventorySystem.Application.Features.Users.Commands.ChangePassword;
+using InventorySystem.Application.Features.Users.Dtos;
 using Shared;
 
 namespace InventorySystem.Controllers

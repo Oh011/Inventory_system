@@ -10,7 +10,7 @@ namespace Domain.Specifications
 
 
     {
-        public Expression<Func<T, bool>>? Criteria { get; private set; }
+        public Expression<Func<T, bool>> Criteria { get; private set; }
 
         public List<Expression<Func<T, object>>> IncludeExpressions { get; } = new();
 
@@ -41,7 +41,7 @@ namespace Domain.Specifications
 
 
         // Constructor
-        protected BaseSpecifications(Expression<Func<T, bool>>? criteria = null)
+        protected BaseSpecifications(Expression<Func<T, bool>> criteria = null)
         {
             Criteria = criteria;
         }

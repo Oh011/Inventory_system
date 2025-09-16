@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Project.Application.Features.Categories.Commands.Create;
-using Project.Application.Features.Categories.Commands.Delete;
-using Project.Application.Features.Categories.Commands.Update;
-using Project.Application.Features.Categories.Dtos;
-using Project.Application.Features.Categories.Queries.CategoryLookUp;
-using Project.Application.Features.Categories.Queries.GetCategory;
+using InventorySystem.Application.Features.Categories.Commands.Create;
+using InventorySystem.Application.Features.Categories.Commands.Delete;
+using InventorySystem.Application.Features.Categories.Commands.Update;
+using InventorySystem.Application.Features.Categories.Dtos;
+using InventorySystem.Application.Features.Categories.Queries.CategoryLookUp;
+using InventorySystem.Application.Features.Categories.Queries.GetCategory;
 using Shared;
 
 namespace InventorySystem.Controllers

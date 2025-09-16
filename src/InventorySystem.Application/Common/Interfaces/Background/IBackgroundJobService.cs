@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Project.Application.Common.Interfaces.Background
+namespace InventorySystem.Application.Common.Interfaces.Background
 {
     // Core.Application.Interfaces
     public interface IBackgroundJobService

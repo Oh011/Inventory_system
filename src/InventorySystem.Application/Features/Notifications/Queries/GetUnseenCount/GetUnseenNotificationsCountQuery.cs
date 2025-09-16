@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Project.Application.Features.Notifications.Queries.GetUnseenCount
+namespace InventorySystem.Application.Features.Notifications.Queries.GetUnseenCount
 {
     public class GetUnseenNotificationsCountQuery : IRequest<NotificationsCount>
     {

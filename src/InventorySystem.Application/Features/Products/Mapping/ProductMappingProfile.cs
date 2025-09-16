@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Domain.Entities;
-using Project.Application.Features.Products.Commands.Create;
-using Project.Application.Features.Products.Commands.Update;
-using Project.Application.Features.Products.Dtos;
+using InventorySystem.Application.Features.Products.Commands.Create;
+using InventorySystem.Application.Features.Products.Commands.Update;
+using InventorySystem.Application.Features.Products.Dtos;
 
-namespace Project.Application.Features.Products.Mapping
+namespace InventorySystem.Application.Features.Products.Mapping
 {
 
 

@@ -1,13 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Project.Application.Features.Inventory.Commands.AdjustInventory;
-using Project.Application.Features.Inventory.Dtos;
-using Project.Application.Features.Inventory.Queries.ExportAdjustmentLogsPdf;
-using Project.Application.Features.Inventory.Queries.GetAdjustmentsLogs;
-using Project.Application.Features.Inventory.Queries.GetInventory;
-using Project.Application.Features.Inventory.Queries.GetInventoryValue;
-using Project.Application.Features.Inventory.Queries.GetLowStock;
+using InventorySystem.Application.Features.Inventory.Commands.AdjustInventory;
+using InventorySystem.Application.Features.Inventory.Dtos;
+using InventorySystem.Application.Features.Inventory.Queries.ExportAdjustmentLogsPdf;
+using InventorySystem.Application.Features.Inventory.Queries.GetAdjustmentsLogs;
+using InventorySystem.Application.Features.Inventory.Queries.GetInventory;
+using InventorySystem.Application.Features.Inventory.Queries.GetInventoryValue;
+using InventorySystem.Application.Features.Inventory.Queries.GetLowStock;
 using Shared;
 using Shared.Results;
 

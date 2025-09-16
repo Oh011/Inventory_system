@@ -2,16 +2,16 @@
 using Application.Exceptions;
 using Application.Specifications.SupplierSpec;
 using Domain.Entities;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Common.Validators;
-using Project.Application.Features.Categories.Dtos;
-using Project.Application.Features.Suppliers.Dtos;
-using Project.Application.Features.Suppliers.Interfaces;
-using Project.Application.Features.Suppliers.Queries.GetSuppliers;
-using Project.Application.Features.Suppliers.Specifications;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Validators;
+using InventorySystem.Application.Features.Categories.Dtos;
+using InventorySystem.Application.Features.Suppliers.Dtos;
+using InventorySystem.Application.Features.Suppliers.Interfaces;
+using InventorySystem.Application.Features.Suppliers.Queries.GetSuppliers;
+using InventorySystem.Application.Features.Suppliers.Specifications;
 using Shared.Results;
 
-namespace Project.Services
+namespace InventorySystem.Services
 {
     internal class SupplierService(IUnitOfWork unitOfWork, ISupplierRepository supplierRepository, IEntityValidator<Category> categoryValidator) : ISupplierService
     {

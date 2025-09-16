@@ -1,8 +1,8 @@
 ﻿using Domain.Events.PurchaseOrder;
-using Project.Application.Common.Factories.Interfaces;
-using Project.Application.Common.Interfaces.PdfGenerators;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Features.PurchaseOrders.Interfaces;
+using InventorySystem.Application.Common.Factories.Interfaces;
+using InventorySystem.Application.Common.Interfaces.PdfGenerators;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using InventorySystem.Application.Features.PurchaseOrders.Interfaces;
 
 namespace Infrastructure.Notifications.Senders
 {
@@ -16,7 +16,7 @@ namespace Infrastructure.Notifications.Senders
         {
             var order = await _purchaseOrderService.GetPurchaseOrderById(domainEvent.PurchaseOrderId);
             var pdf = _pdfGenerator.GenerateReceivedOrderPdf(order);
-            var email = _emailFactory.CreatePurchaseOrderCreatedEmail(order.Id, domainEvent.SupplierName, domainEvent.SupplierEmail, pdf);
+            var email = _emailFactory.CreateOrderReceivedEmail(order.Id, domainEvent.SupplierName, domainEvent.SupplierEmail, domainEvent.Status, pdf);
             await _emailService.SendEmailAsync(email);
         }
     }

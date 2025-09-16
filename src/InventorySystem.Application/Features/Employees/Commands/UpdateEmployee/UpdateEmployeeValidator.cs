@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Project.Application.Features.Employees.Commands.UpdateEmployee
+namespace InventorySystem.Application.Features.Employees.Commands.UpdateEmployee
 {
     public class UpdateEmployeeValidator : AbstractValidator<UpdateEmployeeCommand>
     {

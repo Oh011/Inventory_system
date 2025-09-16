@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using Project.Application.Features.Reports.Sales.Dtos;
-using Project.Application.Features.Reports.Sales.Interfaces;
+using InventorySystem.Application.Features.Reports.Sales.Dtos;
+using InventorySystem.Application.Features.Reports.Sales.Interfaces;
 
-namespace Project.Application.Features.Reports.Sales.Queries.Sales
+namespace InventorySystem.Application.Features.Reports.Sales.Queries.Sales
 {
     public class GetSalesReportQueryHandler : IRequestHandler<GetSalesByProductReportQuery, IEnumerable<SalesByProductReportDto>>
     {

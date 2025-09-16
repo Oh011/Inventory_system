@@ -13,6 +13,8 @@ namespace Domain.Entities
         public string? Address { get; set; }
 
 
+        public bool IsActive { get; set; } = true;
+
 
         public ICollection<SalesInvoice> Invoices { get; set; } = new List<SalesInvoice>();
     }

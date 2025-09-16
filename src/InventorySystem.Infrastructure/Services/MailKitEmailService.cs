@@ -1,8 +1,8 @@
-﻿using MailKit.Net.Smtp;
+﻿using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using Project.Application.Common.Interfaces.Services;
 using Shared.Dtos;
 using Shared.Options;
 

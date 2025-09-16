@@ -5,7 +5,7 @@ using InventorySystem.Middlewares;
 using InventorySystem.RealTime;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
-using Project.Services.DependecyInjcetion;
+using InventorySystem.Services.DependecyInjcetion;
 using Sahred.Options;
 using System.Reflection;
 namespace InventorySystem

@@ -1,5 +1,5 @@
 ﻿using Hangfire;
-using Project.Application.Common.Interfaces.Background;
+using InventorySystem.Application.Common.Interfaces.Background;
 using System.Linq.Expressions;
 
 namespace Infrastructure.Services.Background

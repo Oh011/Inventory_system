@@ -1,32 +1,29 @@
 ﻿using Application.Exceptions;
 using Domain.Entities;
 using Domain.ValueObjects.SalesInvoice.Domain.ValueObjects;
-using Project.Application.Common.Interfaces;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Features.Inventory.Dtos;
-using Project.Application.Features.SalesInvoice.Commands.Create;
-using Project.Application.Features.SalesInvoice.Dtos;
-using Project.Application.Features.SalesInvoice.Interfaces;
-using Project.Application.Features.SalesInvoice.Queries.GetAll;
-using Project.Application.Features.SalesInvoice.specifications;
+using InventorySystem.Application.Common.Interfaces;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using InventorySystem.Application.Features.Inventory.Dtos;
+using InventorySystem.Application.Features.SalesInvoice.Commands.Create;
+using InventorySystem.Application.Features.SalesInvoice.Dtos;
+using InventorySystem.Application.Features.SalesInvoice.Interfaces;
+using InventorySystem.Application.Features.SalesInvoice.Queries.GetAll;
+using InventorySystem.Application.Features.SalesInvoice.specifications;
+using Shared.Errors;
 using Shared.Results;
 
-namespace Project.Services
+namespace InventorySystem.Services
 {
 
 
     internal class ProductForSalesInvoiceDto
     {
         public int Id { get; set; }
-        public string Name { get; set; } = null!;
-        public string Barcode { get; set; } = null!;
 
-
-        public int Stock { get; set; }
         public decimal SellingPrice { get; set; }
     }
-    internal class SalesInvoiceService(ITransactionManager transactionManager, IInventoryService _inventoryService, IUnitOfWork unitOfWork, IDomainEventDispatcher eventDispatcher) : ISalesInvoiceService
+    internal class SalesInvoiceService(IStockEventService stockEventService, ITransactionManager transactionManager, IInventoryService _inventoryService, IUnitOfWork unitOfWork, IDomainEventDispatcher eventDispatcher) : ISalesInvoiceService
     {
 
 
@@ -37,24 +34,53 @@ namespace Project.Services
 
             var SalesInvoiceRepository = unitOfWork.GetRepository<SalesInvoice, int>();
 
+            var productRepository = unitOfWork.GetRepository<Product, int>();
 
-            await transactionManager.BeginTransactionAsync();
+            var InvoiceProductsIds = Invoice.Items.Select(i => i.ProductId).ToList();
 
-            var productsIds = Invoice.Items.Select(order => order.ProductId).ToList();
-            var products = await LoadProducts(productsIds);
+            var products = (await productRepository.ListAsync(p => InvoiceProductsIds.Contains(p.Id),
 
-            var missingIds = Invoice.Items.Select(i => i.ProductId).Except(products.Select(p => p.Key)).ToList();
+                p => new ProductForSalesInvoiceDto
+                {
+                    Id = p.Id,
+                    SellingPrice = p.SellingPrice,
+                })).ToDictionary(p => p.Id, p => p.SellingPrice);
+
+
+
+
+            var missingIds = InvoiceProductsIds.Except(products.Select(i => i.Key).ToList());
+
+
             if (missingIds.Any())
-                throw new NotFoundException($"Products not found: {string.Join(", ", missingIds)}");
+            {
+
+                var errors = missingIds.ToDictionary(
+                   id => id.ToString(),
+                   id => new List<ValidationErrorDetail>
+                   {
+                        new ValidationErrorDetail($"Product with ID {id} not found")
+                   }
+                    );
+
+                throw new ValidationException(errors, $"Some Products are invalid");
+            }
+
+
+            foreach (var item in Invoice.Items)
+            {
+                item.SellingPrice = products[item.ProductId];
+
+            }
 
 
 
             var itemDataList = Invoice.Items.Select(i => new SalesInvoiceItemData(
-                    i.ProductId,
-                    i.QuantitySold,
-                    i.SellingPrice,
-                    i.Discount ?? 0m
-                )).ToList();
+               i.ProductId,
+               i.QuantitySold,
+               i.SellingPrice,
+               i.Discount ?? 0m
+           )).ToList();
 
 
             var invoice = new SalesInvoice
@@ -71,11 +97,7 @@ namespace Project.Services
             };
 
 
-
-
             invoice.AddItems(itemDataList);
-
-            await SalesInvoiceRepository.AddAsync(invoice);
 
 
 
@@ -89,14 +111,23 @@ namespace Project.Services
              ).ToList();
 
 
+
+            await transactionManager.BeginTransactionAsync();
+
+
+
             try
             {
+                await SalesInvoiceRepository.AddAsync(invoice);
 
-                await _inventoryService.AdjustStockAsync(adjustItems, transactionManager);
+                var productIds = await _inventoryService.AdjustStockAsync(adjustItems, transactionManager);
+                await unitOfWork.Commit();
+                await transactionManager.CommitTransaction();
+                await stockEventService.RaiseStockDecreasedEventAsync(productIds);
 
+                return invoice.Id;
 
             }
-
 
             catch (Exception ex)
             {
@@ -107,8 +138,6 @@ namespace Project.Services
 
 
 
-
-            return invoice.Id;
 
         }
 
@@ -148,28 +177,28 @@ namespace Project.Services
             return invoice;
         }
 
-        private async Task<Dictionary<int, ProductForSalesInvoiceDto>> LoadProducts(IEnumerable<int> productIds)
-        {
+        //private async Task<Dictionary<int, ProductForSalesInvoiceDto>> LoadProducts(IEnumerable<int> productIds)
+        //{
 
 
-            //→ Keep LoadProducts(...) inside PurchaseOrderService for now.
-            //If other modules start using the same logic, refactor it later into ProductService.
+        //    //→ Keep LoadProducts(...) inside PurchaseOrderService for now.
+        //    //If other modules start using the same logic, refactor it later into ProductService.
 
-            var productsRepository = unitOfWork.GetRepository<Product, int>();
-            var products = (await productsRepository.ListAsync(
-                        p => productIds.Contains(p.Id),
-                        p => new ProductForSalesInvoiceDto
-                        {
-                            Id = p.Id,
-                            Name = p.Name,
-                            Barcode = p.Barcode,
-                            Stock = p.QuantityInStock,
-                            SellingPrice = p.SellingPrice,
-                        }
-                    )).ToDictionary(p => p.Id, p => p);
+        //    var productsRepository = unitOfWork.GetRepository<Product, int>();
+        //    var products = (await productsRepository.ListAsync(
+        //                p => productIds.Contains(p.Id),
+        //                p => new ProductForSalesInvoiceDto
+        //                {
+        //                    Id = p.Id,
+        //                    Name = p.Name,
+        //                    Barcode = p.Barcode,
+        //                    Stock = p.QuantityInStock,
+        //                    SellingPrice = p.SellingPrice,
+        //                }
+        //            )).ToDictionary(p => p.Id, p => p);
 
-            return products;
+        //    return products;
 
-        }
+        //}
     }
 }

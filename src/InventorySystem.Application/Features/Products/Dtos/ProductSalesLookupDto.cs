@@ -1,6 +1,6 @@
-﻿namespace Project.Application.Features.Products.Dtos
+﻿namespace InventorySystem.Application.Features.Products.Dtos
 {
-    public class SalesProductDto
+    public class ProductSalesLookupDto
     {
         public int Id { get; set; }
         public string Name { get; set; } = default!;

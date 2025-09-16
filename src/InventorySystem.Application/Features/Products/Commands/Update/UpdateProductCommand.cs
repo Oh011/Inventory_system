@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Project.Application.Features.Products.Dtos;
+using InventorySystem.Application.Features.Products.Dtos;
 
-namespace Project.Application.Features.Products.Commands.Update
+namespace InventorySystem.Application.Features.Products.Commands.Update
 {
     public class UpdateProductCommand : UpdateProductRequest, IRequest<ProductResultDto>
     {

@@ -1,10 +1,10 @@
 ﻿using Domain.Entities;
 using MediatR;
-using Project.Application.Common.Interfaces.PdfGenerators;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Features.Inventory.Specifications;
+using InventorySystem.Application.Common.Interfaces.PdfGenerators;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Features.Inventory.Specifications;
 
-namespace Project.Application.Features.Inventory.Queries.ExportAdjustmentLogsPdf
+namespace InventorySystem.Application.Features.Inventory.Queries.ExportAdjustmentLogsPdf
 {
     internal class ExportAdjustmentLogsPdfQueryHandler : IRequestHandler<ExportAdjustmentLogsPdfQuery, byte[]>
     {

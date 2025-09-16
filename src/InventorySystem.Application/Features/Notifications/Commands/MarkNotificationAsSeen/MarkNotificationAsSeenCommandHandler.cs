@@ -1,9 +1,9 @@
 ﻿using Application.Exceptions;
 using Domain.Entities;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.Repositories;
 
-namespace Project.Application.Features.Notifications.Commands.MarkNotificationAsSeen
+namespace InventorySystem.Application.Features.Notifications.Commands.MarkNotificationAsSeen
 {
     internal class MarkNotificationAsSeenCommandHandler
       : IRequestHandler<MarkNotificationAsSeenCommand, string>

@@ -1,7 +1,7 @@
 ﻿using Application.Features.roles.Interfaces;
 using MediatR;
 
-namespace Project.Application.Features.roles.Commands.DeleteRole
+namespace InventorySystem.Application.Features.roles.Commands.DeleteRole
 {
     internal class DeleteRoleCommandHandler(IRoleService roleService) : IRequestHandler<DeleteRoleCommand>
     {

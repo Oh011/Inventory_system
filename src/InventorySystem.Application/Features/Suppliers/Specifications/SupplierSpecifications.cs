@@ -1,9 +1,9 @@
 ﻿using Domain.Entities;
 using Domain.Specifications;
-using Project.Application.Common.Enums.SortOptions;
-using Project.Application.Features.Suppliers.Queries.GetSuppliers;
+using InventorySystem.Application.Common.Enums.SortOptions;
+using InventorySystem.Application.Features.Suppliers.Queries.GetSuppliers;
 
-namespace Project.Application.Features.Suppliers.Specifications
+namespace InventorySystem.Application.Features.Suppliers.Specifications
 {
     public class SupplierSpecifications : BaseSpecifications<Supplier>
     {

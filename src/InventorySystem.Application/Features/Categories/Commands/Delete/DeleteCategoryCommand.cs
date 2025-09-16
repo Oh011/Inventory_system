@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Project.Application.Features.Categories.Commands.Delete
+namespace InventorySystem.Application.Features.Categories.Commands.Delete
 {
     public class DeleteCategoryCommand : IRequest<Unit>
     {

@@ -1,11 +1,11 @@
 ﻿using Domain.Entities;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Features.Inventory.Dtos;
-using Project.Application.Features.Inventory.Specifications;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Features.Inventory.Dtos;
+using InventorySystem.Application.Features.Inventory.Specifications;
 using Shared.Results;
 
-namespace Project.Application.Features.Inventory.Queries.GetAdjustmentsLogs
+namespace InventorySystem.Application.Features.Inventory.Queries.GetAdjustmentsLogs
 {
     internal class GetAdjustmentLogsQueryHandler : IRequestHandler<GetAdjustmentLogsQuery, PaginatedResult<StockAdjustmentLogDto>>
     {

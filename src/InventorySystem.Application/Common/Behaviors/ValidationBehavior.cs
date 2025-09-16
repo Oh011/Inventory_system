@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
-
+using Shared.Errors;
 using ValidationException = Application.Exceptions.ValidationException;
 
 namespace Application.Common.Behaviors
@@ -50,7 +50,7 @@ namespace Application.Common.Behaviors
                   .GroupBy(f => f.PropertyName)
                   .ToDictionary(
                       g => g.Key,
-                      g => g.Select(e => e.ErrorMessage).ToList()
+                      g => g.Select(e => new ValidationErrorDetail(e.ErrorMessage)).ToList()
                   );
                     throw new ValidationException(errorDict);
                 }

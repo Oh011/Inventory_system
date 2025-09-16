@@ -1,5 +1,5 @@
-﻿using Project.Application.Features.Users.Commands.ChangePassword;
-using Project.Application.Features.Users.Dtos;
+﻿using InventorySystem.Application.Features.Users.Commands.ChangePassword;
+using InventorySystem.Application.Features.Users.Dtos;
 
 namespace Application.Features.Users.Interfaces
 {

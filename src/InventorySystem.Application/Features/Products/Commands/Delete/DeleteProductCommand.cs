@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Project.Application.Features.Products.Commands.Delete
+namespace InventorySystem.Application.Features.Products.Commands.Delete
 {
     public record DeleteProductCommand(int Id) : IRequest<Unit>;
 

@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Project.Application.Features.Users.Dtos;
+using InventorySystem.Application.Features.Users.Dtos;
 
-namespace Project.Application.Features.Users.Commands.ChangePassword
+namespace InventorySystem.Application.Features.Users.Commands.ChangePassword
 {
     public class ChangePasswordCommand : ChangePasswordDto, IRequest<string>
     {

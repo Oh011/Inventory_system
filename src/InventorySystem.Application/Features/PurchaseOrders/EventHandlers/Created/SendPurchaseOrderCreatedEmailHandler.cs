@@ -1,10 +1,10 @@
 ﻿using Domain.Events.PurchaseOrder;
 using MediatR;
-using Project.Application.Common.Events;
-using Project.Application.Common.Interfaces.Background;
-using Project.Application.Common.Notifications.Interfaces;
+using InventorySystem.Application.Common.Events;
+using InventorySystem.Application.Common.Interfaces.Background;
+using InventorySystem.Application.Common.Notifications.Interfaces;
 
-namespace Project.Application.Features.PurchaseOrders.EventHandlers.Created
+namespace InventorySystem.Application.Features.PurchaseOrders.EventHandlers.Created
 {
     public class SendPurchaseOrderCreatedEmailHandler
      : INotificationHandler<DomainEventNotifications<PurchaseOrderCreatedDomainEvent>>

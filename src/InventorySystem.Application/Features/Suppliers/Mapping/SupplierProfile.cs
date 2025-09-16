@@ -1,9 +1,9 @@
-﻿namespace Project.Application.Features.Suppliers.Mapping
+﻿namespace InventorySystem.Application.Features.Suppliers.Mapping
 {
     using AutoMapper;
     using Domain.Entities;
-    using Project.Application.Features.Suppliers.Commands.Update;
-    using Project.Application.Features.Suppliers.Dtos;
+    using InventorySystem.Application.Features.Suppliers.Commands.Update;
+    using InventorySystem.Application.Features.Suppliers.Dtos;
 
     public class SupplierProfile : Profile
     {

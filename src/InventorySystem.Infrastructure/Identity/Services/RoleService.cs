@@ -4,6 +4,7 @@ using Application.Features.roles.Interfaces;
 using Domain.Constants;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Shared.Errors;
 
 namespace Infrastructure.Identity.Services
 {
@@ -65,7 +66,7 @@ namespace Infrastructure.Identity.Services
             {
                 var errors = result.Errors
                     .GroupBy(e => e.Code)
-                    .ToDictionary(g => g.Key, g => g.Select(e => e.Description).ToList());
+                    .ToDictionary(g => g.Key, g => g.Select(e => new ValidationErrorDetail(e.Description)).ToList());
 
                 throw new ValidationException(errors);
             }

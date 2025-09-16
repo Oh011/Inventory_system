@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Project.Application.Features.Employees.Commands.ActivateEmployee
+namespace InventorySystem.Application.Features.Employees.Commands.ActivateEmployee
 {
     public class ChangeEmployeeActivationStatusCommand : IRequest<string>
     {

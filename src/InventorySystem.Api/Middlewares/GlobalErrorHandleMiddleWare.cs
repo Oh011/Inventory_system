@@ -67,7 +67,7 @@ namespace InventorySystem.Middlewares
 
 
                 await context.Response.WriteAsJsonAsync
-                (ApiResponseFactory.Failure(e.Message, e.errors, HttpStatusCode.BadRequest));
+                (ApiResponseFactory.Failure(e.Message, e.Errors, HttpStatusCode.BadRequest));
 
                 return;
 

@@ -1,11 +1,11 @@
 ﻿using MediatR;
-using Project.Application.Features.PurchaseOrders.Dtos;
-using Project.Application.Features.PurchaseOrders.Interfaces;
+using InventorySystem.Application.Features.PurchaseOrders.Dtos;
+using InventorySystem.Application.Features.PurchaseOrders.Interfaces;
 using Shared.Results;
 
-namespace Project.Application.Features.PurchaseOrders.Queries.GetAll
+namespace InventorySystem.Application.Features.PurchaseOrders.Queries.GetAll
 {
-    internal class GetPurchaseOrdersQueryHandler : IRequestHandler<GetPurchaseOrdersQuery, PaginatedResult<PurchaseOrderSummaryDto>>
+    internal class GetPurchaseOrdersQueryHandler : IRequestHandler<GetPurchaseOrdersQuery, PaginatedResult<PurchaseOrderListDto>>
     {
 
 
@@ -16,7 +16,7 @@ namespace Project.Application.Features.PurchaseOrders.Queries.GetAll
         {
             _purchaseOrderService = purchaseOrderService;
         }
-        public Task<PaginatedResult<PurchaseOrderSummaryDto>> Handle(GetPurchaseOrdersQuery request, CancellationToken cancellationToken)
+        public Task<PaginatedResult<PurchaseOrderListDto>> Handle(GetPurchaseOrdersQuery request, CancellationToken cancellationToken)
         {
 
 

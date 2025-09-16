@@ -1,5 +1,6 @@
-﻿using Microsoft.Extensions.Options;
-using Project.Application.Common.Factories.Interfaces;
+﻿using Domain.Enums;
+using InventorySystem.Application.Common.Factories.Interfaces;
+using Microsoft.Extensions.Options;
 using Shared.Dtos;
 using Shared.Options;
 
@@ -27,18 +28,40 @@ namespace Infrastructure.Services.Common.Factories
             };
         }
 
-        public EmailMessage CreateOrderReceivedEmail(int orderId, string supplierName, string supplierEmail, byte[]? pdfBytes = null)
+        public EmailMessage CreateOrderReceivedEmail(int orderId, string supplierName, string supplierEmail, PurchaseOrderStatus status, byte[]? pdfBytes = null)
         {
+
+
+            var statusText = status == PurchaseOrderStatus.Received
+          ? "Fully Received"
+          : status == PurchaseOrderStatus.PartiallyReceived
+              ? "Partially Received"
+              : status.ToString();
 
 
             return new EmailMessage
             {
-
                 To = supplierEmail,
-                Subject = $"Purchase Order #{orderId} Canceled",
-                Body = $"Dear {supplierName},\n\nPlease be informed that Purchase Order #{orderId} has been canceled."
+                Subject = $"Purchase Order #{orderId} - {statusText}",
+                Body = $@"
+                Dear {supplierName},
 
+                Please be informed that Purchase Order #{orderId} has been {statusText.ToLower()}.
+                See the attached PDF for details.
+
+                Thank you.",
+                Attachments = new List<EmailAttachment>
+                            {
+                                new EmailAttachment
+                                {
+                                    FileName = $"PurchaseOrder_{orderId}_{statusText.Replace(" ", "")}.pdf",
+                                    ContentType = "application/pdf",
+                                    Content = pdfBytes
+                                }
+                            }
             };
+
+
         }
 
 
@@ -50,8 +73,15 @@ namespace Infrastructure.Services.Common.Factories
             var emailMessage = new EmailMessage
             {
                 To = supplierEmail,
-                Subject = $"New Purchase Order with Id : {orderId}",
-                Body = $"Dear Supplier,\n\nA new purchase order (ID: {orderId}) has been created. Please check the system for details.",
+                Subject = $"New Purchase Order {orderId}",
+                Body = $@"
+                Dear {supplierName},
+
+                A new purchase order (ID: {orderId}) has been created. 
+                Please find the attached PDF for details, and log in to the system for full information.
+
+                Thank you.",
+
                 Attachments = new List<EmailAttachment>
                 {
 

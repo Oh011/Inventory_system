@@ -1,6 +1,6 @@
-﻿using Project.Application.Features.Inventory.Dtos;
+﻿using InventorySystem.Application.Features.Inventory.Dtos;
 
-namespace Project.Application.Features.Products.Intrefaces
+namespace InventorySystem.Application.Features.Products.Intrefaces
 {
     public interface IProductRepository
     {

@@ -1,9 +1,9 @@
 ﻿using Domain.Entities;
 using Domain.Specifications;
-using Project.Application.Features.Notifications.Dtos;
-using Project.Application.Features.Notifications.Queries.GetUserNotifications;
+using InventorySystem.Application.Features.Notifications.Dtos;
+using InventorySystem.Application.Features.Notifications.Queries.GetUserNotifications;
 
-namespace Project.Application.Features.Notifications.Specifications
+namespace InventorySystem.Application.Features.Notifications.Specifications
 {
     public class UserNotificationsSpecification : ProjectionSpecifications<Notification, UserNotificationDto>
     {

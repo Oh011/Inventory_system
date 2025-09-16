@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Project.Application.Features.roles.Commands.DeleteRole
+namespace InventorySystem.Application.Features.roles.Commands.DeleteRole
 {
     public class DeleteRoleCommand : IRequest
     {

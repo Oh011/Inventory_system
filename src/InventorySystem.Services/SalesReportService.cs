@@ -1,11 +1,11 @@
 ﻿using Domain.Entities;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Features.Reports.Sales.Dtos;
 using InventorySystem.Application.Features.Reports.Sales.FilterParameters;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Features.Reports.Sales.Dtos;
-using Project.Application.Features.Reports.Sales.Interfaces;
-using Project.Application.Features.Reports.Sales.Specifications;
+using InventorySystem.Application.Features.Reports.Sales.Interfaces;
+using InventorySystem.Application.Features.Reports.Sales.Specifications;
 
-namespace Project.Services
+namespace InventorySystem.Services
 {
     public class SalesReportService : ISalesReportService
     {

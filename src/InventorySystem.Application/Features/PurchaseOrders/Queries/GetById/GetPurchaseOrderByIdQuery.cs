@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using Project.Application.Features.PurchaseOrders.Dtos;
+using InventorySystem.Application.Features.PurchaseOrders.Dtos;
 
-namespace Project.Application.Features.PurchaseOrders.Queries.GetById
+namespace InventorySystem.Application.Features.PurchaseOrders.Queries.GetById
 {
-    public class GetPurchaseOrderByIdQuery : IRequest<PurchaseOrderResultDto>
+    public class GetPurchaseOrderByIdQuery : IRequest<PurchaseOrderDetailDto>
     {
 
 

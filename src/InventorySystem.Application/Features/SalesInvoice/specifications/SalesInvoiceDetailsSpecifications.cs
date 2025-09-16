@@ -1,9 +1,9 @@
 ﻿using Domain.Specifications;
-using Project.Application.Features.SalesInvoice.Dtos;
+using InventorySystem.Application.Features.SalesInvoice.Dtos;
 
 using salesInvoice = Domain.Entities.SalesInvoice;
 
-namespace Project.Application.Features.SalesInvoice.specifications
+namespace InventorySystem.Application.Features.SalesInvoice.specifications
 {
     public class SalesInvoiceDetailsSpecifications : ProjectionSpecifications<salesInvoice, SalesInvoiceDetailsDto>
     {

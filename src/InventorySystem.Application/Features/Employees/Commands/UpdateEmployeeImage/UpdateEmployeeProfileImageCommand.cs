@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Shared.Dtos;
 
-namespace Project.Application.Features.Employees.Commands.UpdateEmployeeImage
+namespace InventorySystem.Application.Features.Employees.Commands.UpdateEmployeeImage
 {
     public class UpdateEmployeeProfileImageCommand : IRequest<string>
     {

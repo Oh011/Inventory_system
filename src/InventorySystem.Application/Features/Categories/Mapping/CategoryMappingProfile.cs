@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Domain.Entities;
-using Project.Application.Features.Categories.Commands.Create;
-using Project.Application.Features.Categories.Dtos;
+using InventorySystem.Application.Features.Categories.Commands.Create;
+using InventorySystem.Application.Features.Categories.Dtos;
 
-namespace Project.Application.Features.Categories.Mapping
+namespace InventorySystem.Application.Features.Categories.Mapping
 {
     internal class CategoryMappingProfile : Profile
     {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
-using Project.Application.Common.Interfaces;
+using InventorySystem.Application.Common.Interfaces;
 using Shared.Options;
 using System.Net;
 

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Project.Application.Features.SalesInvoice.Queries.ExportPdf
+namespace InventorySystem.Application.Features.SalesInvoice.Queries.ExportPdf
 {
     public class ExportSalesInvoicePdfQuery : IRequest<byte[]>
     {

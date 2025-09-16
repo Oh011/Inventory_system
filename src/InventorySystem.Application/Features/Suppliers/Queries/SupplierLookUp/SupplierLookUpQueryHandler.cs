@@ -1,10 +1,10 @@
 ﻿
 using Domain.Entities;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Features.Suppliers.Dtos;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Features.Suppliers.Dtos;
 
-namespace Project.Application.Features.Suppliers.Queries.SupplierLookUp
+namespace InventorySystem.Application.Features.Suppliers.Queries.SupplierLookUp
 {
     internal class SupplierLookUpQueryHandler : IRequestHandler<SupplierLookUpQuery, IEnumerable<SupplierLookupDto>>
     {

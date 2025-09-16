@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Domain.Entities;
 using Domain.Enums;
-using Project.Application.Features.Notifications.Dtos;
+using InventorySystem.Application.Features.Notifications.Dtos;
 
-namespace Project.Application.Features.Notifications.Mapping
+namespace InventorySystem.Application.Features.Notifications.Mapping
 {
     public class NotificationsMappingProfile : Profile
     {

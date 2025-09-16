@@ -1,8 +1,8 @@
 ﻿using Domain.Events.PurchaseOrder;
-using Project.Application.Features.Inventory.Dtos;
-using Project.Application.Features.Notifications.Dtos;
+using InventorySystem.Application.Features.Inventory.Dtos;
+using InventorySystem.Application.Features.Notifications.Dtos;
 
-namespace Project.Application.Common.Factories.Interfaces
+namespace InventorySystem.Application.Common.Factories.Interfaces
 {
     public interface INotificationDtoFactory
     {

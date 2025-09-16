@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Features.Inventory.Dtos
+﻿namespace InventorySystem.Application.Features.Inventory.Dtos
 {
     public class StockAdjustmentLogDto
     {

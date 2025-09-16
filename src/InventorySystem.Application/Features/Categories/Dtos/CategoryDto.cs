@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Features.Categories.Dtos
+﻿namespace InventorySystem.Application.Features.Categories.Dtos
 {
     public class CategoryDto
     {

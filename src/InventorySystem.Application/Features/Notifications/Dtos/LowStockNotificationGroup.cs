@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Features.Notifications.Dtos
+﻿namespace InventorySystem.Application.Features.Notifications.Dtos
 {
     public class LowStockNotificationGroup
     {

@@ -1,6 +1,6 @@
-﻿namespace Project.Application.Features.PurchaseOrders.Dtos
+﻿namespace InventorySystem.Application.Features.PurchaseOrders.Dtos
 {
-    public class PurchaseOrderSummaryDto
+    public class PurchaseOrderListDto
     {
         public int Id { get; set; }
 

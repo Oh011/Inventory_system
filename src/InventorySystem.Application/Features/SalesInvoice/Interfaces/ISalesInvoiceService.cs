@@ -1,9 +1,9 @@
-﻿using Project.Application.Features.SalesInvoice.Commands.Create;
-using Project.Application.Features.SalesInvoice.Dtos;
-using Project.Application.Features.SalesInvoice.Queries.GetAll;
+﻿using InventorySystem.Application.Features.SalesInvoice.Commands.Create;
+using InventorySystem.Application.Features.SalesInvoice.Dtos;
+using InventorySystem.Application.Features.SalesInvoice.Queries.GetAll;
 using Shared.Results;
 
-namespace Project.Application.Features.SalesInvoice.Interfaces
+namespace InventorySystem.Application.Features.SalesInvoice.Interfaces
 {
     public interface ISalesInvoiceService
     {

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Shared.Dtos;
 
-namespace Project.Application.Features.Products.Commands.Create
+namespace InventorySystem.Application.Features.Products.Commands.Create
 {
     public class CreateProductCommandValidator : AbstractValidator<CreateProductCommand>
     {

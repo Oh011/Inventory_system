@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Features.Products.Dtos
+﻿namespace InventorySystem.Application.Features.Products.Dtos
 {
     public class ProductResultDto
     {

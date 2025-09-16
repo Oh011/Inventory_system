@@ -1,17 +1,17 @@
 ﻿
 using Application.Exceptions;
 using Domain.Entities;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Common.Parameters;
-using Project.Application.Features.Employees.Commands.UpdateEmployee;
-using Project.Application.Features.Employees.Commands.UpdateEmployeeImage;
-using Project.Application.Features.Employees.Dtos;
-using Project.Application.Features.Employees.Interfcaes;
-using Project.Application.Features.Employees.Specifications;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Parameters;
+using InventorySystem.Application.Features.Employees.Commands.UpdateEmployee;
+using InventorySystem.Application.Features.Employees.Commands.UpdateEmployeeImage;
+using InventorySystem.Application.Features.Employees.Dtos;
+using InventorySystem.Application.Features.Employees.Interfcaes;
+using InventorySystem.Application.Features.Employees.Specifications;
 using Shared.Results;
 
-namespace Project.Services
+namespace InventorySystem.Services
 {
     public class EmployeeService(IUnitOfWork unitOfWork, IUploadService uploadService, IAuthorizationService authorizationService) : IEmployeeService
     {

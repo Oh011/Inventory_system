@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Project.Application.Common.Interfaces.Services;
+﻿using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
 namespace Infrastructure.Services

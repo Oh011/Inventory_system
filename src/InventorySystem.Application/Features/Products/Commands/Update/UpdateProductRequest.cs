@@ -1,7 +1,7 @@
 ﻿
 using Domain.Enums;
 
-namespace Project.Application.Features.Products.Commands.Update
+namespace InventorySystem.Application.Features.Products.Commands.Update
 {
     public class UpdateProductRequest
     {

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Project.Application.Features.SalesInvoice.Commands.Create
+namespace InventorySystem.Application.Features.SalesInvoice.Commands.Create
 {
 
 

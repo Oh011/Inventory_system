@@ -1,12 +1,12 @@
 ﻿
 using Domain.Entities;
-using Project.Application.Common.Parameters;
-using Project.Application.Features.Employees.Commands.UpdateEmployee;
-using Project.Application.Features.Employees.Commands.UpdateEmployeeImage;
-using Project.Application.Features.Employees.Dtos;
+using InventorySystem.Application.Common.Parameters;
+using InventorySystem.Application.Features.Employees.Commands.UpdateEmployee;
+using InventorySystem.Application.Features.Employees.Commands.UpdateEmployeeImage;
+using InventorySystem.Application.Features.Employees.Dtos;
 using Shared.Results;
 
-namespace Project.Application.Features.Employees.Interfcaes
+namespace InventorySystem.Application.Features.Employees.Interfcaes
 {
     public interface IEmployeeService
     {

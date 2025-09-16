@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Project.Application.Features.PurchaseOrders.Dtos;
+using InventorySystem.Application.Features.PurchaseOrders.Dtos;
 
-namespace Project.Application.Features.PurchaseOrders.Commands.Create
+namespace InventorySystem.Application.Features.PurchaseOrders.Commands.Create
 {
     public class PurchaseOrderItemDtoValidator : AbstractValidator<PurchaseOrderItemDto>
     {

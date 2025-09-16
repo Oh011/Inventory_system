@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Domain.Entities;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Features.Customers.Dtos;
-using Project.Application.Features.Customers.Specifications;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Features.Customers.Dtos;
+using InventorySystem.Application.Features.Customers.Specifications;
 using Shared.Results;
 
-namespace Project.Application.Features.Customers.Queries.GetAllCustomers
+namespace InventorySystem.Application.Features.Customers.Queries.GetAllCustomers
 {
     internal class GetAllCustomersQueryHandler : IRequestHandler<GetCustomersQuery, PaginatedResult<CustomerDto>>
     {

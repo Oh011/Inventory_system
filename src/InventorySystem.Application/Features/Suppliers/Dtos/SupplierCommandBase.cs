@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Features.Suppliers.Dtos
+﻿namespace InventorySystem.Application.Features.Suppliers.Dtos
 {
     public class SupplierCommandBase
     {

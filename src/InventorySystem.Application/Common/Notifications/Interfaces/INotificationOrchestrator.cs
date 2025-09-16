@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Common.Notifications.Interfaces
+﻿namespace InventorySystem.Application.Common.Notifications.Interfaces
 {
     public interface INotificationOrchestrator<T>
     {

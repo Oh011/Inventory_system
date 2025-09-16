@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Domain.Entities;
-using Project.Application.Features.Employees.Commands.CreateEmployee;
-using Project.Application.Features.Employees.Commands.UpdateEmployee;
-using Project.Application.Features.Employees.Dtos;
+using InventorySystem.Application.Features.Employees.Commands.CreateEmployee;
+using InventorySystem.Application.Features.Employees.Commands.UpdateEmployee;
+using InventorySystem.Application.Features.Employees.Dtos;
 
-namespace Project.Application.Features.Employees.Mapping
+namespace InventorySystem.Application.Features.Employees.Mapping
 {
     internal class EmployeeMappingProfile : Profile
     {

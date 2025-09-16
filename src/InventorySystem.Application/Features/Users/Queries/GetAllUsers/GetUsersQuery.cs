@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using Project.Application.Features.Users.Dtos;
+using InventorySystem.Application.Features.Users.Dtos;
 using Shared.Parameters;
 using Shared.Results;
 
-namespace Project.Application.Features.Users.Queries.GetAllUsers
+namespace InventorySystem.Application.Features.Users.Queries.GetAllUsers
 {
 
 

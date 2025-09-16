@@ -1,19 +1,19 @@
 ﻿using AutoMapper;
-using InventorySystem.Dtos;
 using InventorySystem.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Project.Application.Features.Products.Commands.Create;
-using Project.Application.Features.Products.Commands.Delete;
-using Project.Application.Features.Products.Commands.Update;
-using Project.Application.Features.Products.Dtos;
-using Project.Application.Features.Products.queries.GetProducts;
-using Project.Application.Features.Products.queries.GetProductsForSupplier;
-using Project.Application.Features.Products.queries.GetSalesProducts;
-using Project.Application.Features.Products.queries.ProductCreationData;
+using InventorySystem.Application.Features.Products.Commands.Create;
+using InventorySystem.Application.Features.Products.Commands.Delete;
+using InventorySystem.Application.Features.Products.Commands.Update;
+using InventorySystem.Application.Features.Products.Dtos;
+using InventorySystem.Application.Features.Products.queries.GetProducts;
+using InventorySystem.Application.Features.Products.queries.GetProductsForSupplier;
+using InventorySystem.Application.Features.Products.queries.GetSalesProducts;
+using InventorySystem.Application.Features.Products.queries.ProductCreationData;
 using Shared;
 using Shared.Results;
+using InventorySystem.Api.Dtos.Products;
 
 namespace InventorySystem.Controllers
 {
@@ -127,7 +127,7 @@ namespace InventorySystem.Controllers
 
         [HttpGet("purchase-lookup")]
         [Authorize(Roles = "Admin,Manager")]
-        public async Task<ActionResult<SuccessWithData<PaginatedResult<PurchaseProductDto>>>> GetPurchaseProductsLookup([FromQuery] GetPurchaseProductsLookupQuery query)
+        public async Task<ActionResult<SuccessWithData<PaginatedResult<ProductPurchaseOrderLookUpDto>>>> GetPurchaseProductsLookup([FromQuery] GetPurchaseProductsLookupQuery query)
         {
             var result = await mediator.Send(query);
             return Ok(ApiResponseFactory.Success(result));
@@ -154,7 +154,7 @@ namespace InventorySystem.Controllers
         /// </summary>
         [HttpGet("sales-lookup")]
         [Authorize(Roles = "Admin,Manager,Salesperson")]
-        public async Task<ActionResult<SuccessWithData<PaginatedResult<SalesProductDto>>>> GetSalesProductsLookup([FromQuery] GetSalesProductsLookupQuery query)
+        public async Task<ActionResult<SuccessWithData<PaginatedResult<ProductSalesLookupDto>>>> GetSalesProductsLookup([FromQuery] GetSalesProductsLookupQuery query)
         {
             var result = await mediator.Send(query);
             return Ok(ApiResponseFactory.Success(result));

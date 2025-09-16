@@ -1,46 +1,42 @@
-﻿namespace Application.Exceptions
+﻿using Shared.Errors;
+
+namespace Application.Exceptions
 {
     public class ValidationException : BadRequestException
     {
 
-        public Dictionary<string, List<string>> errors { get; }
 
 
+        public Dictionary<string, List<ValidationErrorDetail>> Errors { get; }
 
-        public ValidationException(string? msg = "Validation failed") : base(msg)
+        public ValidationException(Dictionary<string, List<ValidationErrorDetail>> errors, string? message = "Validation failed")
+            : base(message)
         {
-
-
-            errors = new();
-
+            Errors = errors;
         }
 
 
-        public void AddValidations(string key, string value)
+        public void AddValidations(string key, ValidationErrorDetail value)
         {
 
-            if (errors.ContainsKey(key))
-                errors[key].Add(value);
+            if (Errors.ContainsKey(key))
+                Errors[key].Add(value);
 
 
             else
             {
-                errors[key] = new List<string>();
-                errors[key].Add(value);
+                Errors[key] = new List<ValidationErrorDetail>();
+                Errors[key].Add(value);
             }
         }
 
 
-        public ValidationException(Dictionary<string, List<string>> errors, string? msg = "Validation failed") : base(msg)
+
+
+        public ValidationException(Dictionary<string, List<ValidationErrorDetail>> errors) : base("Validation failed")
         {
 
-            this.errors = errors;
-        }
-
-        public ValidationException(Dictionary<string, List<string>> errors) : base("Validation failed")
-        {
-
-            this.errors = errors;
+            this.Errors = errors;
         }
 
 

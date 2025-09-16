@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Features.Employees.Dtos
+﻿namespace InventorySystem.Application.Features.Employees.Dtos
 {
     public class EmployeeBaseDto
     {

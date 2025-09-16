@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using Project.Application.Features.Categories.Dtos;
-using Project.Application.Features.Categories.Interfaces;
+using InventorySystem.Application.Features.Categories.Dtos;
+using InventorySystem.Application.Features.Categories.Interfaces;
 
-namespace Project.Application.Features.Categories.Commands.Update
+namespace InventorySystem.Application.Features.Categories.Commands.Update
 {
     internal class UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryRequest, CategoryDetailsDto>
     {

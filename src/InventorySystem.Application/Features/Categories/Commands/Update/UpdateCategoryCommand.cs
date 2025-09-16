@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Features.Categories.Commands.Update
+﻿namespace InventorySystem.Application.Features.Categories.Commands.Update
 {
     public class UpdateCategoryCommand
     {

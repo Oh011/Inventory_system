@@ -1,8 +1,8 @@
-﻿using Project.Application.Features.Notifications.Dtos;
-using Project.Application.Features.Notifications.Queries.GetUserNotifications;
+﻿using InventorySystem.Application.Features.Notifications.Dtos;
+using InventorySystem.Application.Features.Notifications.Queries.GetUserNotifications;
 using Shared.Results;
 
-namespace Project.Application.Features.Notifications.Interfaces
+namespace InventorySystem.Application.Features.Notifications.Interfaces
 {
     public interface IUserNotificationsService
     {

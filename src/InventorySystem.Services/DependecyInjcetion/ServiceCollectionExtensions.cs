@@ -1,21 +1,26 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Features.Categories.Interfaces;
-using Project.Application.Features.Employees.Interfcaes;
-using Project.Application.Features.Notifications.Interfaces;
-using Project.Application.Features.Products.Intrefaces;
-using Project.Application.Features.PurchaseOrders.Interfaces;
-using Project.Application.Features.Reports.Sales.Interfaces;
-using Project.Application.Features.SalesInvoice.Interfaces;
-using Project.Application.Features.Suppliers.Interfaces;
+﻿
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using InventorySystem.Application.Features.Categories.Interfaces;
+using InventorySystem.Application.Features.Employees.Interfcaes;
+using InventorySystem.Application.Features.Notifications.Interfaces;
+using InventorySystem.Application.Features.Products.Intrefaces;
+using InventorySystem.Application.Features.PurchaseOrders.Interfaces;
+using InventorySystem.Application.Features.Reports.Sales.Interfaces;
+using InventorySystem.Application.Features.SalesInvoice.Interfaces;
+using InventorySystem.Application.Features.Suppliers.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Project.Services.DependecyInjcetion
+namespace InventorySystem.Services.DependecyInjcetion
 {
     public static class ServiceCollectionExtensions
     {
 
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
+
+
+            services.AddScoped<IStockEventService, StockEventService>();
+
 
 
             services.AddScoped<IInventoryService, InventoryService>();

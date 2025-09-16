@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Project.Application.Features.Users.Commands.AssignRole
+namespace InventorySystem.Application.Features.Users.Commands.AssignRole
 {
     public class AssignRoleCommand : IRequest<string>
     {

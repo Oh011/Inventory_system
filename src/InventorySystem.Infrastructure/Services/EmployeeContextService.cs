@@ -1,7 +1,7 @@
 ﻿using Application.Exceptions;
 using Domain.Entities;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Common.Interfaces.Services;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using InventorySystem.Application.Common.Interfaces.Repositories;
 
 namespace Infrastructure.Services
 {

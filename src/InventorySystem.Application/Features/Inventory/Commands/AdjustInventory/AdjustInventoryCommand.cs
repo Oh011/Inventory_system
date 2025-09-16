@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Project.Application.Features.Inventory.Commands.AdjustInventory
+namespace InventorySystem.Application.Features.Inventory.Commands.AdjustInventory
 {
     public class AdjustInventoryCommand : IRequest<string>
     {

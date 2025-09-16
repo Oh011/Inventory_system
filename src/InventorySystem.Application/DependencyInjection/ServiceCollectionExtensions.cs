@@ -1,11 +1,11 @@
 ﻿using Application.Common.Behaviors;
 using FluentValidation;
 using Infrastructure.Services.Common.Factories;
+using InventorySystem.Application.Common.Factories.Interfaces;
+using InventorySystem.Application.Common.Validators;
+using InventorySystem.Application.Features;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using Project.Application.Common.Factories.Interfaces;
-using Project.Application.Common.Validators;
-using Project.Application.Features;
 
 
 namespace Application.DependencyInjection
@@ -19,7 +19,6 @@ namespace Application.DependencyInjection
         {
 
             services.AddScoped<INotificationDtoFactory, NotificationDtoFactory>();
-
 
             services.AddScoped<IEmailMessageFactory, EmailMessageFactory>();
 

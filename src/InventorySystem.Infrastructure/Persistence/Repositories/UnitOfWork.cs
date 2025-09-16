@@ -1,7 +1,7 @@
 ﻿using Application.Exceptions;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
-using Project.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.Repositories;
 using System.Collections.Concurrent;
 
 namespace Infrastructure.Persistence.Repositories

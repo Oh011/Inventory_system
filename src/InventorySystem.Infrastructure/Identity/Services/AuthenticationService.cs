@@ -1,12 +1,13 @@
-﻿using Application.Features.Auth.Dtos;
+﻿using Application.Exceptions;
+using Application.Features.Auth.Dtos;
 using Application.Features.Auth.Interfaces;
 using Application.Features.Auth.Results;
-using Application.Exceptions;
+using InventorySystem.Application.Common.Interfaces;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using InventorySystem.Application.Features.Auth.Commands.ResetPassword;
 using Microsoft.AspNetCore.Identity;
-using Project.Application.Common.Interfaces;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Features.Auth.Commands.ResetPassword;
 using Shared.Dtos;
+using Shared.Errors;
 using IAuthenticationService = Application.Features.Auth.Interfaces.IAuthenticationService;
 
 
@@ -165,7 +166,6 @@ namespace Infrastructure.Identity.Services
 
 
 
-
             var result = await _userManager.ResetPasswordAsync(user, request.Token, request.Password);
 
 
@@ -173,7 +173,7 @@ namespace Infrastructure.Identity.Services
             {
                 var errors = result.Errors
                     .GroupBy(e => e.Code)
-                    .ToDictionary(g => g.Key, g => g.Select(e => e.Description).ToList());
+                    .ToDictionary(g => g.Key, g => g.Select(e => new ValidationErrorDetail(e.Description)).ToList());
 
                 throw new ValidationException(errors);
             }

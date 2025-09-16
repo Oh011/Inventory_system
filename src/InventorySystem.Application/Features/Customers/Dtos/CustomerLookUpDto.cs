@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Features.Customers.Dtos
+﻿namespace InventorySystem.Application.Features.Customers.Dtos
 {
     public class CustomerLookUpDto
     {

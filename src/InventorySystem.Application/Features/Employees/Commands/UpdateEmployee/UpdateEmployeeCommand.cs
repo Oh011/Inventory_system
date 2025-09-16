@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Project.Application.Features.Employees.Dtos;
+using InventorySystem.Application.Features.Employees.Dtos;
 
-namespace Project.Application.Features.Employees.Commands.UpdateEmployee
+namespace InventorySystem.Application.Features.Employees.Commands.UpdateEmployee
 {
     public class UpdateEmployeeCommand : UpdateEmployeeRequest, IRequest<CreateEmployeeResponseDto>
     {

@@ -1,7 +1,7 @@
 ﻿using Domain.Common;
 using MediatR;
-using Project.Application.Common.Events;
-using Project.Application.Common.Interfaces;
+using InventorySystem.Application.Common.Events;
+using InventorySystem.Application.Common.Interfaces;
 
 namespace Infrastructure.Events
 {

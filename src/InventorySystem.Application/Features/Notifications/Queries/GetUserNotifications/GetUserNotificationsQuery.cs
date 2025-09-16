@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using Project.Application.Features.Notifications.Dtos;
+using InventorySystem.Application.Features.Notifications.Dtos;
 using Shared.Parameters;
 using Shared.Results;
 
-namespace Project.Application.Features.Notifications.Queries.GetUserNotifications
+namespace InventorySystem.Application.Features.Notifications.Queries.GetUserNotifications
 {
     public class GetUserNotificationsQuery : PaginationQueryParameters, IRequest<PaginatedResult<UserNotificationDto>>
     {

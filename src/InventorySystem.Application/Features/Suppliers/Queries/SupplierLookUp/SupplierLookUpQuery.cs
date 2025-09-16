@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Project.Application.Features.Suppliers.Dtos;
+using InventorySystem.Application.Features.Suppliers.Dtos;
 
-namespace Project.Application.Features.Suppliers.Queries.SupplierLookUp
+namespace InventorySystem.Application.Features.Suppliers.Queries.SupplierLookUp
 {
     public class SupplierLookUpQuery : IRequest<IEnumerable<SupplierLookupDto>>
     {

@@ -1,5 +1,5 @@
 ﻿using Application.Features.Auth.Results;
-using Project.Application.Features.Auth.Commands.ResetPassword;
+using InventorySystem.Application.Features.Auth.Commands.ResetPassword;
 
 namespace Application.Features.Auth.Interfaces
 {

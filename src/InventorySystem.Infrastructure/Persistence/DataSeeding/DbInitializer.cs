@@ -2,7 +2,7 @@
 using Domain.Entities;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
-using Project.Application.Common.Interfaces;
+using InventorySystem.Application.Common.Interfaces;
 using System.Text.Json;
 
 namespace Infrastructure.Persistence.DataSeeding

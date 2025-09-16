@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Project.Application.Features.Dashboard.Dtos;
+using InventorySystem.Application.Features.Dashboard.Dtos;
 
-namespace Project.Application.Features.Dashboard.Queries
+namespace InventorySystem.Application.Features.Dashboard.Queries
 {
     public record GetAdminDashboardQuery : IRequest<DashboardDto>;
 

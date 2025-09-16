@@ -1,8 +1,8 @@
-﻿using Domain.Entities;
+﻿using InventorySystem.Application.Common.Interfaces.PdfGenerators;
+using InventorySystem.Application.Common.Interfaces.Repositories;
 using InventorySystem.Application.Features.Reports.Sales.Specifications;
 using MediatR;
-using Project.Application.Common.Interfaces.PdfGenerators;
-using Project.Application.Common.Interfaces.Repositories;
+using salesInvoice = Domain.Entities.SalesInvoice;
 
 namespace InventorySystem.Application.Features.Reports.Sales.Queries.ExportSalesByCustomerPdf
 {
@@ -25,7 +25,7 @@ namespace InventorySystem.Application.Features.Reports.Sales.Queries.ExportSales
 
             var specifications = new SalesByCustomerReportSpecification(request);
 
-            var repository = unitOfWork.GetRepository<SalesInvoice, int>();
+            var repository = unitOfWork.GetRepository<salesInvoice, int>();
 
             var result = await repository.GetAllWithGrouping(specifications);
 

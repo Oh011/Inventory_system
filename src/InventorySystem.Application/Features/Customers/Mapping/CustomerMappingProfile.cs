@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Domain.Entities;
-using Project.Application.Features.Customers.Dtos;
+using InventorySystem.Application.Features.Customers.Dtos;
 
-namespace Project.Application.Features.Customers.Mapping
+namespace InventorySystem.Application.Features.Customers.Mapping
 {
     public class CustomerMappingProfile : Profile
     {

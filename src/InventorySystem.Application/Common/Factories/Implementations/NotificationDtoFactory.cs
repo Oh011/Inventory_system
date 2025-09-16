@@ -1,8 +1,8 @@
 ﻿using Domain.Enums;
 using Domain.Events.PurchaseOrder;
-using Project.Application.Common.Factories.Interfaces;
-using Project.Application.Features.Inventory.Dtos;
-using Project.Application.Features.Notifications.Dtos;
+using InventorySystem.Application.Common.Factories.Interfaces;
+using InventorySystem.Application.Features.Inventory.Dtos;
+using InventorySystem.Application.Features.Notifications.Dtos;
 
 namespace Infrastructure.Services.Common.Factories
 {

@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Project.Application.Features.Customers.Dtos;
+using InventorySystem.Application.Features.Customers.Dtos;
 
-namespace Project.Application.Features.Customers.Commands.Create
+namespace InventorySystem.Application.Features.Customers.Commands.Create
 {
 
 

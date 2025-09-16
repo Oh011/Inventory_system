@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Project.Application.Features.Suppliers.Commands.Create
+namespace InventorySystem.Application.Features.Suppliers.Commands.Create
 {
 
     public class CreateSupplierCommandValidator : AbstractValidator<CreateSupplierCommand>

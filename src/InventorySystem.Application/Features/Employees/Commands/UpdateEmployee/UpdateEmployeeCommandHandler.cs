@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using Project.Application.Features.Employees.Dtos;
-using Project.Application.Features.Employees.Interfcaes;
+using InventorySystem.Application.Features.Employees.Dtos;
+using InventorySystem.Application.Features.Employees.Interfcaes;
 
-namespace Project.Application.Features.Employees.Commands.UpdateEmployee
+namespace InventorySystem.Application.Features.Employees.Commands.UpdateEmployee
 {
     internal class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeCommand, CreateEmployeeResponseDto>
     {

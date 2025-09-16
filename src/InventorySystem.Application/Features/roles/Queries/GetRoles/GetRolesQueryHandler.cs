@@ -2,7 +2,7 @@
 using Application.Features.roles.Interfaces;
 using Domain.Entities;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.Repositories;
 
 namespace Application.Features.roles.Queries.GetRoles
 {

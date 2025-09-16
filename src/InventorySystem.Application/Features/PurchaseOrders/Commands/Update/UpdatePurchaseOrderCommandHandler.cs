@@ -1,15 +1,15 @@
 ﻿
 using Domain.Entities;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Common.Validators;
-using Project.Application.Features.PurchaseOrders.Dtos;
-using Project.Application.Features.PurchaseOrders.Interfaces;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Validators;
+using InventorySystem.Application.Features.PurchaseOrders.Dtos;
+using InventorySystem.Application.Features.PurchaseOrders.Interfaces;
 
-namespace Project.Application.Features.PurchaseOrders.Commands.Update
+namespace InventorySystem.Application.Features.PurchaseOrders.Commands.Update
 {
-    internal class UpdatePurchaseOrderCommandHandler : IRequestHandler<UpdatePurchaseOrderCommand, PurchaseOrderResultDto>
+    internal class UpdatePurchaseOrderCommandHandler : IRequestHandler<UpdatePurchaseOrderCommand, PurchaseOrderDetailDto>
     {
 
 
@@ -39,7 +39,7 @@ namespace Project.Application.Features.PurchaseOrders.Commands.Update
             _productValidator = productValidator;
         }
 
-        public async Task<PurchaseOrderResultDto> Handle(UpdatePurchaseOrderCommand request, CancellationToken cancellationToken)
+        public async Task<PurchaseOrderDetailDto> Handle(UpdatePurchaseOrderCommand request, CancellationToken cancellationToken)
         {
 
 

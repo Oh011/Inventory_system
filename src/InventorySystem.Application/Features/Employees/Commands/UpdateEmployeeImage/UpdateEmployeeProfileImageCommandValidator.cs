@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Shared.Dtos;
 
-namespace Project.Application.Features.Employees.Commands.UpdateEmployeeImage
+namespace InventorySystem.Application.Features.Employees.Commands.UpdateEmployeeImage
 {
     internal class UpdateEmployeeProfileImageCommandValidator : AbstractValidator<UpdateEmployeeProfileImageCommand>
     {

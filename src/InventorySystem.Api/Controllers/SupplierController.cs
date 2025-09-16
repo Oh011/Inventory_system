@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
+using InventorySystem.Application.Features.Categories.Dtos;
+using InventorySystem.Application.Features.Suppliers.Commands.Create;
+using InventorySystem.Application.Features.Suppliers.Commands.Update;
+using InventorySystem.Application.Features.Suppliers.Dtos;
+using InventorySystem.Application.Features.Suppliers.Queries.GetSuppliers;
+using InventorySystem.Application.Features.Suppliers.Queries.GetSuppliersCategories;
+using InventorySystem.Application.Features.Suppliers.Queries.SupplierDetails;
+using InventorySystem.Application.Features.Suppliers.Queries.SupplierLookUp;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Project.Application.Features.Categories.Dtos;
-using Project.Application.Features.Suppliers.Commands.Create;
-using Project.Application.Features.Suppliers.Commands.Update;
-using Project.Application.Features.Suppliers.Dtos;
-using Project.Application.Features.Suppliers.Queries.GetSuppliers;
-using Project.Application.Features.Suppliers.Queries.GetSuppliersCategories;
-using Project.Application.Features.Suppliers.Queries.SupplierDetails;
-using Project.Application.Features.Suppliers.Queries.SupplierLookUp;
 using Shared;
 using Shared.Results;
 
@@ -106,9 +106,6 @@ namespace InventorySystem.Controllers
         {
 
             var result = await mediator.Send(command);
-
-
-
             return Ok(ApiResponseFactory.Success(result));
 
 

@@ -1,10 +1,10 @@
-﻿using MediatR;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Features.Notifications.Dtos;
-using Project.Application.Features.Notifications.Interfaces;
+﻿using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using MediatR;
+using InventorySystem.Application.Features.Notifications.Dtos;
+using InventorySystem.Application.Features.Notifications.Interfaces;
 using Shared.Results;
 
-namespace Project.Application.Features.Notifications.Queries.GetUserNotifications
+namespace InventorySystem.Application.Features.Notifications.Queries.GetUserNotifications
 {
     internal class GetUserNotificationsQueryHandler : IRequestHandler<GetUserNotificationsQuery, PaginatedResult<UserNotificationDto>>
     {

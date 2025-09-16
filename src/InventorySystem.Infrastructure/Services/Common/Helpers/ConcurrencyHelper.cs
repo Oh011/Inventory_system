@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Project.Application.Common.Interfaces;
+using InventorySystem.Application.Common.Interfaces;
 
 namespace Infrastructure.Services.Common.Helpers
 {

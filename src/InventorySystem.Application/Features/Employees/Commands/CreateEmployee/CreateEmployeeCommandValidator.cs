@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Project.Application.Features.Employees.Commands.CreateEmployee
+namespace InventorySystem.Application.Features.Employees.Commands.CreateEmployee
 {
     public class CreateEmployeeCommandValidator : AbstractValidator<CreateEmployeeCommand>
     {

@@ -1,7 +1,7 @@
-﻿using Project.Application.Common.Enums.SortOptions;
+﻿using InventorySystem.Application.Common.Enums.SortOptions;
 using Shared.Parameters;
 
-namespace Project.Application.Common.Parameters
+namespace InventorySystem.Application.Common.Parameters
 {
     public class EmployeeFilterParams : PaginationQueryParameters
     {

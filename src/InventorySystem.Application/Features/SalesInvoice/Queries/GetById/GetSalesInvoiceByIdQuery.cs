@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Project.Application.Features.SalesInvoice.Dtos;
+using InventorySystem.Application.Features.SalesInvoice.Dtos;
 
-namespace Project.Application.Features.SalesInvoice.Queries.GetById
+namespace InventorySystem.Application.Features.SalesInvoice.Queries.GetById
 {
     public class GetSalesInvoiceByIdQuery : IRequest<SalesInvoiceDetailsDto>
     {

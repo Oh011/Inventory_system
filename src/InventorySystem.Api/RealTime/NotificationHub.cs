@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
-using Project.Application.Features.Notifications.Dtos;
-using Project.Application.Features.Notifications.Queries.GetUserNotifications;
+using InventorySystem.Application.Features.Notifications.Dtos;
+using InventorySystem.Application.Features.Notifications.Queries.GetUserNotifications;
 
 using System.Security.Claims;
 

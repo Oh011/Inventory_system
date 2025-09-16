@@ -1,9 +1,9 @@
 ﻿using Domain.Entities;
-using Project.Application.Features.Suppliers.Dtos;
-using Project.Application.Features.Suppliers.Queries.GetSuppliers;
+using InventorySystem.Application.Features.Suppliers.Dtos;
+using InventorySystem.Application.Features.Suppliers.Queries.GetSuppliers;
 using Shared.Results;
 
-namespace Project.Application.Features.Suppliers.Interfaces
+namespace InventorySystem.Application.Features.Suppliers.Interfaces
 {
     public interface ISupplierService
     {

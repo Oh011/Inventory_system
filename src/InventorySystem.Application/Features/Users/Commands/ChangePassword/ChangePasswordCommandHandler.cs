@@ -1,7 +1,7 @@
 ﻿using Application.Features.Users.Interfaces;
 using MediatR;
 
-namespace Project.Application.Features.Users.Commands.ChangePassword
+namespace InventorySystem.Application.Features.Users.Commands.ChangePassword
 {
     internal class ChangePasswordCommandHandler : IRequestHandler<ChangePasswordCommand, string>
     {

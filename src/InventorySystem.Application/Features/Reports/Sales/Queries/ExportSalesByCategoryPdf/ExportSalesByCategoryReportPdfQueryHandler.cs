@@ -1,8 +1,8 @@
 ﻿using Domain.Entities;
 using InventorySystem.Application.Features.Reports.Sales.Specifications;
 using MediatR;
-using Project.Application.Common.Interfaces.PdfGenerators;
-using Project.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.PdfGenerators;
+using InventorySystem.Application.Common.Interfaces.Repositories;
 
 namespace InventorySystem.Application.Features.Reports.Sales.Queries.ExportSalesByCategoryPdf
 {

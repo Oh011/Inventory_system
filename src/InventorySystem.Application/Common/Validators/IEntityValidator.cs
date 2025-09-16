@@ -1,6 +1,6 @@
 ﻿using Domain.Common;
 
-namespace Project.Application.Common.Validators
+namespace InventorySystem.Application.Common.Validators
 {
     public interface IEntityValidator<TEntity> where TEntity : BaseEntity
     {

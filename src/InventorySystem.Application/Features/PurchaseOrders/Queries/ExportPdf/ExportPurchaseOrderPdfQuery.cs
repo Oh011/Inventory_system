@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Project.Application.Features.PurchaseOrders.Queries.ExportPf
+namespace InventorySystem.Application.Features.PurchaseOrders.Queries.ExportPf
 {
     public class ExportPurchaseOrderPdfQuery : IRequest<byte[]>
     {

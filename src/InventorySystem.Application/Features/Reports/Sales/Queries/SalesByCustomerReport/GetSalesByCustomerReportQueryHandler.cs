@@ -1,9 +1,8 @@
-﻿using Domain.Entities;
+﻿using InventorySystem.Application.Common.Interfaces.Repositories;
 using InventorySystem.Application.Features.Reports.Sales.Dtos;
 using InventorySystem.Application.Features.Reports.Sales.Specifications;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
-
+using salesInvoice = Domain.Entities.SalesInvoice;
 namespace InventorySystem.Application.Features.Reports.Sales.Queries.SalesByCustomerReport
 {
     internal class GetSalesByCustomerReportQueryHandler : IRequestHandler<GetSalesByCustomerReportQuery, IEnumerable<SalesByCustomerReportDto>>
@@ -22,7 +21,7 @@ namespace InventorySystem.Application.Features.Reports.Sales.Queries.SalesByCust
 
             var specifications = new SalesByCustomerReportSpecification(request);
 
-            var repository = unitOfWork.GetRepository<SalesInvoice, int>();
+            var repository = unitOfWork.GetRepository<salesInvoice, int>();
 
             var result = await repository.GetAllWithGrouping(specifications);
 

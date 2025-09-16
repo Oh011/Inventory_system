@@ -1,9 +1,9 @@
 ﻿using Domain.Entities;
 using Domain.Specifications;
-using Project.Application.Features.Inventory.Dtos;
-using Project.Application.Features.Inventory.Queries.GetInventoryValue;
+using InventorySystem.Application.Features.Inventory.Dtos;
+using InventorySystem.Application.Features.Inventory.Queries.GetInventoryValue;
 
-namespace Project.Application.Features.Inventory.Specifications
+namespace InventorySystem.Application.Features.Inventory.Specifications
 {
     internal class InventoryValueReportSpecifications : ProjectionSpecifications<Product, InventoryValueDto>
     {

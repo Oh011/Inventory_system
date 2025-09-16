@@ -1,7 +1,7 @@
 ﻿using Application.Common.Interfaces;
 using Hangfire;
 using Infrastructure.Services.Jobs;
-using Project.Application.Common.Interfaces;
+using InventorySystem.Application.Common.Interfaces;
 
 namespace InventorySystem.Extensions
 {

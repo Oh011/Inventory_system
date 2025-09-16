@@ -1,8 +1,8 @@
 ﻿using Application.Features.Auth.Interfaces;
 using MediatR;
-using Project.Application.Features.Auth.Commands.PasswordRest;
+using InventorySystem.Application.Features.Auth.Commands.PasswordRest;
 
-namespace Project.Application.Features.Auth.Commands.ForgotPassword
+namespace InventorySystem.Application.Features.Auth.Commands.ForgotPassword
 {
     internal class ForgotPasswordCommandHandler : IRequestHandler<ForgotPasswordCommand, string>
     {

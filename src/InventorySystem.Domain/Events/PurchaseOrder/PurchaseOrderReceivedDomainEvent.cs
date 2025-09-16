@@ -9,6 +9,7 @@ namespace Domain.Events.PurchaseOrder
 
         public Dictionary<int, int> ReceivedItems { get; }
 
+
         public DateTime OccurredOn { get; } = DateTime.Now;
 
         public PurchaseOrderReceivedDomainEvent(int purchaseOrderId, int supplierId, string supplierEmail, string supplierName, PurchaseOrderStatus status, Dictionary<int, int> items)

@@ -1,9 +1,9 @@
-﻿using Project.Application.Features.Inventory.Dtos;
-using Project.Application.Features.Notifications.Dtos;
-using Project.Application.Features.PurchaseOrders.Dtos;
-using Project.Application.Features.SalesInvoice.Dtos;
+﻿using InventorySystem.Application.Features.Inventory.Dtos;
+using InventorySystem.Application.Features.Notifications.Dtos;
+using InventorySystem.Application.Features.PurchaseOrders.Dtos;
+using InventorySystem.Application.Features.SalesInvoice.Dtos;
 
-namespace Project.Application.Features.Dashboard.Dtos
+namespace InventorySystem.Application.Features.Dashboard.Dtos
 {
     public class DashboardDto
     {
@@ -19,7 +19,7 @@ namespace Project.Application.Features.Dashboard.Dtos
         public List<LowStockProductDto> LowStockProducts { get; set; }
         public decimal SalesTodayTotal { get; set; }
         public List<SalesInvoiceSummaryDto> RecentSalesInvoices { get; set; }
-        public List<PurchaseOrderSummaryDto> RecentPurchaseOrders { get; set; }
+        public List<PurchaseOrderListDto> RecentPurchaseOrders { get; set; }
         public List<UserNotificationDto> RecentNotifications { get; set; }
     }
 }

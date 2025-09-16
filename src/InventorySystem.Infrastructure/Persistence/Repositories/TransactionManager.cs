@@ -1,6 +1,6 @@
 ﻿using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore.Storage;
-using Project.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.Repositories;
 
 namespace Infrastructure.Persistence.Repositories
 {

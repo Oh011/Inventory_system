@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using Shared.Errors;
+using System.Net;
 
 namespace Shared
 {
@@ -21,7 +22,7 @@ namespace Shared
 
     public interface IApiResponseWithErrors : IApiResponseWithMessage
     {
-        public Dictionary<string, List<string>>? Errors { get; init; }
+        public Dictionary<string, List<ValidationErrorDetail>>? Errors { get; init; }
     }
 
     public class SuccessMessage : IApiResponseWithMessage
@@ -55,9 +56,9 @@ namespace Shared
         public bool Success { get; init; } = false;
         public int StatusCode { get; init; }
         public string Message { get; init; }
-        public Dictionary<string, List<string>> Errors { get; init; }
+        public Dictionary<string, List<ValidationErrorDetail>> Errors { get; init; }
 
-        public FailureWithErrors(string message, Dictionary<string, List<string>> errors, HttpStatusCode statusCode = HttpStatusCode.BadRequest)
+        public FailureWithErrors(string message, Dictionary<string, List<ValidationErrorDetail>> errors, HttpStatusCode statusCode = HttpStatusCode.BadRequest)
         {
             Message = message;
             Errors = errors;
@@ -86,7 +87,7 @@ namespace Shared
         public static SuccessMessage Success(string message, HttpStatusCode statusCode = HttpStatusCode.OK)
             => new(message, statusCode);
 
-        public static FailureWithErrors Failure(string message, Dictionary<string, List<string>> errors, HttpStatusCode statusCode = HttpStatusCode.BadRequest)
+        public static FailureWithErrors Failure(string message, Dictionary<string, List<ValidationErrorDetail>> errors, HttpStatusCode statusCode = HttpStatusCode.BadRequest)
             => new(message, errors, statusCode);
 
         public static FailureMessageOnly Failure(string message, HttpStatusCode statusCode = HttpStatusCode.BadRequest)

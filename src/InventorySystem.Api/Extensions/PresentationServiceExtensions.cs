@@ -1,8 +1,8 @@
 ﻿using Infrastructure.Services;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
 using InventorySystem.ResponseFactories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
-using Project.Application.Common.Interfaces.Services;
 using System.Text.Json.Serialization;
 
 namespace InventorySystem.Extensions

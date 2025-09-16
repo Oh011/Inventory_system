@@ -1,6 +1,6 @@
 ﻿using Domain.Common;
-using Project.Application.Common.Notifications.Interfaces;
-using Project.Application.Common.Notifications.Senders;
+using InventorySystem.Application.Common.Notifications.Interfaces;
+using InventorySystem.Application.Common.Notifications.Senders;
 
 namespace Infrastructure.Notifications.Orchestrators
 {

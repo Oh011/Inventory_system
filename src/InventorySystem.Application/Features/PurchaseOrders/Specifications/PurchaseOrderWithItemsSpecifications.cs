@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Specifications;
 
-namespace Project.Application.Features.PurchaseOrders.Specifications
+namespace InventorySystem.Application.Features.PurchaseOrders.Specifications
 {
     public class PurchaseOrderWithItemsSpecifications : BaseSpecifications<PurchaseOrder>
     {

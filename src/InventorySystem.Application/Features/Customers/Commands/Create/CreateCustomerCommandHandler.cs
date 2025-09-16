@@ -1,10 +1,10 @@
 ﻿using Application.Exceptions;
 using Domain.Entities;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Features.Customers.Dtos;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Features.Customers.Dtos;
 
-namespace Project.Application.Features.Customers.Commands.Create
+namespace InventorySystem.Application.Features.Customers.Commands.Create
 {
     internal class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, CustomerDto>
     {

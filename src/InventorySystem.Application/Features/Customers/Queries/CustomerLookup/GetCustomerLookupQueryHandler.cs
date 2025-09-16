@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Domain.Entities;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Features.Customers.Dtos;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Features.Customers.Dtos;
 
-namespace Project.Application.Features.Customers.Queries.CustomerLookup
+namespace InventorySystem.Application.Features.Customers.Queries.CustomerLookup
 {
     public class GetCustomerLookupQueryHandler : IRequestHandler<GetCustomerLookupQuery, List<CustomerLookUpDto>>
     {
@@ -21,8 +21,12 @@ namespace Project.Application.Features.Customers.Queries.CustomerLookup
         {
             var repo = _unitOfWork.GetRepository<Customer, int>();
 
+            if (string.IsNullOrWhiteSpace(request.Search))
+                return new List<CustomerLookUpDto>();
+
+
             var customers = await repo.ListAsync(
-                c =>
+                c => c.IsDeleted == false &&
                     (string.IsNullOrEmpty(request.Search) ||
                     c.FullName.Contains(request.Search) ||
                     (c.Phone != null && c.Phone.Contains(request.Search))), c => new CustomerLookUpDto

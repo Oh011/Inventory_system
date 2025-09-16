@@ -1,8 +1,8 @@
 ﻿using Domain.Entities;
 using Domain.Specifications;
-using Project.Application.Features.Categories.Dtos;
+using InventorySystem.Application.Features.Categories.Dtos;
 
-namespace Project.Application.Features.Suppliers.Specifications
+namespace InventorySystem.Application.Features.Suppliers.Specifications
 {
     internal class SupplierCategoriesSpecifications : ProjectionSpecifications<SupplierCategory, CategoryDto>
     {

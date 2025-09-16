@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Project.Application.Features.Customers.Dtos;
+using InventorySystem.Application.Features.Customers.Dtos;
 
-namespace Project.Application.Features.Customers.Queries.CustomerLookup
+namespace InventorySystem.Application.Features.Customers.Queries.CustomerLookup
 {
     public class GetCustomerLookupQuery : IRequest<List<CustomerLookUpDto>>
     {

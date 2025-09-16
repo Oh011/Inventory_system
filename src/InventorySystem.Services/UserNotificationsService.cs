@@ -1,16 +1,16 @@
 ﻿
 using AutoMapper;
 using Domain.Entities;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Features.Notifications.Dtos;
-using Project.Application.Features.Notifications.Interfaces;
-using Project.Application.Features.Notifications.Queries.GetUserNotifications;
-using Project.Application.Features.Notifications.Specifications;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Features.Notifications.Dtos;
+using InventorySystem.Application.Features.Notifications.Interfaces;
+using InventorySystem.Application.Features.Notifications.Queries.GetUserNotifications;
+using InventorySystem.Application.Features.Notifications.Specifications;
 using Shared.Results;
 
 
-namespace Project.Services
+namespace InventorySystem.Services
 {
     internal class UserNotificationsService(IUnitOfWork unitOfWork, IMapper mapper, IUriService uriService) : IUserNotificationsService
     {

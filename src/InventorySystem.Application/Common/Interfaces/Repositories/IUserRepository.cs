@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Common.Interfaces.Repositories
+﻿namespace InventorySystem.Application.Common.Interfaces.Repositories
 {
     public interface IUserRepository
     {

@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Project.Application.Features.Dashboard.Dtos;
-using Project.Application.Features.Dashboard.Queries;
+using InventorySystem.Application.Features.Dashboard.Dtos;
+using InventorySystem.Application.Features.Dashboard.Queries;
 
 namespace InventorySystem.Controllers
 {

@@ -1,9 +1,9 @@
 ﻿using Domain.Entities;
 using Domain.Specifications;
-using Project.Application.Common.Enums.SortOptions;
-using Project.Application.Features.Customers.Queries.GetAllCustomers;
+using InventorySystem.Application.Common.Enums.SortOptions;
+using InventorySystem.Application.Features.Customers.Queries.GetAllCustomers;
 
-namespace Project.Application.Features.Customers.Specifications
+namespace InventorySystem.Application.Features.Customers.Specifications
 {
     public class CustomerSpecifications : BaseSpecifications<Customer>
     {
@@ -13,7 +13,7 @@ namespace Project.Application.Features.Customers.Specifications
         public CustomerSpecifications(GetCustomersQuery query)
 
 
-        : base(c =>
+        : base(c => (query.IsDeleted == null || c.IsDeleted == query.IsDeleted) &&
     (string.IsNullOrWhiteSpace(query.Name) || c.FullName.Contains(query.Name)) &&
     (string.IsNullOrWhiteSpace(query.Phone) || (c.Phone != null && c.Phone.Contains(query.Phone))) &&
     (string.IsNullOrWhiteSpace(query.Email) || (c.Email != null && c.Email.Contains(query.Email))) &&

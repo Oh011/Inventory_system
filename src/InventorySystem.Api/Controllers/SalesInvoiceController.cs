@@ -1,11 +1,13 @@
-﻿using MediatR;
+﻿using Domain.Enums;
+using InventorySystem.Application.Common.Dtos;
+using InventorySystem.Application.Features.SalesInvoice.Commands.Create;
+using InventorySystem.Application.Features.SalesInvoice.Dtos;
+using InventorySystem.Application.Features.SalesInvoice.Queries.ExportPdf;
+using InventorySystem.Application.Features.SalesInvoice.Queries.GetAll;
+using InventorySystem.Application.Features.SalesInvoice.Queries.GetById;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Project.Application.Features.SalesInvoice.Commands.Create;
-using Project.Application.Features.SalesInvoice.Dtos;
-using Project.Application.Features.SalesInvoice.Queries.ExportPdf;
-using Project.Application.Features.SalesInvoice.Queries.GetAll;
-using Project.Application.Features.SalesInvoice.Queries.GetById;
 using Shared;
 using Shared.Results;
 
@@ -61,6 +63,22 @@ namespace InventorySystem.Controllers
             var query = new ExportSalesInvoicePdfQuery(id);
             var pdfBytes = await mediator.Send(query);
             return File(pdfBytes, "application/pdf", $"Sales-Invoice-{id}.pdf");
+        }
+
+
+
+        /// <summary>
+        /// Get all available payment methods for creating a sales invoice.
+        /// </summary>
+        [HttpGet("payment-methods")]
+        [Authorize(Roles = "Admin,Salesperson,Manager")]
+        public IActionResult GetPaymentMethods()
+        {
+            var paymentMethods = Enum.GetValues<PaymentMethod>()
+                                     .Select(pm => new EnumDto { Name = pm.ToString(), Value = (int)pm })
+                                     .ToList();
+
+            return Ok(ApiResponseFactory.Success(paymentMethods));
         }
     }
 }

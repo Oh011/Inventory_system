@@ -1,9 +1,9 @@
 ﻿using Application.Exceptions;
 using Domain.Entities;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.Repositories;
 
-namespace Project.Application.Features.Categories.Commands.Delete
+namespace InventorySystem.Application.Features.Categories.Commands.Delete
 {
     internal class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommand, Unit>
     {

@@ -1,7 +1,7 @@
 ﻿using Domain.Common;
 using MediatR;
 
-namespace Project.Application.Common.Events
+namespace InventorySystem.Application.Common.Events
 {
     public class CriticalDomainEventNotification<TDomainEvent> : INotification
         where TDomainEvent : IDomainEvent

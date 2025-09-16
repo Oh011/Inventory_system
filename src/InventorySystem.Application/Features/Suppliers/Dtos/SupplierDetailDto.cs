@@ -1,6 +1,6 @@
-﻿using Project.Application.Features.Categories.Dtos;
+﻿using InventorySystem.Application.Features.Categories.Dtos;
 
-namespace Project.Application.Features.Suppliers.Dtos
+namespace InventorySystem.Application.Features.Suppliers.Dtos
 {
     public class SupplierDetailDto
     {

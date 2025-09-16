@@ -1,7 +1,7 @@
-﻿using InventorySystem.RealTime;
+﻿using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using InventorySystem.RealTime;
 using Microsoft.AspNetCore.SignalR;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Features.Notifications.Dtos;
+using InventorySystem.Application.Features.Notifications.Dtos;
 
 namespace Infrastructure.Services
 {

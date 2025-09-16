@@ -3,21 +3,22 @@ using Application.Exceptions;
 using Domain.Entities;
 using Domain.Enums;
 using Domain.ValueObjects.PurchaseOrder;
-using Project.Application.Common.Helpers;
-using Project.Application.Common.Interfaces;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Features.Inventory.Dtos;
-using Project.Application.Features.PurchaseOrders.Commands.Create;
-using Project.Application.Features.PurchaseOrders.Commands.Update;
-using Project.Application.Features.PurchaseOrders.Dtos;
-using Project.Application.Features.PurchaseOrders.Interfaces;
-using Project.Application.Features.PurchaseOrders.Queries.GetAll;
-using Project.Application.Features.PurchaseOrders.Specifications;
-using Project.Application.Features.Suppliers.Interfaces;
+using InventorySystem.Application.Common.Helpers;
+using InventorySystem.Application.Common.Interfaces;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using InventorySystem.Application.Features.Inventory.Dtos;
+using InventorySystem.Application.Features.PurchaseOrders.Commands.Create;
+using InventorySystem.Application.Features.PurchaseOrders.Commands.Update;
+using InventorySystem.Application.Features.PurchaseOrders.Dtos;
+using InventorySystem.Application.Features.PurchaseOrders.Interfaces;
+using InventorySystem.Application.Features.PurchaseOrders.Queries.GetAll;
+using InventorySystem.Application.Features.PurchaseOrders.Specifications;
+using InventorySystem.Application.Features.Suppliers.Interfaces;
+using Shared.Errors;
 using Shared.Results;
 
-namespace Project.Services
+namespace InventorySystem.Services
 {
 
 
@@ -29,7 +30,7 @@ namespace Project.Services
         public decimal CostPrice { get; set; }
     }
 
-    internal class PurchaseOrderService(ITransactionManager transactionManager, IInventoryService inventoryService, IUnitOfWork unitOfWork, IDomainEventDispatcher domainEventDispatcher, ISupplierService supplierService) : IPurchaseOrderService
+    internal class PurchaseOrderService(IStockEventService stockEventService, ITransactionManager transactionManager, IInventoryService inventoryService, IUnitOfWork unitOfWork, IDomainEventDispatcher domainEventDispatcher, ISupplierService supplierService) : IPurchaseOrderService
     {
         public async Task<int> CreatePurchaseOrder(CreatePurchaseOrderCommand order)
         {
@@ -49,14 +50,20 @@ namespace Project.Services
 
             if (notFoundIds.Any())
             {
-                var errors = new Dictionary<string, List<string>>();
-
-                errors["ProductIds"] = notFoundIds.Select(i => i.ToString()).ToList();
+                //var errors = new Dictionary<string, List<string>>();
 
 
-                var exception = new ValidationException(errors, "Some products were not found");
+                var errors = notFoundIds.ToDictionary(
+                id => id.ToString(),
+                id => new List<ValidationErrorDetail>
+                {
+                        new ValidationErrorDetail($"Product with ID {id} not found")
+                }
+                 );
 
 
+
+                var exception = new ValidationException(errors, "Some products are Invalid");
 
                 throw exception;
             }
@@ -100,7 +107,7 @@ namespace Project.Services
 
         }
 
-        public async Task<PaginatedResult<PurchaseOrderSummaryDto>> GetAllPurchaseOrders(GetPurchaseOrdersQuery query)
+        public async Task<PaginatedResult<PurchaseOrderListDto>> GetAllPurchaseOrders(GetPurchaseOrdersQuery query)
         {
 
             var repository = unitOfWork.GetRepository<PurchaseOrder, int>();
@@ -110,7 +117,7 @@ namespace Project.Services
             var totalCount = await repository.CountAsync(specifications.Criteria);
 
 
-            return new PaginatedResult<PurchaseOrderSummaryDto>(
+            return new PaginatedResult<PurchaseOrderListDto>(
 
                 query.PageIndex, query.pageSize, totalCount, orders
 
@@ -120,9 +127,6 @@ namespace Project.Services
         private async Task<Dictionary<int, ProductForPurchaseOrderDto>> LoadProducts(IEnumerable<int> productIds)
         {
 
-
-            //→ Keep LoadProducts(...) inside PurchaseOrderService for now.
-            //If other modules start using the same logic, refactor it later into ProductService.
 
             var productsRepository = unitOfWork.GetRepository<Product, int>();
             var products = (await productsRepository.ListAsync(
@@ -156,61 +160,58 @@ namespace Project.Services
 
 
 
-            var order = await repository.FirstOrDefaultAsync(specifications);
-
-            if (order == null)
-                throw new NotFoundException($"Order with Id {request.Id} not found");
-
-
-
-
-            if (!order.CanTransitionTo(PurchaseOrderStatus.Received))
-                throw new BadRequestException("Invalid");
-
-
-
-
-
-
-
-            var orderItemDict = order.Items?.ToDictionary(i => i.Id, i => i);
-
-            var requestItemDict = request.Items.ToDictionary(i => i.ItemId, i => new { productId = i.ProductId, receivedQuantity = i.QuantityReceived });
-
-
-
-
-            int totalQuantity = order?.Items?.Sum(i => i.QuantityOrdered) ?? 0;
-            int totalReceivedQuantity = request.Items.Sum(i => i.QuantityReceived);
-
-
-            foreach (var item in orderItemDict)
-            {
-
-
-                if (requestItemDict.TryGetValue(item.Key, out var updatedQuantity))
-                {
-
-                    item.Value.UpdateQuantityReceived(updatedQuantity.receivedQuantity);
-                }
-
-                else
-                {
-
-                    throw new NotFoundException($"Item with ID {item.Key} was not found in this order.");
-                }
-            }
-
-
-            order.UpdateStatusBasedOnReceivedQuantities();
-
-
-
-            repository.Update(order);
-
-
             try
             {
+
+                var order = await repository.FirstOrDefaultAsync(specifications);
+
+                if (order == null)
+                    throw new NotFoundException($"Order with Id {request.Id} not found");
+
+
+
+
+                if (!order.CanTransitionTo(PurchaseOrderStatus.Received))
+                    throw new BadRequestException("Invalid");
+
+
+
+                var orderItemDict = order.Items?.ToDictionary(i => i.Id, i => i);
+
+                var requestItemDict = request.Items.ToDictionary(i => i.ItemId, i => new { productId = i.ProductId, receivedQuantity = i.QuantityReceived });
+
+
+
+
+                int totalQuantity = order?.Items?.Sum(i => i.QuantityOrdered) ?? 0;
+                int totalReceivedQuantity = request.Items.Sum(i => i.QuantityReceived);
+
+
+                foreach (var item in orderItemDict)
+                {
+
+
+                    if (requestItemDict.TryGetValue(item.Key, out var updatedQuantity))
+                    {
+
+                        item.Value.UpdateQuantityReceived(updatedQuantity.receivedQuantity);
+                    }
+
+                    else
+                    {
+
+                        throw new NotFoundException($"Item with ID {item.Key} was not found in this order.");
+                    }
+                }
+
+
+                order?.UpdateStatusBasedOnReceivedQuantities();
+
+
+
+                repository.Update(order);
+
+
 
                 var x = request.Items.Select(i => new InventoryStockAdjustmentDto
                 {
@@ -219,8 +220,34 @@ namespace Project.Services
                 }).ToList();
 
 
-                await inventoryService.AdjustStockAsync(x, transactionManager);
+
+
+                var productIds = await inventoryService.AdjustStockAsync(x, transactionManager);
+
+                await unitOfWork.Commit();
+                await transactionManager.CommitTransaction();
+
+
+                await stockEventService.RaiseStockDecreasedEventAsync(productIds);
+
+
+                var productsDict = requestItemDict.ToDictionary(i => i.Value.productId, i => i.Value.receivedQuantity);
+
+
+
+                var supplier = await supplierService.GetSupplierBrief(order.SupplierId);
+
+
+
+
+                await EventDispatcherHelper.RaiseAndDispatch(order, domainEventDispatcher,
+                      o => o.MarkAsReceived(supplier.Id, supplier.Name, supplier.Email, order.Status, productsDict));
+
+
+
             }
+
+
 
             catch (Exception ex)
             {
@@ -231,24 +258,17 @@ namespace Project.Services
 
 
 
-            var productsDict = requestItemDict.ToDictionary(i => i.Value.productId, i => i.Value.receivedQuantity);
-
-
-
-
-            var supplier = await supplierService.GetSupplierBrief(order.SupplierId);
-
-
-
-
-            await EventDispatcherHelper.RaiseAndDispatch(order, domainEventDispatcher,
-                  o => o.MarkAsReceived(supplier.Id, supplier.Name, supplier.Email, order.Status, productsDict));
-
-
 
         }
 
-        public async Task<PurchaseOrderResultDto> GetPurchaseOrderById(int id)
+
+
+
+
+
+
+
+        public async Task<PurchaseOrderDetailDto> GetPurchaseOrderById(int id)
         {
 
 

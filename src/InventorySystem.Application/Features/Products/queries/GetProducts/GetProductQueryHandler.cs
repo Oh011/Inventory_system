@@ -1,10 +1,10 @@
-﻿using MediatR;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Features.Products.Dtos;
-using Project.Application.Features.Products.Intrefaces;
+﻿using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using MediatR;
+using InventorySystem.Application.Features.Products.Dtos;
+using InventorySystem.Application.Features.Products.Intrefaces;
 using Shared.Results;
 
-namespace Project.Application.Features.Products.queries.GetProducts
+namespace InventorySystem.Application.Features.Products.queries.GetProducts
 {
     internal class GetProductQueryHandler : IRequestHandler<GetProductsQuery, PaginatedResult<ProductResultDto>>
     {

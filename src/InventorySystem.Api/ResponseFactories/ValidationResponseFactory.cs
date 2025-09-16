@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shared;
+using Shared.Errors;
 using System.Net;
 
 
@@ -16,7 +17,7 @@ namespace InventorySystem.ResponseFactories
         {
 
 
-            var dictErrors = new Dictionary<string, List<string>>();
+            var dictErrors = new Dictionary<string, List<ValidationErrorDetail>>();
 
             var errors = actionContext.ModelState.Where(pair => pair.Value.Errors.Any()).ToList();
 
@@ -25,7 +26,7 @@ namespace InventorySystem.ResponseFactories
             foreach (var item in errors)
             {
 
-                dictErrors.Add(NormalizeFieldName(item.Key), item.Value.Errors.Select(e => e.ErrorMessage).ToList());
+                dictErrors.Add(NormalizeFieldName(item.Key), item.Value.Errors.Select(e => new ValidationErrorDetail(e.ErrorMessage)).ToList());
             }
 
 

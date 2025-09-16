@@ -1,9 +1,10 @@
-﻿using Application.Features.Users.Interfaces;
-using Application.Exceptions;
+﻿using Application.Exceptions;
+using Application.Features.Users.Interfaces;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Features.Users.Commands.ChangePassword;
+using InventorySystem.Application.Features.Users.Dtos;
 using Microsoft.AspNetCore.Identity;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Features.Users.Commands.ChangePassword;
-using Project.Application.Features.Users.Dtos;
+using Shared.Errors;
 using System.Data;
 
 namespace Infrastructure.Identity.Services
@@ -30,9 +31,21 @@ namespace Infrastructure.Identity.Services
 
             if (Role.Equals("Admin", StringComparison.OrdinalIgnoreCase))
             {
-                var validationException = new ValidationException();
-                validationException.AddValidations("Role", "Assigning the 'Admin' role is not allowed.");
+                var validationException = new ValidationException(
+
+
+                 new Dictionary<string, List<ValidationErrorDetail>>()
+                 {
+                     ["Role"] = new List<ValidationErrorDetail>()
+                     {
+                    new ValidationErrorDetail("Assigning the 'Admin' role is not allowed.")
+
+                     }
+                 }
+             );
+
                 throw validationException;
+
             }
 
             var user = await _userManager.FindByIdAsync(userId);
@@ -47,12 +60,26 @@ namespace Infrastructure.Identity.Services
 
             if (!await _roleManager.RoleExistsAsync(Role))
             {
-                var ValidationException = new ValidationException();
-
-                ValidationException.AddValidations("Role", $"The role '{Role}' does not exist.");
 
 
-                throw ValidationException;
+
+                var validationException = new ValidationException(
+
+
+                    new Dictionary<string, List<ValidationErrorDetail>>()
+                    {
+                        ["Role"] = new List<ValidationErrorDetail>()
+                {
+                    new ValidationErrorDetail($"The role '{Role}' does not exist.")
+
+                }
+                    }
+                    );
+
+
+
+
+                throw validationException;
 
 
 
@@ -77,7 +104,7 @@ namespace Infrastructure.Identity.Services
             {
 
                 var errors = result.Errors.GroupBy(e => e.Code)
-                    .ToDictionary(e => e.Key, e => e.Select(e => e.Description).ToList());
+                    .ToDictionary(e => e.Key, e => e.Select(e => new ValidationErrorDetail(e.Description)).ToList());
 
 
                 throw new ValidationException(errors);
@@ -108,7 +135,7 @@ namespace Infrastructure.Identity.Services
             {
                 var errors = result.Errors
                     .GroupBy(e => e.Code)
-                    .ToDictionary(g => g.Key, g => g.Select(e => e.Description).ToList());
+                    .ToDictionary(g => g.Key, g => g.Select(e => new ValidationErrorDetail(e.Description)).ToList());
 
                 throw new ValidationException(errors);
             }
@@ -130,9 +157,20 @@ namespace Infrastructure.Identity.Services
             {
 
 
-                var ValidationException = new ValidationException();
-                ValidationException.AddValidations("Role", $"The role '{userDto.Role}' does not exist.");
-                throw ValidationException;
+                var validationException = new ValidationException(
+
+
+               new Dictionary<string, List<ValidationErrorDetail>>()
+               {
+                   ["Role"] = new List<ValidationErrorDetail>()
+           {
+                    new ValidationErrorDetail($"The role '{userDto.Role}' does not exist.")
+
+           }
+               }
+               );
+
+                throw validationException;
 
             }
 
@@ -169,7 +207,7 @@ namespace Infrastructure.Identity.Services
 
                 var errors = result.Errors
                            .GroupBy(e => e.Code)
-                           .ToDictionary(g => MapToField(g.Key), g => g.Select(e => e.Description).ToList());
+                           .ToDictionary(g => MapToField(g.Key), g => g.Select(e => new ValidationErrorDetail(e.Description)).ToList());
 
 
 

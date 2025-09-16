@@ -1,7 +1,7 @@
 ﻿using Infrastructure.Persistence.Context;
+using InventorySystem.Application.Features.Inventory.Dtos;
+using InventorySystem.Application.Features.Products.Intrefaces;
 using Microsoft.EntityFrameworkCore;
-using Project.Application.Features.Inventory.Dtos;
-using Project.Application.Features.Products.Intrefaces;
 
 namespace Infrastructure.Persistence.Repositories
 {

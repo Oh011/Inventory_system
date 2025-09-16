@@ -1,10 +1,10 @@
 ﻿using Domain.Entities;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using InventorySystem.Application.Features.Inventory.Dtos;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Features.Inventory.Dtos;
 
-namespace Project.Application.Features.Inventory.Commands.AdjustInventory
+namespace InventorySystem.Application.Features.Inventory.Commands.AdjustInventory
 {
     internal class AdjustInventoryCommandHandler : IRequestHandler<AdjustInventoryCommand, string>
     {

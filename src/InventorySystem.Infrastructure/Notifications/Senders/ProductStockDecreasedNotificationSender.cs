@@ -1,13 +1,13 @@
 ﻿using Application.Features.Users.Interfaces;
 using Domain.Entities;
 using Domain.Events.Products;
-using Project.Application.Common.Factories.Interfaces;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Common.Notifications.Senders;
-using Project.Application.Features.Inventory.Dtos;
-using Project.Application.Features.Notifications.Dtos;
-using Project.Application.Features.Notifications.Interfaces;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using InventorySystem.Application.Common.Factories.Interfaces;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Notifications.Senders;
+using InventorySystem.Application.Features.Inventory.Dtos;
+using InventorySystem.Application.Features.Notifications.Dtos;
+using InventorySystem.Application.Features.Notifications.Interfaces;
 
 namespace Infrastructure.Notifications.Senders
 {

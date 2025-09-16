@@ -1,12 +1,12 @@
 ﻿using Domain.Entities;
 using Domain.Specifications;
-using Project.Application.Common.Enums.SortOptions;
-using Project.Application.Features.Products.Dtos;
-using Project.Application.Features.Products.queries.GetProductsForSupplier;
+using InventorySystem.Application.Common.Enums.SortOptions;
+using InventorySystem.Application.Features.Products.Dtos;
+using InventorySystem.Application.Features.Products.queries.GetProductsForSupplier;
 
-namespace Project.Application.Features.Products.Specifications
+namespace InventorySystem.Application.Features.Products.Specifications
 {
-    internal class SupplierProductsSpecifications : ProjectionSpecifications<Product, PurchaseProductDto>
+    internal class SupplierProductsSpecifications : ProjectionSpecifications<Product, ProductPurchaseOrderLookUpDto>
     {
 
 
@@ -26,7 +26,7 @@ namespace Project.Application.Features.Products.Specifications
 
 
 
-            AddProjection(p => new PurchaseProductDto
+            AddProjection(p => new ProductPurchaseOrderLookUpDto
             {
                 Id = p.Id,
                 Name = p.Name,

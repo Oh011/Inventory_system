@@ -1,8 +1,9 @@
 ﻿using Application.Exceptions;
 using Domain.Common;
-using Project.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using Shared.Errors;
 
-namespace Project.Application.Common.Validators
+namespace InventorySystem.Application.Common.Validators
 {
     internal class EntityValidator<TEntity> : IEntityValidator<TEntity> where TEntity : BaseEntity
     {
@@ -27,8 +28,25 @@ namespace Project.Application.Common.Validators
 
             var missingIds = ids.Except(existingIds).ToList();
 
+
+
+
             if (missingIds.Any())
-                throw new NotFoundException($"{parameter} IDs not found: {string.Join(", ", missingIds)}");
+            {
+
+
+                var errors = missingIds.ToDictionary(
+                    id => id.ToString(),
+                    id => new List<ValidationErrorDetail>
+                    {
+                        new ValidationErrorDetail($"{parameter} with ID {id} not found")
+                    }
+                     );
+
+                throw new ValidationException(errors, $"Some {parameter} are not found");
+
+
+            }
 
 
         }
@@ -39,8 +57,12 @@ namespace Project.Application.Common.Validators
         {
             var repo = _unitOfWork.GetRepository<TEntity, int>();
             var exists = await repo.ExistsAsync(e => e.Id == id);
+
+
             if (!exists)
-                throw new NotFoundException($"{parameter} with ID {id} not found.");
+            {
+                throw new NotFoundException($"{parameter} with ID {id} was not found");
+            }
         }
 
     }

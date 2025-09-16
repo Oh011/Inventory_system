@@ -1,9 +1,9 @@
 ﻿using Application.Exceptions;
 using Domain.Entities;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.Repositories;
 
-namespace Project.Application.Features.Products.Commands.Delete
+namespace InventorySystem.Application.Features.Products.Commands.Delete
 {
     public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand, Unit>
     {

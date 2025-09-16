@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using Domain.Entities;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Features.PurchaseOrders.Dtos;
-using Project.Application.Features.PurchaseOrders.Interfaces;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Features.PurchaseOrders.Dtos;
+using InventorySystem.Application.Features.PurchaseOrders.Interfaces;
 
-namespace Project.Application.Features.PurchaseOrders.Commands.Create
+namespace InventorySystem.Application.Features.PurchaseOrders.Commands.Create
 {
-    internal class CreatePurchaseOrderCommandHandler : IRequestHandler<CreatePurchaseOrderCommand, PurchaseOrderResultDto>
+    internal class CreatePurchaseOrderCommandHandler : IRequestHandler<CreatePurchaseOrderCommand, PurchaseOrderDetailDto>
     {
 
 
@@ -26,7 +26,7 @@ namespace Project.Application.Features.PurchaseOrders.Commands.Create
             this.purchaseOrderService = purchaseOrderService;
             this._mapper = mapper;
         }
-        public async Task<PurchaseOrderResultDto> Handle(CreatePurchaseOrderCommand request, CancellationToken cancellationToken)
+        public async Task<PurchaseOrderDetailDto> Handle(CreatePurchaseOrderCommand request, CancellationToken cancellationToken)
         {
 
 

@@ -1,10 +1,10 @@
 ﻿using Domain.Specifications;
-using Project.Application.Common.Enums.SortOptions;
-using Project.Application.Features.SalesInvoice.Dtos;
-using Project.Application.Features.SalesInvoice.Queries.GetAll;
+using InventorySystem.Application.Common.Enums.SortOptions;
+using InventorySystem.Application.Features.SalesInvoice.Dtos;
+using InventorySystem.Application.Features.SalesInvoice.Queries.GetAll;
 
 using salesInvoice = Domain.Entities.SalesInvoice;
-namespace Project.Application.Features.SalesInvoice.specifications
+namespace InventorySystem.Application.Features.SalesInvoice.specifications
 {
     public class SalesInvoiceSpecifications : ProjectionSpecifications<salesInvoice, SalesInvoiceSummaryDto>
     {

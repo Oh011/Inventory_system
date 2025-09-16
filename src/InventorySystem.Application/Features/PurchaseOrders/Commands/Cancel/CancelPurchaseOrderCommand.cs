@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Project.Application.Features.PurchaseOrders.Commands.Cancel
+namespace InventorySystem.Application.Features.PurchaseOrders.Commands.Cancel
 {
     public class CancelPurchaseOrderCommand : IRequest<string>
     {

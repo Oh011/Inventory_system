@@ -1,9 +1,9 @@
 ﻿using Domain.Events.PurchaseOrder;
-using Project.Application.Common.Factories.Interfaces;
-using Project.Application.Common.Interfaces.PdfGenerators;
-using Project.Application.Common.Interfaces.Services;
-using Project.Application.Common.Notifications.Senders;
-using Project.Application.Features.PurchaseOrders.Interfaces;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using InventorySystem.Application.Common.Factories.Interfaces;
+using InventorySystem.Application.Common.Interfaces.PdfGenerators;
+using InventorySystem.Application.Common.Notifications.Senders;
+using InventorySystem.Application.Features.PurchaseOrders.Interfaces;
 
 namespace Infrastructure.Notifications.Senders
 {

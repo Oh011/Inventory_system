@@ -1,11 +1,11 @@
 ﻿
 using Domain.Entities;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
-using Project.Application.Features.Categories.Dtos;
-using Project.Application.Features.Suppliers.Specifications;
+using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Features.Categories.Dtos;
+using InventorySystem.Application.Features.Suppliers.Specifications;
 
-namespace Project.Application.Features.Suppliers.Queries.GetSuppliersCategories
+namespace InventorySystem.Application.Features.Suppliers.Queries.GetSuppliersCategories
 {
     internal class GetSupplierCategoriesQueryHandler : IRequestHandler<GetSupplierCategoriesQuery, IEnumerable<CategoryDto>>
     {

@@ -1,7 +1,7 @@
 ﻿using Domain.Common;
-using Project.Application.Common.Interfaces;
+using InventorySystem.Application.Common.Interfaces;
 
-namespace Project.Application.Common.Helpers
+namespace InventorySystem.Application.Common.Helpers
 {
     public static class EventDispatcherHelper
     {

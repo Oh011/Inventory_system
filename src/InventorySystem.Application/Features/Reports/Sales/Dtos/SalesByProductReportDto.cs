@@ -1,4 +1,4 @@
-﻿namespace Project.Application.Features.Reports.Sales.Dtos
+﻿namespace InventorySystem.Application.Features.Reports.Sales.Dtos
 {
     public class SalesByProductReportDto
     {

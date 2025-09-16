@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Domain.Entities;
 using MediatR;
-using Project.Application.Features.Suppliers.Dtos;
-using Project.Application.Features.Suppliers.Interfaces;
+using InventorySystem.Application.Features.Suppliers.Dtos;
+using InventorySystem.Application.Features.Suppliers.Interfaces;
 
-namespace Project.Application.Features.Suppliers.Commands.Update
+namespace InventorySystem.Application.Features.Suppliers.Commands.Update
 {
     internal class UpdateSupplierCommandHandler : IRequestHandler<UpdateSupplierRequest, SupplierDto>
     {

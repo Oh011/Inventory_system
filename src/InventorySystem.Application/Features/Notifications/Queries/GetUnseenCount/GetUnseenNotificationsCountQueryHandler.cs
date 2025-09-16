@@ -1,8 +1,8 @@
 ﻿using Domain.Entities;
 using MediatR;
-using Project.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.Repositories;
 
-namespace Project.Application.Features.Notifications.Queries.GetUnseenCount
+namespace InventorySystem.Application.Features.Notifications.Queries.GetUnseenCount
 {
     internal class GetUnseenNotificationsCountQueryHandler : IRequestHandler<GetUnseenNotificationsCountQuery, NotificationsCount>
     {
