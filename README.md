@@ -5,6 +5,21 @@
 
 📄 **API Documentation:** [View PDF](docs/API_Documentation.pdf)
 
+---
+
+## 🖥️ API Endpoints & Test Account
+
+You can explore all API endpoints using **Swagger**:  
+[Swagger UI](http://smartinventory.runasp.net)
+
+### Test Account
+Use the following credentials to test authentication and API calls:
+
+- **Email:** `Admin@Gmail.com`  
+- **Password:** `Admin#123`
+- **DeviceId:** `A1`
+
+
 
  ## 🏗️ Architecture Highlights
 - ✅ **Clean Architecture** (Domain, Application, Infrastructure, WebAPI)
