@@ -19,7 +19,7 @@ Use the following credentials to test authentication and API calls:
 - **Password:** `Admin#123`
 - **DeviceId:** `A1`
 
-
+---
 
  ## 🏗️ Architecture Highlights
 - ✅ **Clean Architecture** (Domain, Application, Infrastructure, WebAPI)
