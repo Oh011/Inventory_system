@@ -16,7 +16,7 @@ Make sure you have installed:
 - [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (LocalDB or full instance)
 - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) **or** [Visual Studio Code](https://code.visualstudio.com/)
 
----
+
 
 ### 🚀 Setup Steps
 
@@ -56,7 +56,7 @@ dotnet ef database update --project src/InventorySystem.Infrastructure --startup
 4. Run the API
 cd src/InventorySystem.Api
 dotnet run
-
+```
 
 
 
