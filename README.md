@@ -54,6 +54,7 @@ In src/InventorySystem.Api/appsettings.json, update:
 }
 
 
+
 🔑 Replace values with your SQL Server instance, email provider, and frontend URL.
 
 Apply EF Core migrations
