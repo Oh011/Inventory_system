@@ -1,9 +1,9 @@
 ﻿using Application.Features.Users.Interfaces;
 using Domain.Entities;
 using Domain.Events.Products;
-using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
 using InventorySystem.Application.Common.Factories.Interfaces;
 using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
 using InventorySystem.Application.Common.Notifications.Senders;
 using InventorySystem.Application.Features.Inventory.Dtos;
 using InventorySystem.Application.Features.Notifications.Dtos;
@@ -40,18 +40,21 @@ namespace Infrastructure.Notifications.Senders
 
             var repository = _unitOfWork.GetRepository<Product, int>();
 
-            var lowStockProducts = await repository.ListAsync(
-                p => productIds.Contains(p.Id) && p.QuantityInStock < p.MinimumStock,
-                p => new LowStockProductDto
-                {
-                    ProductId = p.Id,
-                    ProductName = p.Name,
-                    QuantityInStock = p.QuantityInStock,
-                    ReorderThreshold = p.MinimumStock,
-                });
+            var products = await repository.FindAsync(
+                p => productIds.Contains(p.Id) && p.QuantityInStock < p.MinimumStock &&
+                (p.LastLowStockNotifiedAt == null || p.LastLowStockNotifiedAt < DateTime.UtcNow.AddHours(-48)), false
+              );
 
             var userIds = await _userService.GetUsersIdByRole(
                 new List<string> { "Admin", "Manager", "Warehouse" });
+
+            var lowStockProducts = products.Select(p => new LowStockProductDto
+            {
+                ProductId = p.Id,
+                ProductName = p.Name,
+                ReorderThreshold = p.MinimumStock,
+                QuantityInStock = p.QuantityInStock,
+            });
 
             var createDtos = lowStockProducts
             .Select(p => notificationDtoFactory.CreateLowStockNotification(p, userIds))

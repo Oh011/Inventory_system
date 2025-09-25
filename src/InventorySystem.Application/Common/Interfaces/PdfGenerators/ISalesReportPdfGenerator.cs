@@ -1,5 +1,5 @@
 ﻿using InventorySystem.Application.Features.Reports.Sales.Dtos;
-using InventorySystem.Application.Features.Reports.Sales.Dtos;
+
 
 namespace InventorySystem.Application.Common.Interfaces.PdfGenerators
 {
@@ -8,9 +8,9 @@ namespace InventorySystem.Application.Common.Interfaces.PdfGenerators
 
 
         public byte[] GenerateSalesByCustomerReportPdf(
-IEnumerable<SalesByCustomerReportDto> data,
-DateTime fromDate,
-DateTime toDate);
+        IEnumerable<SalesByCustomerReportDto> data,
+        DateTime fromDate,
+        DateTime toDate);
 
         public byte[] GenerateSalesByCategoryReportPdf(
     IEnumerable<SalesByCategoryReportDto> data,

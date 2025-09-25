@@ -29,8 +29,6 @@ namespace Application.Specifications.Products
 
 
 
-
-
             AddProjection(p => new ProductResultDto
             {
                 Id = p.Id,
@@ -39,9 +37,10 @@ namespace Application.Specifications.Products
                 Barcode = p.Barcode,
                 Unit = p.Unit.ToString(), // assuming Unit is an enum
                 SellingPrice = p.SellingPrice,
+                CostPrice = p.CostPrice,
 
                 ProductImageUrl = p.ProductImageUrl,
-                CategoryId = p.CategoryId,
+                CategoryId = p.Category != null ? p.Category.Id : null,
                 CategoryName = p.Category != null ? p.Category.Name : null,
                 IsCategoryDeleted = p.Category != null && p.Category.IsDeleted
 

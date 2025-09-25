@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace Infrastructure.Persistence.Context
 {
-    internal class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
 
 

@@ -3,10 +3,11 @@ using Infrastructure.DependencyInjection;
 using InventorySystem.Extensions;
 using InventorySystem.Middlewares;
 using InventorySystem.RealTime;
+using InventorySystem.Services.DependecyInjcetion;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
-using InventorySystem.Services.DependecyInjcetion;
 using Sahred.Options;
+using Serilog;
 using System.Reflection;
 namespace InventorySystem
 {
@@ -18,9 +19,15 @@ namespace InventorySystem
 
             // Add services to the container.
 
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Information() // set minimum level
+            .WriteTo.Console()          // log to console
+            .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day) // log to daily files
+            .CreateLogger();
 
 
 
+            builder.Host.UseSerilog();
 
             builder.Services.AddPresentationServices();
 

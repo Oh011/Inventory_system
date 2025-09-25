@@ -46,6 +46,9 @@ namespace Domain.Entities
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
 
+        public DateTime? LastLowStockNotifiedAt { get; set; }
+
+
 
         public ICollection<PurchaseOrderItem>? PurchaseOrders { get; set; } = new List<PurchaseOrderItem>();
 

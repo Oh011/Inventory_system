@@ -10,6 +10,8 @@
         public decimal CostPrice { get; set; }
         public int QuantityInStock { get; set; }
 
+
+
         public int? CategoryId { get; set; }
     }
 }

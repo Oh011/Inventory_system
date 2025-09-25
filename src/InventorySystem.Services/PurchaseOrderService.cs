@@ -197,11 +197,7 @@ namespace InventorySystem.Services
                         item.Value.UpdateQuantityReceived(updatedQuantity.receivedQuantity);
                     }
 
-                    else
-                    {
 
-                        throw new NotFoundException($"Item with ID {item.Key} was not found in this order.");
-                    }
                 }
 
 

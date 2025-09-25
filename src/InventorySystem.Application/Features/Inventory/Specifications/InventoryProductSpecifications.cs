@@ -28,6 +28,11 @@ namespace InventorySystem.Application.Features.Inventory.Specifications
                 ProductName = p.Name,
                 CurrentStock = p.QuantityInStock,
                 Unit = p.Unit.ToString(),
+                Barcode = p.Barcode,
+                ReorderThreshold = p.MinimumStock,
+                CostPrice = p.CostPrice,
+                SellingPrice = p.SellingPrice,
+
                 CategoryName = p.Category != null ? p.Category.Name : null
             });
 

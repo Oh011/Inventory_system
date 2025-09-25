@@ -21,9 +21,6 @@ namespace InventorySystem.Controllers
     {
 
 
-
-
-
         [HttpGet("look-up")]
         public async Task<ActionResult<SuccessWithData<List<SupplierLookupDto>>>> GetSuppliersLookUp()
         {
@@ -36,22 +33,12 @@ namespace InventorySystem.Controllers
 
 
         [HttpGet("{id}/categories")]
-        public async Task<ActionResult<SuccessWithData<CategoryDto>>> GetSupplierCategories(int id)
+        public async Task<ActionResult<SuccessWithData<IEnumerable<CategoryDto>>>> GetSupplierCategories(int id)
         {
             var query = new GetSupplierCategoriesQuery(id);
             var result = await mediator.Send(query);
             return Ok(ApiResponseFactory.Success(result));
         }
-
-
-
-        //[HttpGet("{supplierId}/products")]
-        //public async Task<IActionResult> GetProductsForSupplier(int supplierId)
-        //{
-        //    var products = await mediator.Send(new GetPurchaseProductsLookupQuery(supplierId));
-        //    return Ok(products);
-        //}
-
 
 
         [HttpGet("{id}")]
@@ -72,17 +59,11 @@ namespace InventorySystem.Controllers
         public async Task<ActionResult<SuccessWithData<SupplierDto>>> UpdateSupplier(int id, [FromBody] UpdateSupplierCommand command)
         {
 
-
             var request = mapper.Map<UpdateSupplierRequest>(command);
             request.Id = id;
 
-
             var result = await mediator.Send(request);
-
-
             return Ok(ApiResponseFactory.Success(result));
-
-
 
         }
 
@@ -92,9 +73,7 @@ namespace InventorySystem.Controllers
         public async Task<ActionResult<SuccessWithData<PaginatedResult<SupplierDto>>>> GetAllSuppliers([FromQuery] GetSuppliersQuery query)
         {
 
-
             var result = await mediator.Send(query);
-
             return Ok(ApiResponseFactory.Success(result));
         }
 

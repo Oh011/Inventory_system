@@ -1,8 +1,8 @@
 ﻿
 using AutoMapper;
 using Domain.Entities;
-using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
 using InventorySystem.Application.Common.Interfaces.Repositories;
+using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
 using InventorySystem.Application.Features.Notifications.Dtos;
 using InventorySystem.Application.Features.Notifications.Interfaces;
 using InventorySystem.Application.Features.Notifications.Queries.GetUserNotifications;

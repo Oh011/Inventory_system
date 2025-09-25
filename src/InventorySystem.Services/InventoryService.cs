@@ -1,5 +1,4 @@
-﻿using Domain.Entities;
-using InventorySystem.Application.Common.Interfaces;
+﻿using InventorySystem.Application.Common.Interfaces;
 using InventorySystem.Application.Common.Interfaces.Repositories;
 using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
 using InventorySystem.Application.Common.Validation;
@@ -15,8 +14,6 @@ namespace InventorySystem.Services
         public async Task<IEnumerable<int>> AdjustStockAsync(List<InventoryStockAdjustmentDto> adjustments, ITransactionManager transactionManager)
         {
 
-
-            var repository = _unitOfWork.GetRepository<Product, int>();
             var productIds = adjustments.Select(x => x.ProductId).ToList();
 
             var receivedItems = adjustments.ToDictionary(i => i.ProductId, i => i.QuantityChange);

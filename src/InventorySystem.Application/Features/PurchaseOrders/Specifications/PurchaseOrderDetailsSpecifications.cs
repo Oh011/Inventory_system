@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Specifications;
 using InventorySystem.Application.Features.PurchaseOrders.Dtos;
+using Shared.Extensions;
 
 namespace InventorySystem.Application.Features.PurchaseOrders.Specifications
 {
@@ -22,7 +23,7 @@ namespace InventorySystem.Application.Features.PurchaseOrders.Specifications
                 SupplierName = p.Supplier.Name,
                 OrderDate = p.OrderDate,
                 ExpectedDate = p.ExpectedDate,
-                Status = p.Status.ToString(),
+                Status = p.Status.ToReadableString(),
                 TotalAmount = p.TotalAmount,
                 DeliveryFee = p.DeliveryFee,
                 Notes = p.Notes,

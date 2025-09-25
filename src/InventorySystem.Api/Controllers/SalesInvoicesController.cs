@@ -1,10 +1,12 @@
 ﻿using Domain.Enums;
 using InventorySystem.Application.Common.Dtos;
+using InventorySystem.Application.Features.Products.Dtos;
 using InventorySystem.Application.Features.SalesInvoice.Commands.Create;
 using InventorySystem.Application.Features.SalesInvoice.Dtos;
 using InventorySystem.Application.Features.SalesInvoice.Queries.ExportPdf;
 using InventorySystem.Application.Features.SalesInvoice.Queries.GetAll;
 using InventorySystem.Application.Features.SalesInvoice.Queries.GetById;
+using InventorySystem.Application.Features.SalesInvoice.Queries.GetProductByBarcodeForSales;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,8 +18,25 @@ namespace InventorySystem.Controllers
     [ApiVersion("1.0")]
     [Route("api/v{ version:apiVersion}/[controller]")]
     [ApiController]
-    public class SalesInvoiceController(IMediator mediator) : ControllerBase
+    public class SalesInvoicesController(IMediator mediator) : ControllerBase
     {
+
+
+        /// <summary>
+        /// Get a product by barcode for sales (used in sales invoice creation).
+        /// </summary>
+        [HttpGet("products/by-barcode/{barcode}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<SuccessWithData<ProductSalesLookupDto>> GetProductByBarcode(string barcode)
+        {
+            var query = new GetProductByBarcodeForSalesQuery(barcode);
+            var result = await mediator.Send(query);
+
+            return ApiResponseFactory.Success(result);
+        }
+
+
+
         /// <summary>
         /// 📄 Get all sales invoices with optional filters and pagination.
         /// Accessible by Admins, Managers, and Salespersons.

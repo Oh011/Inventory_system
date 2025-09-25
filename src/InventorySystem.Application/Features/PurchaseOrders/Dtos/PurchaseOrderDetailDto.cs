@@ -26,18 +26,7 @@
         public List<PurchaseOrderItemResultDto> OrderItems { get; set; } = new();
 
 
-        public string ReceivedStatus
-        {
-            get
-            {
-                if (OrderItems.All(i => i.IsFullyReceived))
-                    return "Fully Received";
-                else if (OrderItems.Any(i => i.QuantityReceived > 0))
-                    return "Partially Received";
-                else
-                    return "Pending";
-            }
-        }
+
 
     }
 }

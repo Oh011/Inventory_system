@@ -1,12 +1,11 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using InventorySystem.Application.Features.Categories.Commands.Create;
+﻿using InventorySystem.Application.Features.Categories.Commands.Create;
 using InventorySystem.Application.Features.Categories.Commands.Delete;
 using InventorySystem.Application.Features.Categories.Commands.Update;
 using InventorySystem.Application.Features.Categories.Dtos;
-using InventorySystem.Application.Features.Categories.Queries.CategoryLookUp;
 using InventorySystem.Application.Features.Categories.Queries.GetCategory;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Shared;
 
 namespace InventorySystem.Controllers
@@ -96,23 +95,6 @@ namespace InventorySystem.Controllers
 
 
 
-        /// <summary>
-        /// Gets a lightweight list of categories for dropdowns/lookups.
-        /// </summary>
-        /// <remarks>
-        /// Accessible by all roles (Admin, Manager, Sales, Warehouse).
-        /// </remarks>
-
-        [HttpGet("look-up")]
-        [Authorize(Roles = "Admin,Manager,Salesperson,Warehouse")]
-
-        public async Task<ActionResult<SuccessWithData<List<CategoryDto>>>> GetCategoryLookUp()
-        {
-            var result = await mediator.Send(new GetCategoryLookUpQuery());
-
-
-            return Ok(ApiResponseFactory.Success(result));
-        }
 
 
         /// <summary>

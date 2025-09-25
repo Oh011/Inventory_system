@@ -1,8 +1,4 @@
-﻿using InventorySystem.Application.Features.PurchaseOrders.Dtos;
-using InventorySystem.Application.Features.PurchaseOrders.Queries.PurchaseOrderOverview;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using InventorySystem.Application.Features.Products.Dtos;
 using InventorySystem.Application.Features.PurchaseOrders.Commands.Cancel;
 using InventorySystem.Application.Features.PurchaseOrders.Commands.Create;
 using InventorySystem.Application.Features.PurchaseOrders.Commands.Update;
@@ -10,6 +6,11 @@ using InventorySystem.Application.Features.PurchaseOrders.Dtos;
 using InventorySystem.Application.Features.PurchaseOrders.Queries.ExportPf;
 using InventorySystem.Application.Features.PurchaseOrders.Queries.GetAll;
 using InventorySystem.Application.Features.PurchaseOrders.Queries.GetById;
+using InventorySystem.Application.Features.PurchaseOrders.Queries.GetProductByBarcodeForPurchase;
+using InventorySystem.Application.Features.PurchaseOrders.Queries.PurchaseOrderOverview;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Shared;
 using Shared.Results;
 
@@ -18,10 +19,27 @@ namespace InventorySystem.Controllers
     [ApiVersion("1.0")]
     [Route("api/v{ version:apiVersion}/[controller]")]
     [ApiController]
-    public class PurchaseOrderController(IMediator mediator) : ControllerBase
+    public class PurchaseOrdersController(IMediator mediator) : ControllerBase
     {
 
 
+
+
+        /// <summary>
+        /// Get a product by barcode for a given supplier (used in purchase order creation).
+        /// </summary>
+        [HttpGet("{supplierId}/products/by-barcode/{barcode}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+
+        public async Task<SuccessWithData<ProductPurchaseOrderLookUpDto>> GetProductByBarcodeForSupplier(int supplierId, string barcode)
+        {
+            var query = new GetProductByBarcodeForPurchaseQuery(supplierId, barcode);
+
+            var result = await mediator.Send(query);
+
+
+            return ApiResponseFactory.Success(result);
+        }
 
 
 
@@ -68,7 +86,7 @@ namespace InventorySystem.Controllers
         /// Accessible by Admins, Managers, and Warehouse staff.
         /// </summary>
         [HttpGet("{id}")]
-        [Authorize(Roles = "Admin,Manager,Warehouse")]
+        //[Authorize(Roles = "Admin,Manager,Warehouse")]
 
 
         public async Task<ActionResult<SuccessWithData<PurchaseOrderDetailDto>>> GetOrderById([FromRoute] int id)
@@ -132,7 +150,7 @@ namespace InventorySystem.Controllers
         /// Only Warehouse staff are allowed to mark items as received.
         /// </summary>
         [HttpPatch("{id}/receive")]
-        [Authorize(Roles = "Warehouse")]
+
 
         public async Task<ActionResult<SuccessWithData<PurchaseOrderDetailDto>>> UpdatePurchaseOrder([FromRoute] int id, [FromBody] UpdatePurchaseOrderRequest request)
         {

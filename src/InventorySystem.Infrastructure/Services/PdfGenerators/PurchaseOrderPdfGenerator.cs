@@ -107,10 +107,10 @@ namespace Infrastructure.Services
                     page.DefaultTextStyle(x => x.FontSize(12));
 
                     // Header with dynamic status color
-                    page.Header().Text($"Purchase Order #{order.Id} - {order.ReceivedStatus}")
+                    page.Header().Text($"Purchase Order #{order.Id} - {order.Status}")
                         .SemiBold().FontSize(18)
-                        .FontColor(order.ReceivedStatus == "Fully Received" ? Colors.Green.Medium :
-                                   order.ReceivedStatus == "Partially Received" ? Colors.Orange.Medium :
+                        .FontColor(order.Status == "Fully Received" ? Colors.Green.Medium :
+                                   order.Status == "Partially Received" ? Colors.Orange.Medium :
                                    Colors.Red.Medium);
 
                     page.Content().Column(col =>

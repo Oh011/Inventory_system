@@ -122,6 +122,8 @@ namespace InventorySystem.Middlewares
             };
 
 
+            _logger.LogError(exception, "An error occurred: {Message}", exception.Message);
+
             var response = ApiResponseFactory.Failure(message, statusCode);
 
 

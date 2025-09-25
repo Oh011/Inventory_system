@@ -5,6 +5,110 @@
 
 📄 **API Documentation:** [View PDF](docs/API_Documentation.pdf)
 
+---
+
+## ⚙️ Requirements & Setup (Without Docker)
+
+### ✅ Requirements
+Make sure you have installed:
+
+- [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download)
+- [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (LocalDB or full instance)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) **or** [Visual Studio Code](https://code.visualstudio.com/)
+
+
+
+### 🚀 Setup Steps
+
+#### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/Inventory_System.git
+cd Inventory_System
+```
+
+#### 2.Configure appsettings.json
+In src/InventorySystem.Api/appsettings.json, update the configuration:
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=YOUR_SQL_SERVER;Database=InventorySystem;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True"
+  },
+
+  "JwtOptions": {
+    "Issuer": "your-app",
+    "Audience": "your-app-users",
+    "SecretKey": "your-super-secret-key"
+  },
+
+  "SmtpOptions": {
+    "Host": "smtp.yourmail.com",
+    "Port": 587,
+    "UserName": "your-email@domain.com",
+    "Password": "your-email-password",
+    "EnableSsl": true
+  },
+
+  "LinkOptions": {
+    "BaseUrl": "http://localhost:4200"
+  }
+}
+
+```
+#### 3. Apply EF Core migrations
+ ```bash
+dotnet ef database update --project src/InventorySystem.Infrastructure --startup-project src/InventorySystem.Api
+```
+
+##### 4. Run the API
+  ```bash
+cd src/InventorySystem.Api
+dotnet run
+```
+
+
+---
+
+## 🖥️ API Endpoints & Test Account
+
+You can explore all API endpoints using **Swagger**:  
+[Swagger UI](http://smartinventory.runasp.net)
+
+### Test Account
+Use the following credentials to test authentication and API calls:
+
+- **Email:** `Admin@Gmail.com`  
+- **Password:** `Admin#123`
+- **DeviceId:** `A1`
+
+---
+
+## 📂 Project Structure
+
+```text
+src/
+├── InventorySystem.Api            # Presentation layer (controllers, middlewares, config)
+├── InventorySystem.Application    # CQRS commands, queries, DTOs, validators
+├── InventorySystem.Domain         # Entities, Enums, Domain Events
+├── InventorySystem.Infrastructure # EF Core, Repositories, Identity, Services
+└── Shared                         # Shared DTOs, constants, error models
+```
+
+
+
+
+---
+
+
+## 🗄️ ERD (Entity Relationship Diagram)
+
+The diagram below shows the **core tables and relationships** of the Inventory & Order Management System.  
+It focuses on the main entities like Products, Categories, Customers, Employees, Orders, and Suppliers.
+
+![ERD Diagram](images/erd_diagram.png)
+
+> **Note:** Some technical or auxiliary tables (like notifications, logs, or Identity internal tables) are omitted for clarity.
+
+---
 
  ## 🏗️ Architecture Highlights
 - ✅ **Clean Architecture** (Domain, Application, Infrastructure, WebAPI)
