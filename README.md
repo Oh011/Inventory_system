@@ -97,6 +97,7 @@ src/
 
 
 ---
+<<<<<<< HEAD
 
 
 ## 🗄️ ERD (Entity Relationship Diagram)
@@ -109,6 +110,8 @@ It focuses on the main entities like Products, Categories, Customers, Employees,
 > **Note:** Some technical or auxiliary tables (like notifications, logs, or Identity internal tables) are omitted for clarity.
 
 ---
+=======
+>>>>>>> 7077d17cef6abfcc62daacc90e0c12d73dea5db7
 
  ## 🏗️ Architecture Highlights
 - ✅ **Clean Architecture** (Domain, Application, Infrastructure, WebAPI)
