@@ -7,6 +7,18 @@
 
 ---
 
+
+
+## 🛠️ Tech Stack
+- Backend: ASP.NET Core 8, EF Core
+- Frontend: Angular
+- Real-time: SignalR
+- Database: SQL Server
+- PDF generation: QuestPDF
+- Patterns: Clean Architecture, CQRS, Domain Events
+
+---
+
 ## ⚙️ Requirements & Setup (Without Docker)
 
 ### ✅ Requirements
