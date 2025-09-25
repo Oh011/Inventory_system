@@ -84,12 +84,15 @@ Use the following credentials to test authentication and API calls:
 
 ## 📂 Project Structure
 
+```text
 src/
-├── InventorySystem.Api           # Presentation layer (controllers, middlewares, config)
-├── InventorySystem.Application   # CQRS commands, queries, DTOs, validators
-├── InventorySystem.Domain        # Entities, Enums, Domain Events
-├── InventorySystem.Infrastructure# EF Core, Repositories, Identity, Services
-└── Shared                        # Shared DTOs, constants, error models
+├── InventorySystem.Api            # Presentation layer (controllers, middlewares, config)
+├── InventorySystem.Application    # CQRS commands, queries, DTOs, validators
+├── InventorySystem.Domain         # Entities, Enums, Domain Events
+├── InventorySystem.Infrastructure # EF Core, Repositories, Identity, Services
+└── Shared                         # Shared DTOs, constants, error models
+```
+
 
 
 
