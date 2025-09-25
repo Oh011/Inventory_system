@@ -26,7 +26,7 @@ git clone https://github.com/your-username/Inventory_System.git
 cd Inventory_System
 ```
 
-2.Configure appsettings.json
+#### 2.Configure appsettings.json
 In src/InventorySystem.Api/appsettings.json, update the configuration:
 ```bash
 {
@@ -54,12 +54,12 @@ In src/InventorySystem.Api/appsettings.json, update the configuration:
 }
 
 ```
-3. Apply EF Core migrations
+#### 3. Apply EF Core migrations
  ```bash
 dotnet ef database update --project src/InventorySystem.Infrastructure --startup-project src/InventorySystem.Api
 ```
 
-4. Run the API
+##### 4. Run the API
   ```bash
 cd src/InventorySystem.Api
 dotnet run
@@ -79,6 +79,19 @@ Use the following credentials to test authentication and API calls:
 - **Email:** `Admin@Gmail.com`  
 - **Password:** `Admin#123`
 - **DeviceId:** `A1`
+
+---
+
+## 📂 Project Structure
+
+src/
+├── InventorySystem.Api           # Presentation layer (controllers, middlewares, config)
+├── InventorySystem.Application   # CQRS commands, queries, DTOs, validators
+├── InventorySystem.Domain        # Entities, Enums, Domain Events
+├── InventorySystem.Infrastructure# EF Core, Repositories, Identity, Services
+└── Shared                        # Shared DTOs, constants, error models
+
+
 
 ---
 
