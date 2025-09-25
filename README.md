@@ -97,15 +97,13 @@ src/
 
 
 ---
-<<<<<<< HEAD
-
 
 ## 🗄️ ERD (Entity Relationship Diagram)
 
 The diagram below shows the **core tables and relationships** of the Inventory & Order Management System.  
 It focuses on the main entities like Products, Categories, Customers, Employees, Orders, and Suppliers.
 
-![ERD Diagram](images/erd_diagram.png)
+![ERD Diagram](images/erd-diagram.png)
 
 > **Note:** Some technical or auxiliary tables (like notifications, logs, or Identity internal tables) are omitted for clarity.
 
