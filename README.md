@@ -6,6 +6,74 @@
 📄 **API Documentation:** [View PDF](docs/API_Documentation.pdf)
 
 ---
+⚙️ Requirements & Setup (Without Docker)
+✅ Requirements
+
+Make sure you have installed:
+
+.NET 8 SDK
+
+SQL Server
+ (LocalDB or full instance)
+
+Visual Studio 2022 or Visual Studio Code
+
+🚀 Setup Steps
+
+Clone the repository
+
+git clone https://github.com/your-username/Inventory_System.git
+cd Inventory_System
+
+
+Configure appsettings.json
+In src/InventorySystem.Api/appsettings.json, update:
+
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=YOUR_SQL_SERVER;Database=InventorySystem;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True"
+  },
+
+  "JwtOptions": {
+    "Issuer": "your-app",
+    "Audience": "your-app-users",
+    "SecretKey": "your-super-secret-key"
+  },
+
+  "SmtpOptions": {
+    "Host": "smtp.yourmail.com",
+    "Port": 587,
+    "UserName": "your-email@domain.com",
+    "Password": "your-email-password",
+    "EnableSsl": true
+  },
+
+  "LinkOptions": {
+    "FrontendBaseUrl": "http://localhost:4200"
+  }
+}
+
+
+🔑 Replace values with your SQL Server instance, email provider, and frontend URL.
+
+Apply EF Core migrations
+
+dotnet ef database update --project src/InventorySystem.Infrastructure --startup-project src/InventorySystem.Api
+
+
+Run the API
+
+cd src/InventorySystem.Api
+dotnet run
+
+
+API will be available at:
+
+https://localhost:5001
+
+http://localhost:5000
+
+---
 
 ## 🖥️ API Endpoints & Test Account
 
