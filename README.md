@@ -50,14 +50,14 @@ In src/InventorySystem.Api/appsettings.json, update the configuration:
     "FrontendBaseUrl": "http://localhost:4200"
   }
 }
+
+```
 3. Apply EF Core migrations
 dotnet ef database update --project src/InventorySystem.Infrastructure --startup-project src/InventorySystem.Api
 
 4. Run the API
 cd src/InventorySystem.Api
 dotnet run
-```
-
 
 
 ---
