@@ -49,7 +49,7 @@ In src/InventorySystem.Api/appsettings.json, update the configuration:
   },
 
   "LinkOptions": {
-    "FrontendBaseUrl": "http://localhost:4200"
+    "BaseUrl": "http://localhost:4200"
   }
 }
 
