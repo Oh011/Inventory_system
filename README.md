@@ -53,11 +53,15 @@ In src/InventorySystem.Api/appsettings.json, update the configuration:
 
 ```
 3. Apply EF Core migrations
+ ```bash
 dotnet ef database update --project src/InventorySystem.Infrastructure --startup-project src/InventorySystem.Api
+```
 
 4. Run the API
+  ```bash
 cd src/InventorySystem.Api
 dotnet run
+```
 
 
 ---
