@@ -24,9 +24,11 @@ Make sure you have installed:
 ```bash
 git clone https://github.com/your-username/Inventory_System.git
 cd Inventory_System
+```
 
 2.Configure appsettings.json
 In src/InventorySystem.Api/appsettings.json, update the configuration:
+```bash
 {
   "ConnectionStrings": {
     "DefaultConnection": "Server=YOUR_SQL_SERVER;Database=InventorySystem;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True"
