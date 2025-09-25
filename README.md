@@ -28,7 +28,7 @@ cd Inventory_System
 
 #### 2.Configure appsettings.json
 In src/InventorySystem.Api/appsettings.json, update the configuration:
-```bash
+```json
 {
   "ConnectionStrings": {
     "DefaultConnection": "Server=YOUR_SQL_SERVER;Database=InventorySystem;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True"
