@@ -71,6 +71,18 @@ namespace Infrastructure.Notifications.Senders
                 await _notificationService.NotifyLowStockProducts(group);
 
 
+
+            foreach (var product in products)
+            {
+
+                product.LastLowStockNotifiedAt = DateTime.UtcNow;
+            }
+
+
+            await _unitOfWork.Commit();
+
+
+
         }
 
 

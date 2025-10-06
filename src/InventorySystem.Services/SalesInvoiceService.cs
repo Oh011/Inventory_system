@@ -177,28 +177,5 @@ namespace InventorySystem.Services
             return invoice;
         }
 
-        //private async Task<Dictionary<int, ProductForSalesInvoiceDto>> LoadProducts(IEnumerable<int> productIds)
-        //{
-
-
-        //    //→ Keep LoadProducts(...) inside PurchaseOrderService for now.
-        //    //If other modules start using the same logic, refactor it later into ProductService.
-
-        //    var productsRepository = unitOfWork.GetRepository<Product, int>();
-        //    var products = (await productsRepository.ListAsync(
-        //                p => productIds.Contains(p.Id),
-        //                p => new ProductForSalesInvoiceDto
-        //                {
-        //                    Id = p.Id,
-        //                    Name = p.Name,
-        //                    Barcode = p.Barcode,
-        //                    Stock = p.QuantityInStock,
-        //                    SellingPrice = p.SellingPrice,
-        //                }
-        //            )).ToDictionary(p => p.Id, p => p);
-
-        //    return products;
-
-        //}
     }
 }

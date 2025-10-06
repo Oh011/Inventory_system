@@ -1,11 +1,11 @@
-﻿using InventorySystem.Controllers.HelperMethods;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using InventorySystem.Api.Responses;
 using InventorySystem.Application.Features.Users.Commands.AssignRole;
 using InventorySystem.Application.Features.Users.Commands.ChangePassword;
 using InventorySystem.Application.Features.Users.Dtos;
-using Shared;
+using InventorySystem.Controllers.HelperMethods;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace InventorySystem.Controllers
 {

@@ -1,4 +1,5 @@
 ﻿using InventorySystem.Api.Dtos.Customers;
+using InventorySystem.Api.Responses;
 using InventorySystem.Application.Features.Customers.Commands.Create;
 using InventorySystem.Application.Features.Customers.Commands.Delete;
 using InventorySystem.Application.Features.Customers.Commands.Update;
@@ -8,7 +9,6 @@ using InventorySystem.Application.Features.Customers.Queries.GetAllCustomers;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Shared;
 using Shared.Results;
 
 namespace InventorySystem.Controllers

@@ -52,6 +52,20 @@ namespace Domain.Entities
         }
 
 
+        public void ReceiveItems(Dictionary<int, int> itemsQuantities) // itemId -> receivedQty
+        {
+            foreach (var item in Items)
+            {
+                if (itemsQuantities.TryGetValue(item.Id, out var receivedQty))
+                {
+                    item.UpdateQuantityReceived(receivedQty);
+                }
+            }
+
+            UpdateStatusBasedOnReceivedQuantities();
+        }
+
+
         public void UpdateStatusBasedOnReceivedQuantities()
         {
             int totalOrdered = Items.Sum(i => i.QuantityOrdered);
@@ -62,7 +76,8 @@ namespace Domain.Entities
             else if (totalReceived == totalOrdered)
                 Status = PurchaseOrderStatus.Received;
             else
-                throw new DomainException("Received more than ordered"); // rule
+                throw new DomainException("Cannot receive more items than the quantity ordered.");
+
         }
 
         public void MarkAsCreated(int supplierId, string supplierName, string supplierEmail, PurchaseOrderStatus status)

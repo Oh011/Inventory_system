@@ -1,18 +1,22 @@
 ﻿using AutoMapper;
-using InventorySystem.Services;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+using InventorySystem.Api.Dtos.Employee;
+using InventorySystem.Api.Extensions;
+using InventorySystem.Api.Responses;
 using InventorySystem.Application.Common.Parameters;
 using InventorySystem.Application.Features.Employees.Commands.ActivateEmployee;
 using InventorySystem.Application.Features.Employees.Commands.CreateEmployee;
 using InventorySystem.Application.Features.Employees.Commands.UpdateEmployee;
 using InventorySystem.Application.Features.Employees.Commands.UpdateEmployeeImage;
 using InventorySystem.Application.Features.Employees.Dtos;
+using InventorySystem.Application.Features.Employees.Queries.GetEmployeeProfile;
+using InventorySystem.Application.Features.Employees.Queries.GetEmployeeProfileById;
 using InventorySystem.Application.Features.Employees.Queries.GetEmployees;
-using Shared;
+using InventorySystem.Services;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Shared.Results;
-using InventorySystem.Api.Dtos.Employee;
+using System.Security.Claims;
 
 namespace InventorySystem.Controllers
 {
@@ -43,6 +47,36 @@ namespace InventorySystem.Controllers
             return Ok(ApiResponseFactory.Success(result));
 
         }
+
+
+
+
+        // GET /employees/me
+        [HttpGet("me")]
+        [Authorize]
+
+        public async Task<IActionResult> GetMyProfile()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "";
+            var result = await mediator.Send(new GetEmployeeProfileQuery(userId!));
+
+            var response = result.ToApiResponse();
+            return StatusCode(response.StatusCode, response);
+
+        }
+
+
+        // GET /employees/{id}
+        [HttpGet("{id}")]
+        [Authorize(Roles = "Admin,Manager")] // restrict access
+        public async Task<IActionResult> GetEmployeeById(int id)
+        {
+            var result = await mediator.Send(new GetEmployeeProfileByIdQuery(id));
+
+            var response = result.ToApiResponse();
+            return StatusCode(response.StatusCode, response);
+        }
+
 
 
 
@@ -142,3 +176,7 @@ namespace InventorySystem.Controllers
         }
     }
 }
+
+
+//StatusCode(response.StatusCode, response) → sets the HTTP status code based on
+//Result<T> and returns the IApiResponse object as the JSON body.

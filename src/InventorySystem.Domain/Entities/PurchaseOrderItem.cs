@@ -33,7 +33,7 @@ namespace Domain.Entities
             var newTotal = this.QuantityReceived + quantity;
 
             if (newTotal > QuantityOrdered)
-                throw new DomainException("You cannot receive more than was ordered.");
+                throw new DomainException($"Product {ProductId} received quantity {newTotal}, but only {QuantityOrdered} was ordered.");
 
             this.QuantityReceived = newTotal;
 

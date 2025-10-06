@@ -1,4 +1,5 @@
-﻿using InventorySystem.Application.Features.Categories.Commands.Create;
+﻿using InventorySystem.Api.Responses;
+using InventorySystem.Application.Features.Categories.Commands.Create;
 using InventorySystem.Application.Features.Categories.Commands.Delete;
 using InventorySystem.Application.Features.Categories.Commands.Update;
 using InventorySystem.Application.Features.Categories.Dtos;
@@ -6,7 +7,6 @@ using InventorySystem.Application.Features.Categories.Queries.GetCategory;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Shared;
 
 namespace InventorySystem.Controllers
 {

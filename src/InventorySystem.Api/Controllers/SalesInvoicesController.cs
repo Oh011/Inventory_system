@@ -1,4 +1,5 @@
 ﻿using Domain.Enums;
+using InventorySystem.Api.Responses;
 using InventorySystem.Application.Common.Dtos;
 using InventorySystem.Application.Features.Products.Dtos;
 using InventorySystem.Application.Features.SalesInvoice.Commands.Create;
@@ -10,7 +11,6 @@ using InventorySystem.Application.Features.SalesInvoice.Queries.GetProductByBarc
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Shared;
 using Shared.Results;
 
 namespace InventorySystem.Controllers

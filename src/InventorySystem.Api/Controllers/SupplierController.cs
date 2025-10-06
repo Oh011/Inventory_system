@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InventorySystem.Api.Responses;
 using InventorySystem.Application.Features.Categories.Dtos;
 using InventorySystem.Application.Features.Suppliers.Commands.Create;
 using InventorySystem.Application.Features.Suppliers.Commands.Update;
@@ -9,7 +10,6 @@ using InventorySystem.Application.Features.Suppliers.Queries.SupplierDetails;
 using InventorySystem.Application.Features.Suppliers.Queries.SupplierLookUp;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Shared;
 using Shared.Results;
 
 namespace InventorySystem.Controllers

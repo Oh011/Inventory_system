@@ -1,10 +1,10 @@
 ﻿using Application.Features.roles.Commands.CreateRole;
 using Application.Features.roles.Dtos;
 using Application.Features.roles.Queries.GetRoles;
+using InventorySystem.Api.Responses;
+using InventorySystem.Application.Features.roles.Commands.DeleteRole;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using InventorySystem.Application.Features.roles.Commands.DeleteRole;
-using Shared;
 
 namespace InventorySystem.Controllers
 {

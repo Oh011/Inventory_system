@@ -3,12 +3,12 @@ using Application.Features.Auth.Commands.LogIn;
 using Application.Features.Auth.Commands.RefreshAccessToken;
 using Application.Features.Auth.Commands.RevokeRefreshToken;
 using Application.Features.Auth.Dtos;
+using InventorySystem.Api.Responses;
 using InventorySystem.Application.Features.Auth.Commands.PasswordRest;
 using InventorySystem.Application.Features.Auth.Commands.ResetPassword;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Shared;
 
 namespace InventorySystem.Controllers
 {

@@ -1,6 +1,4 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using InventorySystem.Api.Responses;
 using InventorySystem.Application.Features.Inventory.Commands.AdjustInventory;
 using InventorySystem.Application.Features.Inventory.Dtos;
 using InventorySystem.Application.Features.Inventory.Queries.ExportAdjustmentLogsPdf;
@@ -8,7 +6,9 @@ using InventorySystem.Application.Features.Inventory.Queries.GetAdjustmentsLogs;
 using InventorySystem.Application.Features.Inventory.Queries.GetInventory;
 using InventorySystem.Application.Features.Inventory.Queries.GetInventoryValue;
 using InventorySystem.Application.Features.Inventory.Queries.GetLowStock;
-using Shared;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Shared.Results;
 
 namespace InventorySystem.Controllers

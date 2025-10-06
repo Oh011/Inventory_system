@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using InventorySystem.Services;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+using InventorySystem.Api.Dtos.Products;
+using InventorySystem.Api.Responses;
 using InventorySystem.Application.Features.Products.Commands.Create;
 using InventorySystem.Application.Features.Products.Commands.Delete;
 using InventorySystem.Application.Features.Products.Commands.Update;
@@ -11,9 +9,11 @@ using InventorySystem.Application.Features.Products.queries.GetProducts;
 using InventorySystem.Application.Features.Products.queries.GetProductsForSupplier;
 using InventorySystem.Application.Features.Products.queries.GetSalesProducts;
 using InventorySystem.Application.Features.Products.queries.ProductCreationData;
-using Shared;
+using InventorySystem.Services;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Shared.Results;
-using InventorySystem.Api.Dtos.Products;
 
 namespace InventorySystem.Controllers
 {

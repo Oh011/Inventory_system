@@ -1,14 +1,13 @@
-﻿using InventorySystem.Application.Features.Reports.Sales.Dtos;
+﻿using InventorySystem.Api.Responses;
+using InventorySystem.Application.Features.Reports.Sales.Dtos;
+using InventorySystem.Application.Features.Reports.Sales.Queries.ExportPdf;
 using InventorySystem.Application.Features.Reports.Sales.Queries.ExportSalesByCategoryPdf;
 using InventorySystem.Application.Features.Reports.Sales.Queries.ExportSalesByCustomerPdf;
+using InventorySystem.Application.Features.Reports.Sales.Queries.Sales;
 using InventorySystem.Application.Features.Reports.Sales.Queries.SalesByCategoryReport;
 using InventorySystem.Application.Features.Reports.Sales.Queries.SalesByCustomerReport;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using InventorySystem.Application.Features.Reports.Sales.Dtos;
-using InventorySystem.Application.Features.Reports.Sales.Queries.ExportPdf;
-using InventorySystem.Application.Features.Reports.Sales.Queries.Sales;
-using Shared;
 
 namespace InventorySystem.Controllers
 {

@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Shared;
+﻿using InventorySystem.Api.Responses;
+using Microsoft.AspNetCore.Mvc;
 using Shared.Errors;
 using System.Net;
 

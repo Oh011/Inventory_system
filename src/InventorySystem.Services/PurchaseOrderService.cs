@@ -182,23 +182,9 @@ namespace InventorySystem.Services
 
 
 
-
-                int totalQuantity = order?.Items?.Sum(i => i.QuantityOrdered) ?? 0;
-                int totalReceivedQuantity = request.Items.Sum(i => i.QuantityReceived);
-
-
-                foreach (var item in orderItemDict)
-                {
-
-
-                    if (requestItemDict.TryGetValue(item.Key, out var updatedQuantity))
-                    {
-
-                        item.Value.UpdateQuantityReceived(updatedQuantity.receivedQuantity);
-                    }
-
-
-                }
+                order.ReceiveItems(
+                     request.Items.ToDictionary(i => i.ItemId, i => i.QuantityReceived)
+                 );
 
 
                 order?.UpdateStatusBasedOnReceivedQuantities();
@@ -256,13 +242,6 @@ namespace InventorySystem.Services
 
 
         }
-
-
-
-
-
-
-
 
         public async Task<PurchaseOrderDetailDto> GetPurchaseOrderById(int id)
         {

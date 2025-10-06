@@ -1,4 +1,5 @@
-﻿using InventorySystem.Application.Features.Products.Dtos;
+﻿using InventorySystem.Api.Responses;
+using InventorySystem.Application.Features.Products.Dtos;
 using InventorySystem.Application.Features.PurchaseOrders.Commands.Cancel;
 using InventorySystem.Application.Features.PurchaseOrders.Commands.Create;
 using InventorySystem.Application.Features.PurchaseOrders.Commands.Update;
@@ -11,7 +12,6 @@ using InventorySystem.Application.Features.PurchaseOrders.Queries.PurchaseOrderO
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Shared;
 using Shared.Results;
 
 namespace InventorySystem.Controllers

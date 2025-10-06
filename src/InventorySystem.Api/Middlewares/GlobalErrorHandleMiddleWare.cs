@@ -1,7 +1,7 @@
 ﻿using Application.Exceptions;
 using Domain.Exceptions;
+using InventorySystem.Api.Responses;
 using Microsoft.EntityFrameworkCore;
-using Shared;
 using System.Net;
 
 namespace InventorySystem.Middlewares
