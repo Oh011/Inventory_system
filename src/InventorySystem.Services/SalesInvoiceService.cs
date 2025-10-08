@@ -1,9 +1,9 @@
 ﻿using Application.Exceptions;
 using Domain.Entities;
 using Domain.ValueObjects.SalesInvoice.Domain.ValueObjects;
-using InventorySystem.Application.Common.Interfaces;
 using InventorySystem.Application.Common.Interfaces.Repositories;
 using InventorySystem.Application.Common.Interfaces.Services.Interfaces;
+using InventorySystem.Application.Common.Validators;
 using InventorySystem.Application.Features.Inventory.Dtos;
 using InventorySystem.Application.Features.SalesInvoice.Commands.Create;
 using InventorySystem.Application.Features.SalesInvoice.Dtos;
@@ -23,7 +23,7 @@ namespace InventorySystem.Services
 
         public decimal SellingPrice { get; set; }
     }
-    internal class SalesInvoiceService(IStockEventService stockEventService, ITransactionManager transactionManager, IInventoryService _inventoryService, IUnitOfWork unitOfWork, IDomainEventDispatcher eventDispatcher) : ISalesInvoiceService
+    internal class SalesInvoiceService(IStockEventService stockEventService, ITransactionManager transactionManager, IInventoryService _inventoryService, IUnitOfWork unitOfWork, IEntityValidator<SalesInvoice> _validator) : ISalesInvoiceService
     {
 
 
@@ -177,5 +177,51 @@ namespace InventorySystem.Services
             return invoice;
         }
 
+        public async Task<IEnumerable<SalesInvoiceItemDto>> GetInvoiceItems(int id)
+        {
+
+            await _validator.ValidateExistsAsync(id, "Invoice");
+            var repository = unitOfWork.GetRepository<SalesInvoiceItem, int>();
+            var items = await repository.ListAsync(i => i.SalesInvoiceId == id,
+                item => new SalesInvoiceItemDto
+                {
+                    ProductId = item.ProductId,
+                    ProductName = item.Product != null ? item.Product.Name : "Unknown",
+                    QuantitySold = item.Quantity,
+                    UnitPrice = item.UnitPrice,
+                    Discount = item.Discount
+                });
+
+
+
+            return items;
+
+
+        }
+
+
+        public async Task<IEnumerable<SalesInvoiceItemWithReturnInfoDto>> GetInvoiceItemsWithReturnInfo(int id)
+        {
+
+
+            await _validator.ValidateExistsAsync(id, "Invoice");
+            var repository = unitOfWork.GetRepository<SalesInvoiceItem, int>();
+            var items = await repository.ListAsync(i => i.SalesInvoiceId == id, item => new SalesInvoiceItemWithReturnInfoDto
+            {
+                ProductId = item.ProductId,
+                ProductName = item.Product != null ? item.Product.Name : "Unknown",
+                QuantitySold = item.Quantity,
+                UnitPrice = item.UnitPrice,
+                Discount = item.Discount,
+                ReturnedQuantity = item.SalesReturnItems.Sum(r => r.Quantity)
+
+            });
+
+
+            return items;
+
+
+
+        }
     }
 }

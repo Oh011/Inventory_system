@@ -8,7 +8,7 @@
         public string? Email { get; set; }
 
         public int NumberOfInvoices { get; set; }
-        public int TotalUnitsPurchased { get; set; }  // sum of SalesInvoiceItem.Quantity
+        public int TotalUnitsPurchased { get; set; }  // sum of SalesInvoiceItem.QuantitySold
         public decimal TotalRevenue { get; set; }     // sum of FinalTotal across invoices
     }
 

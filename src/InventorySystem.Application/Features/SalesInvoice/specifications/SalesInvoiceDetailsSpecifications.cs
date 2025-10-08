@@ -31,7 +31,7 @@ namespace InventorySystem.Application.Features.SalesInvoice.specifications
                 {
                     ProductId = item.ProductId,
                     ProductName = item.Product != null ? item.Product.Name : "Unknown",
-                    Quantity = item.Quantity,
+                    QuantitySold = item.Quantity,
                     UnitPrice = item.UnitPrice,
                     Discount = item.Discount
                 }).ToList()

@@ -57,7 +57,7 @@ namespace Infrastructure.Services
                             {
                                 columns.ConstantColumn(40);   // #
                                 columns.RelativeColumn(2);    // Product Name
-                                columns.RelativeColumn();     // Quantity
+                                columns.RelativeColumn();     // QuantitySold
                                 columns.RelativeColumn();     // Unit Cost
                                 columns.RelativeColumn();     // Subtotal
                             });
@@ -175,7 +175,7 @@ namespace Infrastructure.Services
                             .SemiBold().FontSize(14);
                         col.Item().Text($"Total Received Value: {order.TotalReceivedValue:C}")
                             .SemiBold().FontSize(14);
-                        col.Item().Text($"Total Quantity Received: {order.TotalQuantityReceived}");
+                        col.Item().Text($"Total QuantitySold Received: {order.TotalQuantityReceived}");
 
                         col.Item().Text("This document reflects items received for this order.")
                             .Italic().FontSize(10);

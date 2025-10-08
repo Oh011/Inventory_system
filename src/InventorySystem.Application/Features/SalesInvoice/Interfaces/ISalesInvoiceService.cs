@@ -9,6 +9,10 @@ namespace InventorySystem.Application.Features.SalesInvoice.Interfaces
     {
 
 
+        Task<IEnumerable<SalesInvoiceItemDto>> GetInvoiceItems(int id);
+
+
+        Task<IEnumerable<SalesInvoiceItemWithReturnInfoDto>> GetInvoiceItemsWithReturnInfo(int id);
         Task<SalesInvoiceDetailsDto> GetInvoiceById(int id);
         Task<PaginatedResult<SalesInvoiceSummaryDto>> GetAllInvoices(GetSalesInvoicesQuery query);
 

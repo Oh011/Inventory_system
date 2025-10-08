@@ -7,6 +7,7 @@ using InventorySystem.Application.Features.SalesInvoice.Dtos;
 using InventorySystem.Application.Features.SalesInvoice.Queries.ExportPdf;
 using InventorySystem.Application.Features.SalesInvoice.Queries.GetAll;
 using InventorySystem.Application.Features.SalesInvoice.Queries.GetById;
+using InventorySystem.Application.Features.SalesInvoice.Queries.GetInvoiceItems;
 using InventorySystem.Application.Features.SalesInvoice.Queries.GetProductByBarcodeForSales;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -99,5 +100,31 @@ namespace InventorySystem.Controllers
 
             return Ok(ApiResponseFactory.Success(paymentMethods));
         }
+
+
+
+        /// <summary>
+        /// 🧾 Get all items of a sales invoice by invoice ID.
+        /// </summary>
+        [HttpGet("{id}/items")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<SuccessWithData<IEnumerable<SalesInvoiceItemDto>>>> GetInvoiceItems([FromRoute] int id)
+        {
+            var result = await mediator.Send(new GetInvoiceItemsQuery(id));
+
+            return Ok(ApiResponseFactory.Success(result));
+        }
+
+
+        //[HttpGet("{id}/returnable-items")]
+        //public async Task<IActionResult> GetInvoiceItemsWithReturnInfo(int id)
+        //{
+        //    var result = await mediator.Send(new GetInvoiceItemsWithReturnInfoQuery(id));
+        //    var response = result.ToApiResponse();
+        //    return StatusCode(response.StatusCode, response);
+        //}
+
+
     }
 }

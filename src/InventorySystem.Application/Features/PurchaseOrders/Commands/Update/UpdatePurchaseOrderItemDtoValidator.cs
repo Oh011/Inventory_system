@@ -13,7 +13,7 @@ namespace InventorySystem.Application.Features.PurchaseOrders.Commands.Update
 
             RuleFor(x => x.QuantityReceived)
                 .GreaterThanOrEqualTo(0)
-                .WithMessage("Quantity received must be zero or more.");
+                .WithMessage("QuantitySold received must be zero or more.");
         }
     }
 }

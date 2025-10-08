@@ -1,4 +1,5 @@
 ﻿using Domain.Common;
+using Shared.Results;
 
 namespace InventorySystem.Application.Common.Validators
 {
@@ -7,5 +8,12 @@ namespace InventorySystem.Application.Common.Validators
 
         Task ValidateExistsAsync(int id, string parameter);
         Task ValidateExistAsync(IEnumerable<int> ids, string parameter);
+
+
+
+        public Task<Result<Unit>> CheckExistAsync(IEnumerable<int> ids, string parameter);
+
+
+        public Task<Result<Unit>> CheckExistsAsync(int id, string parameter);
     }
 }

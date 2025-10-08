@@ -4,6 +4,9 @@ namespace Shared.Results
 {
 
 
+
+
+
     public class Result<T>
     {
         public bool IsSuccess { get; }
@@ -26,6 +29,11 @@ namespace Shared.Results
         public static Result<T> Success(T value, string? message = null)
             => new(true, value, message, null, null);
 
+        //  Success with no data (used in commands)
+        public static Result<Unit> Success(string? message = null)
+            => new(true, Unit.Value, message, null, null);
+
+        //  Failure returning the same T type (safe for queries)
         public static Result<T> Failure(string message, ErrorType error = ErrorType.Internal)
             => new(false, default, message, null, error);
 
@@ -33,6 +41,23 @@ namespace Shared.Results
                                         Dictionary<string, List<ValidationErrorDetail>> validationErrors,
                                         ErrorType error = ErrorType.Validation)
             => new(false, default, message, validationErrors, error);
+
+        //  Failure with no data (safe for commands)
+        public static Result<Unit> FailureUnit(string message, ErrorType error = ErrorType.Internal)
+            => new(false, default, message, null, error);
+
+        public static Result<Unit> FailureUnit(string message,
+                                               Dictionary<string, List<ValidationErrorDetail>> validationErrors,
+                                               ErrorType error = ErrorType.Validation)
+            => new(false, default, message, validationErrors, error);
     }
+
+
+    public sealed class Unit
+    {
+        public static readonly Unit Value = new Unit();
+        private Unit() { }
+    }
+
 
 }

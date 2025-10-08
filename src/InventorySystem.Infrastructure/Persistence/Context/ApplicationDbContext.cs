@@ -1,6 +1,7 @@
 ﻿
 using Domain.Entities;
 using Infrastructure.Identity;
+using InventorySystem.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -59,6 +60,12 @@ namespace Infrastructure.Persistence.Context
 
 
         public DbSet<Customer> Customers { get; set; }
+
+
+        public DbSet<SalesReturn> SalesReturn { get; set; }
+
+
+        public DbSet<SalesReturnItem> salesReturnItems { get; set; }
 
 
         public DbSet<StockAdjustmentLog> stockAdjustmentLogs { get; set; }

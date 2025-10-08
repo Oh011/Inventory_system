@@ -40,7 +40,7 @@ namespace InventorySystem.Application.Features.Products.Commands.Create
                 .GreaterThan(0).WithMessage("Selling price must be greater than 0.");
 
             RuleFor(x => x.QuantityInStock)
-                .GreaterThanOrEqualTo(0).WithMessage("Quantity in stock must be non-negative.");
+                .GreaterThanOrEqualTo(0).WithMessage("QuantitySold in stock must be non-negative.");
 
             RuleFor(x => x.MinimumStock)
                 .GreaterThanOrEqualTo(0).WithMessage("Minimum stock must be non-negative.");

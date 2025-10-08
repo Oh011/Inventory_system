@@ -1,6 +1,7 @@
 ﻿using Domain.Common;
 using Domain.Enums;
 using Domain.ValueObjects.SalesInvoice.Domain.ValueObjects;
+using InventorySystem.Domain.Entities;
 
 namespace Domain.Entities
 {
@@ -36,7 +37,7 @@ namespace Domain.Entities
 
         public ICollection<SalesInvoiceItem>? Items { get; set; } = new List<SalesInvoiceItem>();
 
-
+        public ICollection<SalesReturn> SalesReturns { get; set; } = new List<SalesReturn>();
 
 
 

@@ -13,7 +13,7 @@ namespace InventorySystem.Application.Features.SalesInvoice.Commands.Create
                 .GreaterThan(0).WithMessage("Product ID is required.");
 
             RuleFor(x => x.QuantitySold)
-                .GreaterThan(0).WithMessage("Quantity sold must be greater than zero.");
+                .GreaterThan(0).WithMessage("QuantitySold sold must be greater than zero.");
 
             RuleFor(x => x.SellingPrice)
                 .GreaterThan(0).WithMessage("Selling price must be greater than zero.");

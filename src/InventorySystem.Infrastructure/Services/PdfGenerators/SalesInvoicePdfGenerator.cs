@@ -69,7 +69,7 @@ namespace Infrastructure.Services
                             {
                                 table.Cell().Text(index++);
                                 table.Cell().Text(item.ProductName);
-                                table.Cell().Text(item.Quantity.ToString());
+                                table.Cell().Text(item.QuantitySold.ToString());
                                 table.Cell().Text($"{item.UnitPrice:C}");
                                 table.Cell().Text($"{item.Discount:C}");
                                 table.Cell().Text($"{item.Subtotal:C}");

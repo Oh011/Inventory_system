@@ -38,6 +38,7 @@ namespace InventorySystem.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
+
         public async Task<ActionResult<SuccessWithData<CreateEmployeeResponseDto>>> CreateEmployee([FromBody] CreateEmployeeCommand command)
         {
 
@@ -51,10 +52,21 @@ namespace InventorySystem.Controllers
 
 
 
-        // GET /employees/me
+        /// <summary>
+        /// Retrieves the profile details of the currently signed-in employee.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint returns the authenticated user's own profile information based on the access token.
+        /// <br/><br/>
+        /// <b>Authorization:</b> Requires a valid access token.
+        /// </remarks>
+        /// <response code="200">Successfully retrieved the employee profile.</response>
+        /// <response code="404">Returned if the employee profile could not be found.</response>
         [HttpGet("me")]
         [Authorize]
-
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(SuccessWithData<EmployeeProfileDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(FailureMessageOnly), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetMyProfile()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "";
@@ -62,14 +74,26 @@ namespace InventorySystem.Controllers
 
             var response = result.ToApiResponse();
             return StatusCode(response.StatusCode, response);
-
         }
 
-
-        // GET /employees/{id}
+        /// <summary>
+        /// Retrieves the profile details of a specific employee by their ID.
+        /// </summary>
+        /// <remarks>
+        /// This endpoint is accessible only by users with <b>Admin</b> or <b>Manager</b> roles.  
+        /// It allows viewing another employee’s profile by specifying their ID.
+        /// <br/><br/>
+        /// <b>Authorization:</b> Admin or Manager role required.
+        /// </remarks>
+        /// <param name="id">The unique identifier of the employee.</param>
+        /// <response code="200">Successfully retrieved the employee profile.</response>
+        /// <response code="404">Returned if no employee exists with the specified ID.</response>
         [HttpGet("{id}")]
-        [Authorize(Roles = "Admin,Manager")] // restrict access
-        public async Task<IActionResult> GetEmployeeById(int id)
+        [Authorize(Roles = "Admin,Manager")]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(SuccessWithData<EmployeeProfileDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(FailureMessageOnly), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IApiResponse>> GetEmployeeById(int id)
         {
             var result = await mediator.Send(new GetEmployeeProfileByIdQuery(id));
 

@@ -338,7 +338,7 @@ namespace Infrastructure.Persistence.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int>("QuantitySold")
                         .HasColumnType("int");
 
                     b.Property<int>("SalesInvoiceId")
